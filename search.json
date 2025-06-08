@@ -4,7 +4,7 @@
     "href": "probability.html",
     "title": "Probability",
     "section": "",
-    "text": "Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.\n\n\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]\n\n\n\n\nExpected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]\n\n\n\nUsed in Naive Bayes, probabilistic inference:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}\n\\]\n\n\n\nUsed to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]\n\n\n\nMeasures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning.\n\n\n\n\nLogistic regression: based on Bernoulli distribution\n\nVariational autoencoders (VAEs): use probability distributions to encode data\n\nBayesian models: handle uncertainty via prior/posterior reasoning"
+    "text": "Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.\n\n\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]\n\n\n\n\nExpected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]\n\n\n\nUsed in Naive Bayes, probabilistic inference:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}\n\\]\n\n\n\nProbability distributions describe how values of a random variable are distributed.\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal, Exponential\n\nExample: PDF of normal distribution\n\\[\nf(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\n\\]\n\n\n\nUsed to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]\n\n\n\nMeasures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning.\n\n\n\n\nLogistic regression: based on Bernoulli distribution\n\nVariational autoencoders (VAEs): use probability distributions to encode data\n\nBayesian models: handle uncertainty via prior/posterior reasoning"
   },
   {
     "objectID": "probability.html#random-variables-and-distributions",
@@ -28,6 +28,13 @@
     "text": "Used in Naive Bayes, probabilistic inference:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}\n\\]"
   },
   {
+    "objectID": "probability.html#probability-distributions",
+    "href": "probability.html#probability-distributions",
+    "title": "Probability",
+    "section": "",
+    "text": "Probability distributions describe how values of a random variable are distributed.\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal, Exponential\n\nExample: PDF of normal distribution\n\\[\nf(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\n\\]"
+  },
+  {
     "objectID": "probability.html#maximum-likelihood-estimation-mle",
     "href": "probability.html#maximum-likelihood-estimation-mle",
     "title": "Probability",
@@ -49,18 +56,67 @@
     "text": "Logistic regression: based on Bernoulli distribution\n\nVariational autoencoders (VAEs): use probability distributions to encode data\n\nBayesian models: handle uncertainty via prior/posterior reasoning"
   },
   {
+    "objectID": "calculus.html",
+    "href": "calculus.html",
+    "title": "Calculus",
+    "section": "",
+    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\n\n\n\nUsed when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\n\n\n\nFor a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization.\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+  },
+  {
+    "objectID": "calculus.html#derivatives",
+    "href": "calculus.html#derivatives",
+    "title": "Calculus",
+    "section": "",
+    "text": "The derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]"
+  },
+  {
+    "objectID": "calculus.html#partial-derivatives",
+    "href": "calculus.html#partial-derivatives",
+    "title": "Calculus",
+    "section": "",
+    "text": "Used when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]"
+  },
+  {
+    "objectID": "calculus.html#jacobian-matrix",
+    "href": "calculus.html#jacobian-matrix",
+    "title": "Calculus",
+    "section": "",
+    "text": "For a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]"
+  },
+  {
+    "objectID": "calculus.html#hessian-matrix",
+    "href": "calculus.html#hessian-matrix",
+    "title": "Calculus",
+    "section": "",
+    "text": "Second-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization."
+  },
+  {
+    "objectID": "calculus.html#integration",
+    "href": "calculus.html#integration",
+    "title": "Calculus",
+    "section": "",
+    "text": "Area under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]"
+  },
+  {
+    "objectID": "calculus.html#integration-by-parts",
+    "href": "calculus.html#integration-by-parts",
+    "title": "Calculus",
+    "section": "",
+    "text": "A useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+  },
+  {
     "objectID": "linear-algebra.html",
     "href": "linear-algebra.html",
     "title": "Linear Algebra",
     "section": "",
-    "text": "This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\\\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\\\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]\n\n\n\n\nL2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties.\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+    "text": "This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]\n\n\n\n\nL2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties.\n\n\n\nThe determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks.\n\n\n\nThe trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
   },
   {
     "objectID": "linear-algebra.html#vectors-and-matrices",
     "href": "linear-algebra.html#vectors-and-matrices",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\\\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\\\\\ 3 & 4 \\end{bmatrix}\n\\]"
+    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]"
   },
   {
     "objectID": "linear-algebra.html#matrix-multiplication",
@@ -82,6 +138,20 @@
     "title": "Linear Algebra",
     "section": "",
     "text": "L2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties."
+  },
+  {
+    "objectID": "linear-algebra.html#determinant",
+    "href": "linear-algebra.html#determinant",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "The determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks."
+  },
+  {
+    "objectID": "linear-algebra.html#trace",
+    "href": "linear-algebra.html#trace",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "The trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]"
   },
   {
     "objectID": "linear-algebra.html#eigenvalues-and-eigenvectors",
