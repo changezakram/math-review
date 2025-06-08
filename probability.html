@@ -272,27 +272,29 @@ P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
 <li><strong>Discrete</strong>: Bernoulli, Binomial</li>
 <li><strong>Continuous</strong>: Normal, Exponential</li>
 </ul>
-<p>Example: PDF of normal distribution (1D)</p>
+<p><strong>PDF of normal distribution in 1D</strong></p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
 \]</span></p>
-<p><strong>Multivariate Normal Distribution:</strong></p>
-<p>When the random variable is a vector <span class="math inline">\(x \in \mathbb{R}^d\)</span>, the Gaussian generalizes to:</p>
+<section id="multivariate-normal-distribution" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="multivariate-normal-distribution"><span class="header-section-number">1.4.1</span> Multivariate Normal Distribution</h3>
+<p>The normal (Gaussian) distribution can be extended to multiple variables — for example, when <span class="math inline">\(x\)</span> is a vector instead of just a number.</p>
+<p>When <span class="math inline">\(x\)</span> is a vector in <span class="math inline">\(\mathbb{R}^d\)</span> (i.e., a list of <span class="math inline">\(d\)</span> values), the multivariate Gaussian looks like:</p>
 <p><span class="math display">\[
-\mathcal{N}(x \mid \mu, \Sigma) = \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) \right)
+\mathcal{N}(x \mid \mu, \Sigma) =
+\frac{1}{(2\pi)^{d/2} \, |\Sigma|^{1/2}}
+\exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1}(x - \mu) \right)
 \]</span></p>
+<p><strong>What do all these symbols mean?</strong></p>
 <ul>
-<li><span class="math inline">\(x\)</span>: <span class="math inline">\(d\)</span>-dimensional vector<br>
-</li>
-<li><span class="math inline">\(\mu\)</span>: Mean vector<br>
-</li>
-<li><span class="math inline">\(\Sigma\)</span>: Covariance matrix (describes variance and correlation)<br>
-</li>
-<li><span class="math inline">\(|\Sigma|\)</span>: Determinant of the covariance matrix<br>
-</li>
-<li><span class="math inline">\((x - \mu)^T \Sigma^{-1} (x - \mu)\)</span>: Generalized (Mahalanobis) distance</li>
+<li><span class="math inline">\(x\)</span>: A <span class="math inline">\(d\)</span>-dimensional vector (e.g., an image flattened into a 1D array)</li>
+<li><span class="math inline">\(\mu\)</span>: The mean vector (the “center” of the distribution)</li>
+<li><span class="math inline">\(\Sigma\)</span>: The <span class="math inline">\(d \times d\)</span> covariance matrix, which captures the spread and correlation of the variables</li>
+<li><span class="math inline">\(|\Sigma|\)</span>: The <strong>determinant</strong> of <span class="math inline">\(\Sigma\)</span>, representing the volume of the distribution</li>
+<li><span class="math inline">\((2\pi)^{d/2}\)</span>: Comes from extending the 1D normalizing constant to <span class="math inline">\(d\)</span> dimensions</li>
+<li><span class="math inline">\((x - \mu)^T \Sigma^{-1}(x - \mu)\)</span>: A <strong>generalized squared distance</strong> from <span class="math inline">\(x\)</span> to the mean — see below!</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="What's the Mahalanobis Distance?">
+<div class="callout callout-style-default callout-tip callout-titled" title="What’s the Mahalanobis Distance?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -302,13 +304,21 @@ What’s the Mahalanobis Distance?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The term <span class="math inline">\((x - \mu)^T \Sigma^{-1} (x - \mu)\)</span> measures how far <span class="math inline">\(x\)</span> is from the mean <span class="math inline">\(\mu\)</span>, adjusted for the shape of the distribution. It’s like Euclidean distance, but scaled to account for direction-dependent variance.</p>
+<p>The term <span class="math inline">\((x - \mu)^T \Sigma^{-1}(x - \mu)\)</span> measures how far <span class="math inline">\(x\)</span> is from the mean <span class="math inline">\(\mu\)</span>, taking into account how spread out the data is in different directions.<br>
+It’s like Euclidean distance, but <strong>adjusted</strong> for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.</p>
 </div>
 </div>
-<p>If <span class="math inline">\(\Sigma = \sigma^2 I\)</span>, this reduces to:</p>
+</section>
+<section id="special-case-spherical-gaussian" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="special-case-spherical-gaussian"><span class="header-section-number">1.4.2</span> Special Case: Spherical Gaussian</h3>
+<p>If all variables are independent and have equal variance <span class="math inline">\(\sigma^2\)</span>, then <span class="math inline">\(\Sigma = \sigma^2 I\)</span> and the formula simplifies to:</p>
 <p><span class="math display">\[
-\mathcal{N}(x \mid \mu, \sigma^2 I) = \frac{1}{(2\pi \sigma^2)^{d/2}} \exp\left( -\frac{1}{2\sigma^2} \| x - \mu \|^2 \right)
+\mathcal{N}(x \mid \mu, \sigma^2 I) =
+\frac{1}{(2\pi \sigma^2)^{d/2}}
+\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
 \]</span></p>
+<p>This looks more like the familiar 1D bell curve — but extended to <span class="math inline">\(d\)</span> dimensions.</p>
+</section>
 </section>
 <section id="maximum-likelihood-estimation-mle" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="maximum-likelihood-estimation-mle"><span class="header-section-number">1.5</span> Maximum Likelihood Estimation (MLE)</h2>
