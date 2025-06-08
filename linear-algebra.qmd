@@ -1,0 +1,8 @@
+---
+title: "Linear Algebra"
+format: html
+---
+
+# Linear Algebra
+
+Work in progress. This section will cover vectors, matrices, eigenvalues, and more.

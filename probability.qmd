@@ -1,0 +1,8 @@
+---
+title: "Probability"
+format: html
+---
+
+# Probability
+
+Work in progress. This section will cover distributions, expectations, Bayes' theorem, and more.
