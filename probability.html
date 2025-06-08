@@ -68,6 +68,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -112,7 +141,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#probability" id="toc-probability" class="nav-link active" data-scroll-target="#probability">Probability</a></li>
+  <li><a href="#probability-for-machine-learning" id="toc-probability-for-machine-learning" class="nav-link active" data-scroll-target="#probability-for-machine-learning">Probability for Machine Learning</a>
+  <ul class="collapse">
+  <li><a href="#random-variables-and-distributions" id="toc-random-variables-and-distributions" class="nav-link" data-scroll-target="#random-variables-and-distributions">Random Variables and Distributions</a></li>
+  <li><a href="#expectation-and-variance" id="toc-expectation-and-variance" class="nav-link" data-scroll-target="#expectation-and-variance">Expectation and Variance</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem">Bayes’ Theorem</a></li>
+  <li><a href="#maximum-likelihood-estimation-mle" id="toc-maximum-likelihood-estimation-mle" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle">Maximum Likelihood Estimation (MLE)</a></li>
+  <li><a href="#kl-divergence" id="toc-kl-divergence" class="nav-link" data-scroll-target="#kl-divergence">KL Divergence</a></li>
+  <li><a href="#common-ml-applications" id="toc-common-ml-applications" class="nav-link" data-scroll-target="#common-ml-applications">Common ML Applications</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -138,11 +175,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="probability" class="level1">
-<h1>Probability</h1>
-<p>Work in progress. This section will cover distributions, expectations, Bayes’ theorem, and more.</p>
+<section id="probability-for-machine-learning" class="level1">
+<h1>Probability for Machine Learning</h1>
+<p>Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.</p>
+<section id="random-variables-and-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="random-variables-and-distributions">Random Variables and Distributions</h2>
+<ul>
+<li><strong>Discrete</strong>: Bernoulli, Binomial</li>
+<li><strong>Continuous</strong>: Normal (Gaussian), Exponential</li>
+</ul>
+<p>Examples:</p>
+<p><span class="math display">\[
+P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
+\]</span></p>
+</section>
+<section id="expectation-and-variance" class="level2">
+<h2 class="anchored" data-anchor-id="expectation-and-variance">Expectation and Variance</h2>
+<ul>
+<li><strong>Expected value</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\mathbb{E}[X] = \sum_x x P(X=x) \quad \text{or} \quad \mathbb{E}[X] = \int x f_X(x)\, dx
+\]</span></p>
+<ul>
+<li><strong>Variance</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
+\]</span></p>
+</section>
+<section id="bayes-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-theorem">Bayes’ Theorem</h2>
+<p>Used in Naive Bayes, probabilistic inference:</p>
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
+\]</span></p>
+</section>
+<section id="maximum-likelihood-estimation-mle" class="level2">
+<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation-mle">Maximum Likelihood Estimation (MLE)</h2>
+<p>Used to estimate parameters of models:</p>
+<p><span class="math display">\[
+\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(D \mid \theta)
+\]</span></p>
+</section>
+<section id="kl-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="kl-divergence">KL Divergence</h2>
+<p>Measures how one distribution diverges from another:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(P \parallel Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
+\]</span></p>
+<p>Used in training VAEs and information-theoretic learning.</p>
+</section>
+<section id="common-ml-applications" class="level2">
+<h2 class="anchored" data-anchor-id="common-ml-applications">Common ML Applications</h2>
+<ul>
+<li><strong>Logistic regression</strong>: based on Bernoulli distribution<br>
+</li>
+<li><strong>Variational autoencoders (VAEs)</strong>: use probability distributions to encode data<br>
+</li>
+<li><strong>Bayesian models</strong>: handle uncertainty via prior/posterior reasoning</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -218,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/changezakram\.github\.io\/math-review\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

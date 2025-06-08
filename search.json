@@ -4,13 +4,97 @@
     "href": "probability.html",
     "title": "Probability",
     "section": "",
-    "text": "Probability\nWork in progress. This section will cover distributions, expectations, Bayes’ theorem, and more."
+    "text": "Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.\n\n\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]\n\n\n\n\nExpected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]\n\n\n\nUsed in Naive Bayes, probabilistic inference:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}\n\\]\n\n\n\nUsed to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]\n\n\n\nMeasures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning.\n\n\n\n\nLogistic regression: based on Bernoulli distribution\n\nVariational autoencoders (VAEs): use probability distributions to encode data\n\nBayesian models: handle uncertainty via prior/posterior reasoning"
+  },
+  {
+    "objectID": "probability.html#random-variables-and-distributions",
+    "href": "probability.html#random-variables-and-distributions",
+    "title": "Probability",
+    "section": "",
+    "text": "Discrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]"
+  },
+  {
+    "objectID": "probability.html#expectation-and-variance",
+    "href": "probability.html#expectation-and-variance",
+    "title": "Probability",
+    "section": "",
+    "text": "Expected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]"
+  },
+  {
+    "objectID": "probability.html#bayes-theorem",
+    "href": "probability.html#bayes-theorem",
+    "title": "Probability",
+    "section": "",
+    "text": "Used in Naive Bayes, probabilistic inference:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)}\n\\]"
+  },
+  {
+    "objectID": "probability.html#maximum-likelihood-estimation-mle",
+    "href": "probability.html#maximum-likelihood-estimation-mle",
+    "title": "Probability",
+    "section": "",
+    "text": "Used to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]"
+  },
+  {
+    "objectID": "probability.html#kl-divergence",
+    "href": "probability.html#kl-divergence",
+    "title": "Probability",
+    "section": "",
+    "text": "Measures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning."
+  },
+  {
+    "objectID": "probability.html#common-ml-applications",
+    "href": "probability.html#common-ml-applications",
+    "title": "Probability",
+    "section": "",
+    "text": "Logistic regression: based on Bernoulli distribution\n\nVariational autoencoders (VAEs): use probability distributions to encode data\n\nBayesian models: handle uncertainty via prior/posterior reasoning"
   },
   {
     "objectID": "linear-algebra.html",
     "href": "linear-algebra.html",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Linear Algebra\nWork in progress. This section will cover vectors, matrices, eigenvalues, and more."
+    "text": "This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\\\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\\\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]\n\n\n\n\nL2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties.\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#vectors-and-matrices",
+    "href": "linear-algebra.html#vectors-and-matrices",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\\\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\\\\\ 3 & 4 \\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#matrix-multiplication",
+    "href": "linear-algebra.html#matrix-multiplication",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#dot-product",
+    "href": "linear-algebra.html#dot-product",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Measures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#norms-and-distances",
+    "href": "linear-algebra.html#norms-and-distances",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "L2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties."
+  },
+  {
+    "objectID": "linear-algebra.html#eigenvalues-and-eigenvectors",
+    "href": "linear-algebra.html#eigenvalues-and-eigenvectors",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#singular-value-decomposition-svd",
+    "href": "linear-algebra.html#singular-value-decomposition-svd",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
   }
 ]
