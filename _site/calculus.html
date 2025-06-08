@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Probability</title>
+<title>Calculus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -194,15 +194,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#probability-for-machine-learning" id="toc-probability-for-machine-learning" class="nav-link active" data-scroll-target="#probability-for-machine-learning"><span class="header-section-number">1</span> Probability for Machine Learning</a>
+  <li><a href="#calculus-for-machine-learning" id="toc-calculus-for-machine-learning" class="nav-link active" data-scroll-target="#calculus-for-machine-learning"><span class="header-section-number">1</span> Calculus for Machine Learning</a>
   <ul class="collapse">
-  <li><a href="#random-variables-and-distributions" id="toc-random-variables-and-distributions" class="nav-link" data-scroll-target="#random-variables-and-distributions"><span class="header-section-number">1.1</span> Random Variables and Distributions</a></li>
-  <li><a href="#expectation-and-variance" id="toc-expectation-and-variance" class="nav-link" data-scroll-target="#expectation-and-variance"><span class="header-section-number">1.2</span> Expectation and Variance</a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">1.3</span> Bayes’ Theorem</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"><span class="header-section-number">1.4</span> Probability Distributions</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle" id="toc-maximum-likelihood-estimation-mle" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle"><span class="header-section-number">1.5</span> Maximum Likelihood Estimation (MLE)</a></li>
-  <li><a href="#kl-divergence" id="toc-kl-divergence" class="nav-link" data-scroll-target="#kl-divergence"><span class="header-section-number">1.6</span> KL Divergence</a></li>
-  <li><a href="#common-ml-applications" id="toc-common-ml-applications" class="nav-link" data-scroll-target="#common-ml-applications"><span class="header-section-number">1.7</span> Common ML Applications</a></li>
+  <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">1.1</span> Derivatives</a></li>
+  <li><a href="#partial-derivatives" id="toc-partial-derivatives" class="nav-link" data-scroll-target="#partial-derivatives"><span class="header-section-number">1.2</span> Partial Derivatives</a></li>
+  <li><a href="#jacobian-matrix" id="toc-jacobian-matrix" class="nav-link" data-scroll-target="#jacobian-matrix"><span class="header-section-number">1.3</span> Jacobian Matrix</a></li>
+  <li><a href="#hessian-matrix" id="toc-hessian-matrix" class="nav-link" data-scroll-target="#hessian-matrix"><span class="header-section-number">1.4</span> Hessian Matrix</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">1.5</span> Integration</a></li>
+  <li><a href="#integration-by-parts" id="toc-integration-by-parts" class="nav-link" data-scroll-target="#integration-by-parts"><span class="header-section-number">1.6</span> Integration by Parts</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -212,7 +211,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Probability</h1>
+<h1 class="title">Calculus</h1>
 </div>
 
 
@@ -229,78 +228,51 @@ window.Quarto = {
 </header>
 
 
-<section id="probability-for-machine-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Probability for Machine Learning</h1>
-<p>Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.</p>
-<section id="random-variables-and-distributions" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="random-variables-and-distributions"><span class="header-section-number">1.1</span> Random Variables and Distributions</h2>
-<ul>
-<li><strong>Discrete</strong>: Bernoulli, Binomial</li>
-<li><strong>Continuous</strong>: Normal (Gaussian), Exponential</li>
-</ul>
-<p>Examples:</p>
+<section id="calculus-for-machine-learning" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Calculus for Machine Learning</h1>
+<p>This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.</p>
+<section id="derivatives" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="derivatives"><span class="header-section-number">1.1</span> Derivatives</h2>
+<p>The derivative of a function measures the rate of change:</p>
 <p><span class="math display">\[
-P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
+\frac{d}{dx} f(x)
 \]</span></p>
 </section>
-<section id="expectation-and-variance" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="expectation-and-variance"><span class="header-section-number">1.2</span> Expectation and Variance</h2>
-<ul>
-<li><strong>Expected value</strong>:</li>
-</ul>
+<section id="partial-derivatives" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="partial-derivatives"><span class="header-section-number">1.2</span> Partial Derivatives</h2>
+<p>Used when dealing with multivariate functions:</p>
 <p><span class="math display">\[
-\mathbb{E}[X] = \sum_x x P(X=x) \quad \text{or} \quad \mathbb{E}[X] = \int x f_X(x)\, dx
-\]</span></p>
-<ul>
-<li><strong>Variance</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
+\frac{\partial f}{\partial x}, \quad \frac{\partial f}{\partial y}
 \]</span></p>
 </section>
-<section id="bayes-theorem" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">1.3</span> Bayes’ Theorem</h2>
-<p>Used in Naive Bayes, probabilistic inference:</p>
+<section id="jacobian-matrix" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="jacobian-matrix"><span class="header-section-number">1.3</span> Jacobian Matrix</h2>
+<p>For a vector-valued function ( : ^n ^m ), the Jacobian is:</p>
 <p><span class="math display">\[
-P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
+J_{ij} = \frac{\partial f_i}{\partial x_j}
 \]</span></p>
 </section>
-<section id="probability-distributions" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">1.4</span> Probability Distributions</h2>
-<p>Probability distributions describe how values of a random variable are distributed.</p>
-<ul>
-<li><strong>Discrete</strong>: Bernoulli, Binomial</li>
-<li><strong>Continuous</strong>: Normal, Exponential</li>
-</ul>
-<p>Example: PDF of normal distribution</p>
+<section id="hessian-matrix" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="hessian-matrix"><span class="header-section-number">1.4</span> Hessian Matrix</h2>
+<p>Second-order partial derivatives:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+\]</span></p>
+<p>Used in curvature analysis and second-order optimization.</p>
+</section>
+<section id="integration" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="integration"><span class="header-section-number">1.5</span> Integration</h2>
+<p>Area under a curve:</p>
+<p><span class="math display">\[
+\int_a^b f(x) \, dx
 \]</span></p>
 </section>
-<section id="maximum-likelihood-estimation-mle" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="maximum-likelihood-estimation-mle"><span class="header-section-number">1.5</span> Maximum Likelihood Estimation (MLE)</h2>
-<p>Used to estimate parameters of models:</p>
+<section id="integration-by-parts" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="integration-by-parts"><span class="header-section-number">1.6</span> Integration by Parts</h2>
+<p>A useful transformation:</p>
 <p><span class="math display">\[
-\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(D \mid \theta)
+\int u \, dv = uv - \int v \, du
 \]</span></p>
-</section>
-<section id="kl-divergence" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="kl-divergence"><span class="header-section-number">1.6</span> KL Divergence</h2>
-<p>Measures how one distribution diverges from another:</p>
-<p><span class="math display">\[
-D_{\text{KL}}(P \parallel Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
-\]</span></p>
-<p>Used in training VAEs and information-theoretic learning.</p>
-</section>
-<section id="common-ml-applications" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="common-ml-applications"><span class="header-section-number">1.7</span> Common ML Applications</h2>
-<ul>
-<li><strong>Logistic regression</strong>: based on Bernoulli distribution<br>
-</li>
-<li><strong>Variational autoencoders (VAEs)</strong>: use probability distributions to encode data<br>
-</li>
-<li><strong>Bayesian models</strong>: handle uncertainty via prior/posterior reasoning</li>
-</ul>
 
 
 </section>

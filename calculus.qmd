@@ -1,0 +1,58 @@
+---
+title: "Calculus"
+format: html
+---
+
+# Calculus for Machine Learning
+
+This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.
+
+## Derivatives
+
+The derivative of a function measures the rate of change:
+
+$$
+\frac{d}{dx} f(x)
+$$
+
+## Partial Derivatives
+
+Used when dealing with multivariate functions:
+
+$$
+\frac{\partial f}{\partial x}, \quad \frac{\partial f}{\partial y}
+$$
+
+## Jacobian Matrix
+
+For a vector-valued function \( \mathbf{f} : \mathbb{R}^n \to \mathbb{R}^m \), the Jacobian is:
+
+$$
+J_{ij} = \frac{\partial f_i}{\partial x_j}
+$$
+
+## Hessian Matrix
+
+Second-order partial derivatives:
+
+$$
+H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+$$
+
+Used in curvature analysis and second-order optimization.
+
+## Integration
+
+Area under a curve:
+
+$$
+\int_a^b f(x) \, dx
+$$
+
+## Integration by Parts
+
+A useful transformation:
+
+$$
+\int u \, dv = uv - \int v \, du
+$$

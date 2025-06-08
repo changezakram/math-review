@@ -2,18 +2,45 @@ project:
   type: website
 
 website:
-  title: "Math Review"
   navbar:
     left:
-      - text: "Linear Algebra"
-        href: linear-algebra.qmd
-      - text: "Probability"
-        href: probability.qmd
+      - icon: house
+        text: "Changez Akram"
+        href: https://changezakram.github.io/
+
+      - text: Deep Generative Models
+        menu:
+          - text: Variational Autoencoders (VAEs)
+            href: https://changezakram.github.io/Deep-Generative-Models/vae.html
+          - text: Normalizing Flows
+            href: https://changezakram.github.io/Deep-Generative-Models/flows.html
+          - text: Energy-Based Models (EBMs)
+            href: https://changezakram.github.io/Deep-Generative-Models/ebm.html
+
+      - text: Large Language Models
+        menu:
+          - text: Recurrent Neural Networks [Coming Soon]
+            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+          - text: Sequence to Sequence Models [Coming Soon]
+            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+          - text: Transformers [Coming Soon]
+            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+          - text: Benchmarking and Evaluation [Coming Soon]
+            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+
+      - text: Math Review
+        menu:
+          - text: Linear Algebra
+            href: https://changezakram.github.io/math-review/linear-algebra.html
+          - text: Calculus
+            href: https://changezakram.github.io/math-review/calculus.html
+          - text: Probability
+            href: https://changezakram.github.io/math-review/probability.html
 
 format:
   html:
     theme: cosmo
     toc: true
-
-
-
+    toc-depth: 2
+    number-sections: true
+    html-math-method: mathjax

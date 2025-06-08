@@ -3,6 +3,78 @@ title: "Linear Algebra"
 format: html
 ---
 
-# Linear Algebra
+# Linear Algebra for Machine Learning
 
-Work in progress. This section will cover vectors, matrices, eigenvalues, and more.
+This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.
+
+## Vectors and Matrices
+
+- **Vector**: A 1D array of numbers, often used to represent features.
+- **Matrix**: A 2D array of numbers, common for representing datasets and weights.
+
+Example:
+
+$$
+\mathbf{x} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}, \quad
+\mathbf{W} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
+$$
+
+## Matrix Multiplication
+
+Used in the forward pass of neural networks:
+
+$$
+\mathbf{y} = \mathbf{W} \mathbf{x}
+$$
+
+## Dot Product
+
+Measures projection or similarity:
+
+$$
+\mathbf{a} \cdot \mathbf{b} = \sum_i a_i b_i
+$$
+
+## Norms and Distances
+
+- **L2 Norm** (Euclidean length):
+
+$$
+\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}
+$$
+
+Used to compute distances and regularization penalties.
+
+## Determinant
+
+The determinant of a square matrix \( A \) is a scalar value:
+
+$$
+\det(A)
+$$
+
+Used in linear transformations and invertibility checks.
+
+## Trace
+
+The trace of a square matrix is the sum of diagonal elements:
+
+$$
+\text{Tr}(A) = \sum_i A_{ii}
+$$
+
+## Eigenvalues and Eigenvectors
+
+Used in PCA (dimensionality reduction):
+
+$$
+\mathbf{A} \mathbf{v} = \lambda \mathbf{v}
+$$
+
+## Singular Value Decomposition (SVD)
+
+Used in matrix factorization and recommender systems:
+
+$$
+\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+$$
