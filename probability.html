@@ -272,9 +272,42 @@ P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
 <li><strong>Discrete</strong>: Bernoulli, Binomial</li>
 <li><strong>Continuous</strong>: Normal, Exponential</li>
 </ul>
-<p>Example: PDF of normal distribution</p>
+<p>Example: PDF of normal distribution (1D)</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+\]</span></p>
+<p><strong>Multivariate Normal Distribution:</strong></p>
+<p>When the random variable is a vector <span class="math inline">\(x \in \mathbb{R}^d\)</span>, the Gaussian generalizes to:</p>
+<p><span class="math display">\[
+\mathcal{N}(x \mid \mu, \Sigma) = \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) \right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(x\)</span>: <span class="math inline">\(d\)</span>-dimensional vector<br>
+</li>
+<li><span class="math inline">\(\mu\)</span>: Mean vector<br>
+</li>
+<li><span class="math inline">\(\Sigma\)</span>: Covariance matrix (describes variance and correlation)<br>
+</li>
+<li><span class="math inline">\(|\Sigma|\)</span>: Determinant of the covariance matrix<br>
+</li>
+<li><span class="math inline">\((x - \mu)^T \Sigma^{-1} (x - \mu)\)</span>: Generalized (Mahalanobis) distance</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="What's the Mahalanobis Distance?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What’s the Mahalanobis Distance?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The term <span class="math inline">\((x - \mu)^T \Sigma^{-1} (x - \mu)\)</span> measures how far <span class="math inline">\(x\)</span> is from the mean <span class="math inline">\(\mu\)</span>, adjusted for the shape of the distribution. It’s like Euclidean distance, but scaled to account for direction-dependent variance.</p>
+</div>
+</div>
+<p>If <span class="math inline">\(\Sigma = \sigma^2 I\)</span>, this reduces to:</p>
+<p><span class="math display">\[
+\mathcal{N}(x \mid \mu, \sigma^2 I) = \frac{1}{(2\pi \sigma^2)^{d/2}} \exp\left( -\frac{1}{2\sigma^2} \| x - \mu \|^2 \right)
 \]</span></p>
 </section>
 <section id="maximum-likelihood-estimation-mle" class="level2" data-number="1.5">
