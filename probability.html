@@ -260,10 +260,65 @@ P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
 </section>
 <section id="bayes-theorem" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">1.3</span> Bayes’ Theorem</h2>
-<p>Used in Naive Bayes, probabilistic inference:</p>
+<p>Bayes’ Theorem lets us <strong>update what we believe</strong> about a situation after seeing new evidence.</p>
+<p>It answers the question:<br>
+&gt; <em>“Given that something has happened (<span class="math inline">\(B\)</span>), how likely is it that some other condition (<span class="math inline">\(A\)</span>) was true?”</em></p>
+<p>The formula is:</p>
 <p><span class="math display">\[
-P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
+P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
 \]</span></p>
+<ul>
+<li><span class="math inline">\(P(A \mid B)\)</span>: <strong>Posterior</strong> — the probability of <span class="math inline">\(A\)</span> given that <span class="math inline">\(B\)</span> happened<br>
+</li>
+<li><span class="math inline">\(P(B \mid A)\)</span>: <strong>Likelihood</strong> — how likely is <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> is true?<br>
+</li>
+<li><span class="math inline">\(P(A)\)</span>: <strong>Prior</strong> — what we believed about <span class="math inline">\(A\)</span> before seeing <span class="math inline">\(B\)</span><br>
+</li>
+<li><span class="math inline">\(P(B)\)</span>: <strong>Evidence</strong> — overall probability of <span class="math inline">\(B\)</span> happening</li>
+</ul>
+<hr>
+<section id="intuition" class="level4" data-number="1.3.0.1">
+<h4 data-number="1.3.0.1" class="anchored" data-anchor-id="intuition"><span class="header-section-number">1.3.0.1</span> 🧠 Intuition</h4>
+<p>Bayes’ Theorem is about <strong>updating your belief</strong>:</p>
+<ul>
+<li>Start with your <strong>prior</strong> belief (<span class="math inline">\(P(A)\)</span>)</li>
+<li>Then get some new evidence (<span class="math inline">\(B\)</span>)</li>
+<li>Update your belief based on how likely that evidence is under your assumption (<span class="math inline">\(P(B \mid A)\)</span>)</li>
+</ul>
+<hr>
+</section>
+<section id="example-medical-test" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="example-medical-test"><span class="header-section-number">1.3.1</span> 📦 Example: Medical Test</h3>
+<p>Imagine a disease that affects <strong>1%</strong> of the population.</p>
+<p>You take a test that is: - <strong>99% accurate</strong> for people with the disease: <span class="math inline">\(P(\text{Positive} \mid \text{Disease}) = 0.99\)</span> - <strong>False positive rate of 5%</strong>: <span class="math inline">\(P(\text{Positive} \mid \text{No Disease}) = 0.05\)</span></p>
+<p>If you test positive, what’s the chance you really have the disease?</p>
+<p>We want to compute:<br>
+<span class="math display">\[
+P(\text{Disease} \mid \text{Positive}) = \frac{P(\text{Positive} \mid \text{Disease}) \cdot P(\text{Disease})}{P(\text{Positive})}
+\]</span></p>
+<p>Let’s plug in numbers: - <span class="math inline">\(P(\text{Disease}) = 0.01\)</span> - <span class="math inline">\(P(\text{Positive}) = P(\text{Positive} \mid \text{Disease}) \cdot P(\text{Disease}) + P(\text{Positive} \mid \text{No Disease}) \cdot P(\text{No Disease})\)</span> - <span class="math inline">\(= 0.99 \cdot 0.01 + 0.05 \cdot 0.99 = 0.0594\)</span></p>
+<p>So: <span class="math display">\[
+P(\text{Disease} \mid \text{Positive}) = \frac{0.99 \cdot 0.01}{0.0594} \approx 0.1667
+\]</span></p>
+<p><strong>Surprising result:</strong> Even after testing positive, the chance you actually have the disease is <strong>only ~16.7%</strong> — because false positives are relatively common compared to actual cases.</p>
+<hr>
+</section>
+<section id="why-it-matters" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="why-it-matters"><span class="header-section-number">1.3.2</span> 📚 Why It Matters</h3>
+<p>Bayes’ Theorem is used in: - Medical diagnosis<br>
+- Spam detection<br>
+- Machine learning models (Naive Bayes)<br>
+- Updating beliefs in AI systems</p>
+<hr>
+</section>
+<section id="tip-posterior-is-proportional" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="tip-posterior-is-proportional"><span class="header-section-number">1.3.3</span> 🛠 Tip: Posterior Is Proportional</h3>
+<p>Sometimes you don’t need <span class="math inline">\(P(B)\)</span>. You just need to know:</p>
+<p><span class="math display">\[
+P(A \mid B) \propto P(B \mid A) \cdot P(A)
+\]</span></p>
+<p>This is useful in classifiers like Naive Bayes, where comparing values is enough.</p>
+</section>
 </section>
 <section id="probability-distributions" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">1.4</span> Probability Distributions</h2>
