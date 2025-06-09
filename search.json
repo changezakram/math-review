@@ -53,7 +53,14 @@
     "href": "calculus.html",
     "title": "Calculus",
     "section": "",
-    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\n\n\n\nUsed when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\n\n\n\nFor a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization.\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nA general method for rewriting quadratic expressions:\n\\[\nax^2 + bx + c = a\\\\left(x + \\\\frac{b}{2a}\\\\right)^2 - \\\\frac{b^2 - 4ac}{4a}\n\\]\nThis transformation is widely used in: - Gaussian probability density derivations - KL divergence simplification - Optimization of quadratic objectives\n\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\n\n\n\nUsed when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\n\n\n\nFor a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization.\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+  },
+  {
+    "objectID": "calculus.html#completing-the-square",
+    "href": "calculus.html#completing-the-square",
+    "title": "Calculus",
+    "section": "",
+    "text": "A general method for rewriting quadratic expressions:\n\\[\nax^2 + bx + c = a\\\\left(x + \\\\frac{b}{2a}\\\\right)^2 - \\\\frac{b^2 - 4ac}{4a}\n\\]\nThis transformation is widely used in: - Gaussian probability density derivations - KL divergence simplification - Optimization of quadratic objectives"
   },
   {
     "objectID": "calculus.html#derivatives",
