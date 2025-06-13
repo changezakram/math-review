@@ -16,16 +16,14 @@ website:
             href: https://changezakram.github.io/Deep-Generative-Models/flows.html
           - text: Energy-Based Models (EBMs)
             href: https://changezakram.github.io/Deep-Generative-Models/ebm.html
+          - text: Diffusion Models
+            href: https://changezakram.github.io/Deep-Generative-Models/diffusion.html
 
       - text: Large Language Models
         menu:
           - text: Recurrent Neural Networks [Coming Soon]
             href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
-          - text: Sequence to Sequence Models [Coming Soon]
-            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
           - text: Transformers [Coming Soon]
-            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
-          - text: Benchmarking and Evaluation [Coming Soon]
             href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
 
       - text: Math Review

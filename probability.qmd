@@ -7,6 +7,8 @@ format: html
 
 Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.
 
+---
+
 ## Random Variables and Distributions
 
 - **Discrete**: Bernoulli, Binomial
@@ -18,6 +20,8 @@ $$
 P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
 $$
 
+--- 
+
 ## Expectation and Variance
 
 - **Expected value**:
@@ -26,19 +30,93 @@ $$
 \mathbb{E}[X] = \sum_x x P(X=x) \quad \text{or} \quad \mathbb{E}[X] = \int x f_X(x)\, dx
 $$
 
+---
+
 - **Variance**:
 
 $$
 \mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
 $$
 
+---
+
 ## Bayes’ Theorem
 
-Used in Naive Bayes, probabilistic inference:
+Bayes’ Theorem lets us **update what we believe** about a situation after seeing new evidence.
+
+It answers the question:  
+_“Given that something has happened ($B$), how likely is it that some other condition ($A$) was true?”_
+
+The formula is:
 
 $$
-P(A \mid B) = \frac{P(B \mid A)\, P(A)}{P(B)}
+P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
 $$
+
+- $P(A \mid B)$: **Posterior** — the probability of $A$ given that $B$ happened  
+- $P(B \mid A)$: **Likelihood** — how likely is $B$ if $A$ is true  
+- $P(A)$: **Prior** — our initial belief about $A$  
+- $P(B)$: **Evidence** — total probability of $B$ happening under all possibilities
+
+::: {.callout-note title="What is Bayes' Theorem really doing?"}
+Bayes’ Theorem is about **updating your belief**:
+
+- Start with your **prior** belief ($P(A)$)
+- Then observe new evidence ($B$)
+- Update your belief using how likely that evidence is under $A$ ($P(B \mid A)$)
+:::
+
+### Example: Medical Test
+
+Suppose a disease affects **1%** of the population.
+
+You take a test that is:
+- $P(\text{Positive} \mid \text{Disease}) = 0.99$ (true positive rate)
+- $P(\text{Positive} \mid \text{No Disease}) = 0.05$ (false positive rate)
+
+You test positive. What is the chance you actually have the disease?
+
+We want to compute:
+
+$$
+P(\text{Disease} \mid \text{Positive}) = \frac{P(\text{Positive} \mid \text{Disease}) \cdot P(\text{Disease})}{P(\text{Positive})}
+$$
+
+Let’s plug in values:
+- $P(\text{Disease}) = 0.01$
+- $P(\text{No Disease}) = 0.99$
+- $P(\text{Positive}) = 0.99 \cdot 0.01 + 0.05 \cdot 0.99 = 0.0594$
+
+So:
+
+$$
+P(\text{Disease} \mid \text{Positive}) = \frac{0.99 \cdot 0.01}{0.0594} \approx 0.167
+$$
+
+::: {.callout-note title="Surprising result"}
+Even after a positive test, the chance of having the disease is only about **16.7%**, because false positives are more common than true positives.
+:::
+
+### Why It Matters
+
+Bayes' Theorem is widely used in:
+
+- Medical diagnosis  
+- Spam detection  
+- Probabilistic machine learning (e.g., Naive Bayes classifiers)  
+- Updating beliefs in AI models
+
+::: {.callout-tip title="Proportional version of Bayes' Rule"}
+In many machine learning applications, the denominator $P(B)$ is the same for all outcomes and can be ignored:
+
+$$
+P(A \mid B) \propto P(B \mid A) \cdot P(A)
+$$
+
+This version is often used for ranking outcomes instead of calculating exact probabilities.
+:::
+
+---
 
 ## Probability Distributions
 
@@ -47,36 +125,48 @@ Probability distributions describe how values of a random variable are distribut
 - **Discrete**: Bernoulli, Binomial
 - **Continuous**: Normal, Exponential
 
-Example: PDF of normal distribution (1D)
+**PDF of normal distribution in 1D**
 
 $$
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
 $$
 
-**Multivariate Normal Distribution:**
+### Multivariate Normal Distribution
 
-When the random variable is a vector $x \in \mathbb{R}^d$, the Gaussian generalizes to:
+The normal (Gaussian) distribution can be extended to multiple variables — for example, when $x$ is a vector instead of just a number.
+
+When $x$ is a vector in $\mathbb{R}^d$ (i.e., a list of $d$ values), the multivariate Gaussian looks like:
 
 $$
-\mathcal{N}(x \mid \mu, \Sigma) = \frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left( -\frac{1}{2} (x - \mu)^T \Sigma^{-1} (x - \mu) \right)
+\mathcal{N}(x \mid \mu, \Sigma) = 
+\frac{1}{(2\pi)^{d/2} \, |\Sigma|^{1/2}} 
+\exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1}(x - \mu) \right)
 $$
 
-- $x$: $d$-dimensional vector  
-- $\mu$: Mean vector  
-- $\Sigma$: Covariance matrix (describes variance and correlation)  
-- $|\Sigma|$: Determinant of the covariance matrix  
-- $(x - \mu)^T \Sigma^{-1} (x - \mu)$: Generalized (Mahalanobis) distance
+**What do all these symbols mean?**
 
-::: {.callout-tip title="What's the Mahalanobis Distance?"}
-The term $(x - \mu)^T \Sigma^{-1} (x - \mu)$ measures how far $x$ is from the mean $\mu$, adjusted for the shape of the distribution. It’s like Euclidean distance, but scaled to account for direction-dependent variance.
+- $x$: A $d$-dimensional vector (e.g., an image flattened into a 1D array)
+- $\mu$: The mean vector (the "center" of the distribution)
+- $\Sigma$: The $d \times d$ covariance matrix, which captures the spread and correlation of the variables
+- $|\Sigma|$: The **determinant** of $\Sigma$, representing the volume of the distribution
+- $(2\pi)^{d/2}$: Comes from extending the 1D normalizing constant to $d$ dimensions
+- $(x - \mu)^T \Sigma^{-1}(x - \mu)$: A **generalized squared distance** from $x$ to the mean — see below!
+
+::: {.callout-tip title="What’s the Mahalanobis Distance?"}
+The term $(x - \mu)^T \Sigma^{-1}(x - \mu)$ measures how far $x$ is from the mean $\mu$, taking into account how spread out the data is in different directions. It’s like Euclidean distance, but **adjusted** for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.
 :::
 
-If $\Sigma = \sigma^2 I$, this reduces to:
+### Special Case: Spherical Gaussian
+
+If all variables are independent and have equal variance $\sigma^2$, then $\Sigma = \sigma^2 I$ and the formula simplifies to:
 
 $$
-\mathcal{N}(x \mid \mu, \sigma^2 I) = \frac{1}{(2\pi \sigma^2)^{d/2}} \exp\left( -\frac{1}{2\sigma^2} \| x - \mu \|^2 \right)
+\mathcal{N}(x \mid \mu, \sigma^2 I) = 
+\frac{1}{(2\pi \sigma^2)^{d/2}} 
+\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
 $$
 
+This looks more like the familiar 1D bell curve — but extended to $d$ dimensions.
 
 ## Maximum Likelihood Estimation (MLE)
 
@@ -85,6 +175,8 @@ Used to estimate parameters of models:
 $$
 \hat{\theta}_{\text{MLE}} = \arg\max_\theta P(D \mid \theta)
 $$
+
+--- 
 
 ## KL Divergence
 
@@ -95,9 +187,3 @@ D_{\text{KL}}(P \parallel Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
 $$
 
 Used in training VAEs and information-theoretic learning.
-
-## Common ML Applications
-
-- **Logistic regression**: based on Bernoulli distribution  
-- **Variational autoencoders (VAEs)**: use probability distributions to encode data  
-- **Bayesian models**: handle uncertainty via prior/posterior reasoning

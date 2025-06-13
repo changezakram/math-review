@@ -7,6 +7,22 @@ format: html
 
 This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.
 
+
+## Completing the Square
+
+A general method for rewriting quadratic expressions:
+
+$$
+a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+$$
+
+This transformation is widely used in:
+
+- Gaussian probability density derivations  
+- KL divergence simplification  
+- Optimization of quadratic objectives
+
+
 ## Derivatives
 
 The derivative of a function measures the rate of change:
