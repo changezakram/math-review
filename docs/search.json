@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "probability.html",
+    "href": "probability.html",
+    "title": "Probability",
+    "section": "",
+    "text": "Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.\n\n\n\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]\n\n\n\n\n\nExpected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]\n\n\n\n\nBayes’ Theorem lets us update what we believe about a situation after seeing new evidence.\nIt answers the question:\n“Given that something has happened (\\(B\\)), how likely is it that some other condition (\\(A\\)) was true?”\nThe formula is:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}\n\\]\n\n\\(P(A \\mid B)\\): Posterior — the probability of \\(A\\) given that \\(B\\) happened\n\n\\(P(B \\mid A)\\): Likelihood — how likely is \\(B\\) if \\(A\\) is true\n\n\\(P(A)\\): Prior — our initial belief about \\(A\\)\n\n\\(P(B)\\): Evidence — total probability of \\(B\\) happening under all possibilities\n\n\n\n\n\n\n\nWhat is Bayes’ Theorem really doing?\n\n\n\nBayes’ Theorem is about updating your belief:\n\nStart with your prior belief (\\(P(A)\\))\nThen observe new evidence (\\(B\\))\nUpdate your belief using how likely that evidence is under \\(A\\) (\\(P(B \\mid A)\\))\n\n\n\n\n\nSuppose a disease affects 1% of the population.\nYou take a test that is: - \\(P(\\text{Positive} \\mid \\text{Disease}) = 0.99\\) (true positive rate) - \\(P(\\text{Positive} \\mid \\text{No Disease}) = 0.05\\) (false positive rate)\nYou test positive. What is the chance you actually have the disease?\nWe want to compute:\n\\[\nP(\\text{Disease} \\mid \\text{Positive}) = \\frac{P(\\text{Positive} \\mid \\text{Disease}) \\cdot P(\\text{Disease})}{P(\\text{Positive})}\n\\]\nLet’s plug in values: - \\(P(\\text{Disease}) = 0.01\\) - \\(P(\\text{No Disease}) = 0.99\\) - \\(P(\\text{Positive}) = 0.99 \\cdot 0.01 + 0.05 \\cdot 0.99 = 0.0594\\)\nSo:\n\\[\nP(\\text{Disease} \\mid \\text{Positive}) = \\frac{0.99 \\cdot 0.01}{0.0594} \\approx 0.167\n\\]\n\n\n\n\n\n\nSurprising result\n\n\n\nEven after a positive test, the chance of having the disease is only about 16.7%, because false positives are more common than true positives.\n\n\n\n\n\nBayes’ Theorem is widely used in:\n\nMedical diagnosis\n\nSpam detection\n\nProbabilistic machine learning (e.g., Naive Bayes classifiers)\n\nUpdating beliefs in AI models\n\n\n\n\n\n\n\nProportional version of Bayes’ Rule\n\n\n\nIn many machine learning applications, the denominator \\(P(B)\\) is the same for all outcomes and can be ignored:\n\\[\nP(A \\mid B) \\propto P(B \\mid A) \\cdot P(A)\n\\]\nThis version is often used for ranking outcomes instead of calculating exact probabilities.\n\n\n\n\n\n\n\nProbability distributions describe how values of a random variable are distributed.\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal, Exponential\n\nPDF of normal distribution in 1D\n\\[\nf(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\n\\]\n\n\nThe normal (Gaussian) distribution can be extended to multiple variables — for example, when \\(x\\) is a vector instead of just a number.\nWhen \\(x\\) is a vector in \\(\\mathbb{R}^d\\) (i.e., a list of \\(d\\) values), the multivariate Gaussian looks like:\n\\[\n\\mathcal{N}(x \\mid \\mu, \\Sigma) =\n\\frac{1}{(2\\pi)^{d/2} \\, |\\Sigma|^{1/2}}\n\\exp\\left( -\\frac{1}{2}(x - \\mu)^T \\Sigma^{-1}(x - \\mu) \\right)\n\\]\nWhat do all these symbols mean?\n\n\\(x\\): A \\(d\\)-dimensional vector (e.g., an image flattened into a 1D array)\n\\(\\mu\\): The mean vector (the “center” of the distribution)\n\\(\\Sigma\\): The \\(d \\times d\\) covariance matrix, which captures the spread and correlation of the variables\n\\(|\\Sigma|\\): The determinant of \\(\\Sigma\\), representing the volume of the distribution\n\\((2\\pi)^{d/2}\\): Comes from extending the 1D normalizing constant to \\(d\\) dimensions\n\\((x - \\mu)^T \\Sigma^{-1}(x - \\mu)\\): A generalized squared distance from \\(x\\) to the mean — see below!\n\n\n\n\n\n\n\nWhat’s the Mahalanobis Distance?\n\n\n\nThe term \\((x - \\mu)^T \\Sigma^{-1}(x - \\mu)\\) measures how far \\(x\\) is from the mean \\(\\mu\\), taking into account how spread out the data is in different directions. It’s like Euclidean distance, but adjusted for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.\n\n\n\n\n\nIf all variables are independent and have equal variance \\(\\sigma^2\\), then \\(\\Sigma = \\sigma^2 I\\) and the formula simplifies to:\n\\[\n\\mathcal{N}(x \\mid \\mu, \\sigma^2 I) =\n\\frac{1}{(2\\pi \\sigma^2)^{d/2}}\n\\exp\\left( -\\frac{1}{2\\sigma^2} \\|x - \\mu\\|^2 \\right)\n\\]\nThis looks more like the familiar 1D bell curve — but extended to \\(d\\) dimensions.\n\n\n\n\nUsed to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]\n\n\n\n\nMeasures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning."
+  },
+  {
+    "objectID": "probability.html#random-variables-and-distributions",
+    "href": "probability.html#random-variables-and-distributions",
+    "title": "Probability",
+    "section": "",
+    "text": "Discrete: Bernoulli, Binomial\nContinuous: Normal (Gaussian), Exponential\n\nExamples:\n\\[\nP(X = x) \\quad \\text{(discrete)}, \\qquad f_X(x) \\quad \\text{(continuous)}\n\\]"
+  },
+  {
+    "objectID": "probability.html#expectation-and-variance",
+    "href": "probability.html#expectation-and-variance",
+    "title": "Probability",
+    "section": "",
+    "text": "Expected value:\n\n\\[\n\\mathbb{E}[X] = \\sum_x x P(X=x) \\quad \\text{or} \\quad \\mathbb{E}[X] = \\int x f_X(x)\\, dx\n\\]\n\n\nVariance:\n\n\\[\n\\mathrm{Var}(X) = \\mathbb{E}[(X - \\mathbb{E}[X])^2]\n\\]"
+  },
+  {
+    "objectID": "probability.html#bayes-theorem",
+    "href": "probability.html#bayes-theorem",
+    "title": "Probability",
+    "section": "",
+    "text": "Bayes’ Theorem lets us update what we believe about a situation after seeing new evidence.\nIt answers the question:\n“Given that something has happened (\\(B\\)), how likely is it that some other condition (\\(A\\)) was true?”\nThe formula is:\n\\[\nP(A \\mid B) = \\frac{P(B \\mid A) \\cdot P(A)}{P(B)}\n\\]\n\n\\(P(A \\mid B)\\): Posterior — the probability of \\(A\\) given that \\(B\\) happened\n\n\\(P(B \\mid A)\\): Likelihood — how likely is \\(B\\) if \\(A\\) is true\n\n\\(P(A)\\): Prior — our initial belief about \\(A\\)\n\n\\(P(B)\\): Evidence — total probability of \\(B\\) happening under all possibilities\n\n\n\n\n\n\n\nWhat is Bayes’ Theorem really doing?\n\n\n\nBayes’ Theorem is about updating your belief:\n\nStart with your prior belief (\\(P(A)\\))\nThen observe new evidence (\\(B\\))\nUpdate your belief using how likely that evidence is under \\(A\\) (\\(P(B \\mid A)\\))\n\n\n\n\n\nSuppose a disease affects 1% of the population.\nYou take a test that is: - \\(P(\\text{Positive} \\mid \\text{Disease}) = 0.99\\) (true positive rate) - \\(P(\\text{Positive} \\mid \\text{No Disease}) = 0.05\\) (false positive rate)\nYou test positive. What is the chance you actually have the disease?\nWe want to compute:\n\\[\nP(\\text{Disease} \\mid \\text{Positive}) = \\frac{P(\\text{Positive} \\mid \\text{Disease}) \\cdot P(\\text{Disease})}{P(\\text{Positive})}\n\\]\nLet’s plug in values: - \\(P(\\text{Disease}) = 0.01\\) - \\(P(\\text{No Disease}) = 0.99\\) - \\(P(\\text{Positive}) = 0.99 \\cdot 0.01 + 0.05 \\cdot 0.99 = 0.0594\\)\nSo:\n\\[\nP(\\text{Disease} \\mid \\text{Positive}) = \\frac{0.99 \\cdot 0.01}{0.0594} \\approx 0.167\n\\]\n\n\n\n\n\n\nSurprising result\n\n\n\nEven after a positive test, the chance of having the disease is only about 16.7%, because false positives are more common than true positives.\n\n\n\n\n\nBayes’ Theorem is widely used in:\n\nMedical diagnosis\n\nSpam detection\n\nProbabilistic machine learning (e.g., Naive Bayes classifiers)\n\nUpdating beliefs in AI models\n\n\n\n\n\n\n\nProportional version of Bayes’ Rule\n\n\n\nIn many machine learning applications, the denominator \\(P(B)\\) is the same for all outcomes and can be ignored:\n\\[\nP(A \\mid B) \\propto P(B \\mid A) \\cdot P(A)\n\\]\nThis version is often used for ranking outcomes instead of calculating exact probabilities."
+  },
+  {
+    "objectID": "probability.html#probability-distributions",
+    "href": "probability.html#probability-distributions",
+    "title": "Probability",
+    "section": "",
+    "text": "Probability distributions describe how values of a random variable are distributed.\n\nDiscrete: Bernoulli, Binomial\nContinuous: Normal, Exponential\n\nPDF of normal distribution in 1D\n\\[\nf(x) = \\frac{1}{\\sqrt{2\\pi\\sigma^2}} \\exp\\left(-\\frac{(x - \\mu)^2}{2\\sigma^2}\\right)\n\\]\n\n\nThe normal (Gaussian) distribution can be extended to multiple variables — for example, when \\(x\\) is a vector instead of just a number.\nWhen \\(x\\) is a vector in \\(\\mathbb{R}^d\\) (i.e., a list of \\(d\\) values), the multivariate Gaussian looks like:\n\\[\n\\mathcal{N}(x \\mid \\mu, \\Sigma) =\n\\frac{1}{(2\\pi)^{d/2} \\, |\\Sigma|^{1/2}}\n\\exp\\left( -\\frac{1}{2}(x - \\mu)^T \\Sigma^{-1}(x - \\mu) \\right)\n\\]\nWhat do all these symbols mean?\n\n\\(x\\): A \\(d\\)-dimensional vector (e.g., an image flattened into a 1D array)\n\\(\\mu\\): The mean vector (the “center” of the distribution)\n\\(\\Sigma\\): The \\(d \\times d\\) covariance matrix, which captures the spread and correlation of the variables\n\\(|\\Sigma|\\): The determinant of \\(\\Sigma\\), representing the volume of the distribution\n\\((2\\pi)^{d/2}\\): Comes from extending the 1D normalizing constant to \\(d\\) dimensions\n\\((x - \\mu)^T \\Sigma^{-1}(x - \\mu)\\): A generalized squared distance from \\(x\\) to the mean — see below!\n\n\n\n\n\n\n\nWhat’s the Mahalanobis Distance?\n\n\n\nThe term \\((x - \\mu)^T \\Sigma^{-1}(x - \\mu)\\) measures how far \\(x\\) is from the mean \\(\\mu\\), taking into account how spread out the data is in different directions. It’s like Euclidean distance, but adjusted for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.\n\n\n\n\n\nIf all variables are independent and have equal variance \\(\\sigma^2\\), then \\(\\Sigma = \\sigma^2 I\\) and the formula simplifies to:\n\\[\n\\mathcal{N}(x \\mid \\mu, \\sigma^2 I) =\n\\frac{1}{(2\\pi \\sigma^2)^{d/2}}\n\\exp\\left( -\\frac{1}{2\\sigma^2} \\|x - \\mu\\|^2 \\right)\n\\]\nThis looks more like the familiar 1D bell curve — but extended to \\(d\\) dimensions."
+  },
+  {
+    "objectID": "probability.html#maximum-likelihood-estimation-mle",
+    "href": "probability.html#maximum-likelihood-estimation-mle",
+    "title": "Probability",
+    "section": "",
+    "text": "Used to estimate parameters of models:\n\\[\n\\hat{\\theta}_{\\text{MLE}} = \\arg\\max_\\theta P(D \\mid \\theta)\n\\]"
+  },
+  {
+    "objectID": "probability.html#kl-divergence",
+    "href": "probability.html#kl-divergence",
+    "title": "Probability",
+    "section": "",
+    "text": "Measures how one distribution diverges from another:\n\\[\nD_{\\text{KL}}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}\n\\]\nUsed in training VAEs and information-theoretic learning."
+  },
+  {
+    "objectID": "calculus.html",
+    "href": "calculus.html",
+    "title": "Calculus",
+    "section": "",
+    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nA general method for rewriting quadratic expressions:\n\\[\na x^2 - 2 b x = a \\left( x - \\frac{b}{a} \\right)^2 - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\n\nKL divergence simplification\n\nOptimization of quadratic objectives\n\n\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\n\n\n\nUsed when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\n\n\n\nFor a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization.\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+  },
+  {
+    "objectID": "calculus.html#completing-the-square",
+    "href": "calculus.html#completing-the-square",
+    "title": "Calculus",
+    "section": "",
+    "text": "A general method for rewriting quadratic expressions:\n\\[\na x^2 - 2 b x = a \\left( x - \\frac{b}{a} \\right)^2 - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\n\nKL divergence simplification\n\nOptimization of quadratic objectives"
+  },
+  {
+    "objectID": "calculus.html#derivatives",
+    "href": "calculus.html#derivatives",
+    "title": "Calculus",
+    "section": "",
+    "text": "The derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]"
+  },
+  {
+    "objectID": "calculus.html#partial-derivatives",
+    "href": "calculus.html#partial-derivatives",
+    "title": "Calculus",
+    "section": "",
+    "text": "Used when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]"
+  },
+  {
+    "objectID": "calculus.html#jacobian-matrix",
+    "href": "calculus.html#jacobian-matrix",
+    "title": "Calculus",
+    "section": "",
+    "text": "For a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]"
+  },
+  {
+    "objectID": "calculus.html#hessian-matrix",
+    "href": "calculus.html#hessian-matrix",
+    "title": "Calculus",
+    "section": "",
+    "text": "Second-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization."
+  },
+  {
+    "objectID": "calculus.html#integration",
+    "href": "calculus.html#integration",
+    "title": "Calculus",
+    "section": "",
+    "text": "Area under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]"
+  },
+  {
+    "objectID": "calculus.html#integration-by-parts",
+    "href": "calculus.html#integration-by-parts",
+    "title": "Calculus",
+    "section": "",
+    "text": "A useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html",
+    "href": "linear-algebra.html",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]\n\n\n\n\nL2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties.\n\n\n\nThe determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks.\n\n\n\nThe trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#vectors-and-matrices",
+    "href": "linear-algebra.html#vectors-and-matrices",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#matrix-multiplication",
+    "href": "linear-algebra.html#matrix-multiplication",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#dot-product",
+    "href": "linear-algebra.html#dot-product",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Measures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#norms-and-distances",
+    "href": "linear-algebra.html#norms-and-distances",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "L2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties."
+  },
+  {
+    "objectID": "linear-algebra.html#determinant",
+    "href": "linear-algebra.html#determinant",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "The determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks."
+  },
+  {
+    "objectID": "linear-algebra.html#trace",
+    "href": "linear-algebra.html#trace",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "The trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#eigenvalues-and-eigenvectors",
+    "href": "linear-algebra.html#eigenvalues-and-eigenvectors",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]"
+  },
+  {
+    "objectID": "linear-algebra.html#singular-value-decomposition-svd",
+    "href": "linear-algebra.html#singular-value-decomposition-svd",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Used in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+  }
+]
