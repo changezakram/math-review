@@ -9,7 +9,7 @@ website:
         text: "Changez Akram"
         href: https://changezakram.github.io/
 
-      - text: Deep Generative Models
+      - text: Generative AI
         menu:
           - text: Variational Autoencoders (VAEs)
             href: https://changezakram.github.io/Deep-Generative-Models/vae.html
@@ -22,9 +22,12 @@ website:
 
       - text: Large Language Models
         menu:
-          - text: Recurrent Neural Networks [Coming Soon]
-            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
           - text: Transformers [Coming Soon]
+            href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
+
+      - text: Agentic AI
+        menu:
+          - text: Introduction [Coming Soon]
             href: https://changezakram.github.io/Deep-Generative-Models/coming-soon.html
 
       - text: Math Review
