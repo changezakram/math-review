@@ -11,6 +11,8 @@ website:
 
       - text: Generative AI
         menu:
+          - text: Gen AI Introduction
+            href: https://changezakram.github.io/Deep-Generative-Models/index.html
           - text: Variational Autoencoders (VAEs)
             href: https://changezakram.github.io/Deep-Generative-Models/vae.html
           - text: Normalizing Flows
