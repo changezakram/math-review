@@ -248,16 +248,6 @@ window.Quarto = {
   <li><a href="#matrix-calculus-basics" id="toc-matrix-calculus-basics" class="nav-link" data-scroll-target="#matrix-calculus-basics"><span class="header-section-number">1.12</span> Matrix Calculus Basics</a></li>
   <li><a href="#spectral-theorem" id="toc-spectral-theorem" class="nav-link" data-scroll-target="#spectral-theorem"><span class="header-section-number">1.13</span> Spectral Theorem</a></li>
   </ul></li>
-  <li><a href="#ml-applications-summary" id="toc-ml-applications-summary" class="nav-link" data-scroll-target="#ml-applications-summary"><span class="header-section-number">2</span> ML Applications Summary</a>
-  <ul class="collapse">
-  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks"><span class="header-section-number">2.1</span> Neural Networks</a></li>
-  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction"><span class="header-section-number">2.2</span> Dimensionality Reduction</a></li>
-  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">2.3</span> Optimization</a></li>
-  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">2.4</span> Linear Regression</a></li>
-  <li><a href="#similarity-distance" id="toc-similarity-distance" class="nav-link" data-scroll-target="#similarity-distance"><span class="header-section-number">2.5</span> Similarity &amp; Distance</a></li>
-  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing"><span class="header-section-number">2.6</span> Data Preprocessing</a></li>
-  <li><a href="#quick-reference-table" id="toc-quick-reference-table" class="nav-link" data-scroll-target="#quick-reference-table"><span class="header-section-number">2.7</span> Quick Reference Table</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -528,115 +518,6 @@ window.Quarto = {
 <li>Covariance matrix diagonalization</li>
 <li>Quadratic forms</li>
 </ul>
-<hr>
-</section>
-</section>
-<section id="ml-applications-summary" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> ML Applications Summary</h1>
-<section id="neural-networks" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="neural-networks"><span class="header-section-number">2.1</span> Neural Networks</h2>
-<ul>
-<li><strong>Matrix multiplication</strong>: forward pass (<span class="math inline">\(\mathbf{W}\mathbf{x} + \mathbf{b}\)</span>)</li>
-<li><strong>Gradients</strong>: backpropagation (chain rule with matrices)</li>
-</ul>
-</section>
-<section id="dimensionality-reduction" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="dimensionality-reduction"><span class="header-section-number">2.2</span> Dimensionality Reduction</h2>
-<ul>
-<li><strong>PCA</strong>: eigendecomposition of covariance matrix</li>
-<li><strong>SVD</strong>: truncated decomposition for low-rank approximation</li>
-</ul>
-</section>
-<section id="optimization" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="optimization"><span class="header-section-number">2.3</span> Optimization</h2>
-<ul>
-<li><strong>Gradient descent</strong>: <span class="math inline">\(\nabla f(\mathbf{x})\)</span> direction</li>
-<li><strong>Positive definite Hessian</strong>: convex optimization</li>
-<li><strong>Matrix norms</strong>: regularization (L1, L2)</li>
-</ul>
-</section>
-<section id="linear-regression" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">2.4</span> Linear Regression</h2>
-<ul>
-<li><strong>Normal equations</strong>: <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
-<li><strong>Projection</strong>: <span class="math inline">\(\hat{\mathbf{y}} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
-</ul>
-</section>
-<section id="similarity-distance" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="similarity-distance"><span class="header-section-number">2.5</span> Similarity &amp; Distance</h2>
-<ul>
-<li><strong>Cosine similarity</strong>: dot product normalized</li>
-<li><strong>Euclidean distance</strong>: L2 norm</li>
-<li><strong>Recommender systems</strong>: matrix factorization (SVD)</li>
-</ul>
-</section>
-<section id="data-preprocessing" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="data-preprocessing"><span class="header-section-number">2.6</span> Data Preprocessing</h2>
-<ul>
-<li><strong>Covariance matrices</strong>: positive semi-definite</li>
-<li><strong>Whitening</strong>: decorrelate features using eigendecomposition</li>
-<li><strong>Normalization</strong>: scaling using norms</li>
-</ul>
-<hr>
-</section>
-<section id="quick-reference-table" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="quick-reference-table"><span class="header-section-number">2.7</span> Quick Reference Table</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 26%">
-<col style="width: 47%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Concept</th>
-<th>Formula</th>
-<th>ML Application</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Matrix Multiplication</td>
-<td><span class="math inline">\(\mathbf{y} = \mathbf{W}\mathbf{x}\)</span></td>
-<td>Neural network layers</td>
-</tr>
-<tr class="even">
-<td>Eigendecomposition</td>
-<td><span class="math inline">\(\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\)</span></td>
-<td>PCA</td>
-</tr>
-<tr class="odd">
-<td>SVD</td>
-<td><span class="math inline">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T\)</span></td>
-<td>Recommender systems</td>
-</tr>
-<tr class="even">
-<td>Gradient</td>
-<td><span class="math inline">\(\nabla_\mathbf{x} f(\mathbf{x})\)</span></td>
-<td>Backpropagation</td>
-</tr>
-<tr class="odd">
-<td>Projection</td>
-<td><span class="math inline">\(\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\)</span></td>
-<td>Linear regression</td>
-</tr>
-<tr class="even">
-<td>Positive Definite</td>
-<td><span class="math inline">\(\mathbf{x}^T\mathbf{A}\mathbf{x} &gt; 0\)</span></td>
-<td>Convex optimization</td>
-</tr>
-<tr class="odd">
-<td>L2 Norm</td>
-<td><span class="math inline">\(\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}\)</span></td>
-<td>Regularization</td>
-</tr>
-<tr class="even">
-<td>Trace</td>
-<td><span class="math inline">\(\text{Tr}(\mathbf{A}) = \sum_i A_{ii}\)</span></td>
-<td>Sum of eigenvalues</td>
-</tr>
-</tbody>
-</table>
 
 
 </section>

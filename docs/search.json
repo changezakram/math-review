@@ -201,54 +201,5 @@
     "title": "Linear Algebra",
     "section": "",
     "text": "For symmetric matrix \\(\\mathbf{A}\\):\n\\[\n\\mathbf{A} = \\mathbf{Q}\\mathbf{\\Lambda}\\mathbf{Q}^T\n\\]\nWhere:\n\n\\(\\mathbf{Q}\\): orthogonal matrix of eigenvectors\n\\(\\mathbf{\\Lambda}\\): diagonal matrix of eigenvalues\n\\(\\mathbf{Q}^T = \\mathbf{Q}^{-1}\\)\n\nProperties:\n\nAll eigenvalues are real\nEigenvectors are orthogonal\nCan always be diagonalized\n\nML relevance:\n\nPrincipal Component Analysis (PCA)\nCovariance matrix diagonalization\nQuadratic forms"
-  },
-  {
-    "objectID": "linear-algebra.html#neural-networks",
-    "href": "linear-algebra.html#neural-networks",
-    "title": "Linear Algebra",
-    "section": "2.1 Neural Networks",
-    "text": "2.1 Neural Networks\n\nMatrix multiplication: forward pass (\\(\\mathbf{W}\\mathbf{x} + \\mathbf{b}\\))\nGradients: backpropagation (chain rule with matrices)"
-  },
-  {
-    "objectID": "linear-algebra.html#dimensionality-reduction",
-    "href": "linear-algebra.html#dimensionality-reduction",
-    "title": "Linear Algebra",
-    "section": "2.2 Dimensionality Reduction",
-    "text": "2.2 Dimensionality Reduction\n\nPCA: eigendecomposition of covariance matrix\nSVD: truncated decomposition for low-rank approximation"
-  },
-  {
-    "objectID": "linear-algebra.html#optimization",
-    "href": "linear-algebra.html#optimization",
-    "title": "Linear Algebra",
-    "section": "2.3 Optimization",
-    "text": "2.3 Optimization\n\nGradient descent: \\(\\nabla f(\\mathbf{x})\\) direction\nPositive definite Hessian: convex optimization\nMatrix norms: regularization (L1, L2)"
-  },
-  {
-    "objectID": "linear-algebra.html#linear-regression",
-    "href": "linear-algebra.html#linear-regression",
-    "title": "Linear Algebra",
-    "section": "2.4 Linear Regression",
-    "text": "2.4 Linear Regression\n\nNormal equations: \\((\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\\)\nProjection: \\(\\hat{\\mathbf{y}} = \\mathbf{X}(\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\\)"
-  },
-  {
-    "objectID": "linear-algebra.html#similarity-distance",
-    "href": "linear-algebra.html#similarity-distance",
-    "title": "Linear Algebra",
-    "section": "2.5 Similarity & Distance",
-    "text": "2.5 Similarity & Distance\n\nCosine similarity: dot product normalized\nEuclidean distance: L2 norm\nRecommender systems: matrix factorization (SVD)"
-  },
-  {
-    "objectID": "linear-algebra.html#data-preprocessing",
-    "href": "linear-algebra.html#data-preprocessing",
-    "title": "Linear Algebra",
-    "section": "2.6 Data Preprocessing",
-    "text": "2.6 Data Preprocessing\n\nCovariance matrices: positive semi-definite\nWhitening: decorrelate features using eigendecomposition\nNormalization: scaling using norms"
-  },
-  {
-    "objectID": "linear-algebra.html#quick-reference-table",
-    "href": "linear-algebra.html#quick-reference-table",
-    "title": "Linear Algebra",
-    "section": "2.7 Quick Reference Table",
-    "text": "2.7 Quick Reference Table\n\n\n\n\n\n\n\n\nConcept\nFormula\nML Application\n\n\n\n\nMatrix Multiplication\n\\(\\mathbf{y} = \\mathbf{W}\\mathbf{x}\\)\nNeural network layers\n\n\nEigendecomposition\n\\(\\mathbf{A}\\mathbf{v} = \\lambda\\mathbf{v}\\)\nPCA\n\n\nSVD\n\\(\\mathbf{A} = \\mathbf{U}\\mathbf{\\Sigma}\\mathbf{V}^T\\)\nRecommender systems\n\n\nGradient\n\\(\\nabla_\\mathbf{x} f(\\mathbf{x})\\)\nBackpropagation\n\n\nProjection\n\\(\\mathbf{P} = \\mathbf{A}(\\mathbf{A}^T\\mathbf{A})^{-1}\\mathbf{A}^T\\)\nLinear regression\n\n\nPositive Definite\n\\(\\mathbf{x}^T\\mathbf{A}\\mathbf{x} &gt; 0\\)\nConvex optimization\n\n\nL2 Norm\n\\(\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\\)\nRegularization\n\n\nTrace\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i A_{ii}\\)\nSum of eigenvalues"
   }
 ]
