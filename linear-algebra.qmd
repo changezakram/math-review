@@ -5,7 +5,7 @@ format: html
 
 # Linear Algebra for Machine Learning
 
-This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.
+This section covers essential linear concepts that serve as the mathematical foundation for machine learning and deep learning.
 
 ## Vectors and Matrices
 
@@ -15,7 +15,7 @@ This section covers essential linear algebra concepts that serve as the mathemat
 Example:
 
 $$
-\mathbf{x} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}, \quad 
 \mathbf{W} = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}
 $$
 
@@ -24,7 +24,7 @@ $$
 Used in the forward pass of neural networks:
 
 $$
-\mathbf{y} = \mathbf{W} \mathbf{x}
+\mathbf{y} = \mathbf{W}\mathbf{x}
 $$
 
 ## Dot Product
@@ -32,49 +32,299 @@ $$
 Measures projection or similarity:
 
 $$
-\mathbf{a} \cdot \mathbf{b} = \sum_i a_i b_i
+\mathbf{a} \cdot \mathbf{b} = \sum_{i} a_i b_i
 $$
+
+**Geometric interpretation**: 
+
+$$
+\mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos(\theta)
+$$
+
+- Used in cosine similarity for comparing vectors
 
 ## Norms and Distances
 
-- **L2 Norm** (Euclidean length):
+- **L2 norm** (Euclidean length):
+  $$
+  \|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}
+  $$
 
-$$
-\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}
-$$
+- **L1 norm** (Manhattan distance):
+  $$
+  \|\mathbf{x}\|_1 = \sum_i |x_i|
+  $$
+
+- **Frobenius norm** (for matrices):
+  $$
+  \|\mathbf{A}\|_F = \sqrt{\sum_{i,j} A_{ij}^2}
+  $$
 
 Used to compute distances and regularization penalties.
 
 ## Determinant
 
-The determinant of a square matrix \( A \) is a scalar value:
+The determinant of a square matrix $\mathbf{A}$ is a scalar value:
 
 $$
-\det(A)
+\det(\mathbf{A})
 $$
 
-Used in linear transformations and invertibility checks.
+- $\det(\mathbf{A}) = 0$ means matrix is singular (non-invertible)
+- $|\det(\mathbf{A})|$ represents volume scaling factor
+- Used in linear transformations and invertibility checks
 
 ## Trace
 
 The trace of a square matrix is the sum of diagonal elements:
 
 $$
-\text{Tr}(A) = \sum_i A_{ii}
+\text{Tr}(\mathbf{A}) = \sum_i A_{ii}
 $$
+
+**Properties**:
+
+- $\text{Tr}(\mathbf{A} + \mathbf{B}) = \text{Tr}(\mathbf{A}) + \text{Tr}(\mathbf{B})$
+- $\text{Tr}(\mathbf{AB}) = \text{Tr}(\mathbf{BA})$ (cyclic property)
+- $\text{Tr}(\mathbf{A}) = \sum_i \lambda_i$ (sum of eigenvalues)
 
 ## Eigenvalues and Eigenvectors
 
 Used in PCA (dimensionality reduction):
 
 $$
-\mathbf{A} \mathbf{v} = \lambda \mathbf{v}
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v}
 $$
+
+Where:
+
+- $\mathbf{v}$ is an eigenvector
+- $\lambda$ is the corresponding eigenvalue
+- Characteristic equation: $\det(\mathbf{A} - \lambda\mathbf{I}) = 0$
+
+**Properties**:
+
+- $\text{Tr}(\mathbf{A}) = \sum_i \lambda_i$ (sum of eigenvalues)
+- $\det(\mathbf{A}) = \prod_i \lambda_i$ (product of eigenvalues)
 
 ## Singular Value Decomposition (SVD)
 
 Used in matrix factorization and recommender systems:
 
 $$
-\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T
 $$
+
+Where:
+
+- $\mathbf{U}$: left singular vectors (m × m orthogonal)
+- $\mathbf{\Sigma}$: diagonal matrix of singular values (m × n)
+- $\mathbf{V}$: right singular vectors (n × n orthogonal)
+
+**Key properties**:
+
+- Always exists (unlike eigendecomposition)
+- Singular values $\sigma_i \geq 0$, ordered by magnitude
+- Low-rank approximation: keep top $k$ singular values
+
+**Applications**:
+
+- Dimensionality reduction (truncated SVD)
+- Image compression
+- Collaborative filtering
+- Pseudo-inverse calculation
+
+---
+
+## Matrix Rank and Invertibility
+
+**Rank**: The dimension of the column space (or row space):
+
+$$
+\text{rank}(\mathbf{A}) = \text{number of linearly independent columns}
+$$
+
+**Properties**:
+
+- $\text{rank}(\mathbf{A}) \leq \min(m, n)$ for $m \times n$ matrix
+- Full rank: $\text{rank}(\mathbf{A}) = \min(m, n)$
+- Rank-deficient: $\text{rank}(\mathbf{A}) < \min(m, n)$
+
+**Invertibility**:
+
+- Square matrix $\mathbf{A}$ is invertible $\Leftrightarrow$ $\text{rank}(\mathbf{A}) = n$
+- $\mathbf{A}^{-1}$ exists $\Leftrightarrow$ $\det(\mathbf{A}) \neq 0$
+- For invertible $\mathbf{A}$: $\mathbf{AA}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}$
+
+**ML relevance**: Feature redundancy, linear dependence in datasets
+
+## Orthogonality and Projections
+
+**Orthogonal vectors**: $\mathbf{x} \perp \mathbf{y}$ if $\mathbf{x}^T\mathbf{y} = 0$
+
+**Orthogonal matrix** $\mathbf{Q}$:
+
+- $\mathbf{Q}^T\mathbf{Q} = \mathbf{QQ}^T = \mathbf{I}$
+- Columns are orthonormal
+- Preserves lengths: $\|\mathbf{Qx}\| = \|\mathbf{x}\|$
+
+**Projection matrix** $\mathbf{P}$:
+
+Projection of $\mathbf{b}$ onto column space of $\mathbf{A}$:
+
+$$
+\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T
+$$
+
+**Properties**:
+
+- $\mathbf{P}^2 = \mathbf{P}$ (idempotent)
+- $\mathbf{P}^T = \mathbf{P}$ (symmetric)
+
+**QR Decomposition**:
+
+$$
+\mathbf{A} = \mathbf{QR}
+$$
+
+Where $\mathbf{Q}$ is orthogonal, $\mathbf{R}$ is upper triangular
+
+**ML relevance**: 
+
+- Linear regression (least squares)
+- Gram-Schmidt orthogonalization
+- Solving linear systems
+
+## Positive Definite Matrices
+
+A symmetric matrix $\mathbf{A}$ is **positive definite** if:
+
+$$
+\mathbf{x}^T\mathbf{A}\mathbf{x} > 0 \text{ for all } \mathbf{x} \neq \mathbf{0}
+$$
+
+**Equivalent conditions**:
+
+- All eigenvalues $\lambda_i > 0$
+- All leading principal minors $> 0$
+- $\mathbf{A} = \mathbf{B}^T\mathbf{B}$ for some invertible $\mathbf{B}$
+
+**Positive semi-definite**: $\mathbf{x}^T\mathbf{A}\mathbf{x} \geq 0$ (allows zero eigenvalues)
+
+**ML relevance**:
+
+- Covariance matrices (always positive semi-definite)
+- Hessian matrices in optimization
+- Convex optimization (positive definite Hessian → strict convexity)
+- Convergence guarantees
+
+## Matrix Calculus Basics
+
+**Gradient** (scalar function w.r.t vector):
+
+$$
+\nabla_\mathbf{x} f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+$$
+
+**Jacobian** (vector function w.r.t vector):
+
+$$
+\mathbf{J} = \begin{bmatrix} \frac{\partial f_i}{\partial x_j} \end{bmatrix} \text{ (m × n matrix)}
+$$
+
+**Common derivatives**:
+
+- $\nabla_\mathbf{x}(\mathbf{a}^T\mathbf{x}) = \mathbf{a}$
+- $\nabla_\mathbf{x}(\mathbf{x}^T\mathbf{A}\mathbf{x}) = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}$
+- For symmetric $\mathbf{A}$: $\nabla_\mathbf{x}(\mathbf{x}^T\mathbf{A}\mathbf{x}) = 2\mathbf{A}\mathbf{x}$
+- $\nabla_\mathbf{x}(\|\mathbf{x}\|^2) = 2\mathbf{x}$
+
+**Hessian** (second derivatives):
+
+$$
+\mathbf{H} = \begin{bmatrix} \frac{\partial^2 f}{\partial x_i \partial x_j} \end{bmatrix}
+$$
+
+**ML relevance**:
+
+- Backpropagation
+- Gradient descent optimization
+- Neural network training
+
+## Spectral Theorem
+
+For **symmetric matrix** $\mathbf{A}$:
+
+$$
+\mathbf{A} = \mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T
+$$
+
+Where:
+
+- $\mathbf{Q}$: orthogonal matrix of eigenvectors
+- $\mathbf{\Lambda}$: diagonal matrix of eigenvalues
+- $\mathbf{Q}^T = \mathbf{Q}^{-1}$
+
+**Properties**:
+
+- All eigenvalues are real
+- Eigenvectors are orthogonal
+- Can always be diagonalized
+
+**ML relevance**:
+
+- Principal Component Analysis (PCA)
+- Covariance matrix diagonalization
+- Quadratic forms
+
+---
+
+# ML Applications Summary
+
+## Neural Networks
+
+- **Matrix multiplication**: forward pass ($\mathbf{W}\mathbf{x} + \mathbf{b}$)
+- **Gradients**: backpropagation (chain rule with matrices)
+
+## Dimensionality Reduction
+
+- **PCA**: eigendecomposition of covariance matrix
+- **SVD**: truncated decomposition for low-rank approximation
+
+## Optimization
+
+- **Gradient descent**: $\nabla f(\mathbf{x})$ direction
+- **Positive definite Hessian**: convex optimization
+- **Matrix norms**: regularization (L1, L2)
+
+## Linear Regression
+
+- **Normal equations**: $(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$
+- **Projection**: $\hat{\mathbf{y}} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$
+
+## Similarity & Distance
+
+- **Cosine similarity**: dot product normalized
+- **Euclidean distance**: L2 norm
+- **Recommender systems**: matrix factorization (SVD)
+
+## Data Preprocessing
+
+- **Covariance matrices**: positive semi-definite
+- **Whitening**: decorrelate features using eigendecomposition
+- **Normalization**: scaling using norms
+
+---
+
+## Quick Reference Table
+
+| Concept | Formula | ML Application |
+|---------|---------|----------------|
+| Matrix Multiplication | $\mathbf{y} = \mathbf{W}\mathbf{x}$ | Neural network layers |
+| Eigendecomposition | $\mathbf{A}\mathbf{v} = \lambda\mathbf{v}$ | PCA |
+| SVD | $\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T$ | Recommender systems |
+| Gradient | $\nabla_\mathbf{x} f(\mathbf{x})$ | Backpropagation |
+| Projection | $\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T$ | Linear regression |
+| Positive Definite | $\mathbf{x}^T\mathbf{A}\mathbf{x} > 0$ | Convex optimization |
+| L2 Norm | $\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}$ | Regularization |
+| Trace | $\text{Tr}(\mathbf{A}) = \sum_i A_{ii}$ | Sum of eigenvalues |

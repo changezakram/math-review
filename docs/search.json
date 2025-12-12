@@ -109,62 +109,146 @@
     "href": "linear-algebra.html",
     "title": "Linear Algebra",
     "section": "",
-    "text": "This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]\n\n\n\n\nL2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties.\n\n\n\nThe determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks.\n\n\n\nThe trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+    "text": "This section covers essential linear concepts that serve as the mathematical foundation for machine learning and deep learning.\n\n\n\nVector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 3 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]\n\n\n\nUsed in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W}\\mathbf{x}\n\\]\n\n\n\nMeasures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i} a_i b_i\n\\]\nGeometric interpretation:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\|\\mathbf{a}\\| \\|\\mathbf{b}\\| \\cos(\\theta)\n\\]\n\nUsed in cosine similarity for comparing vectors\n\n\n\n\n\nL2 norm (Euclidean length): \\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nL1 norm (Manhattan distance): \\[\n\\|\\mathbf{x}\\|_1 = \\sum_i |x_i|\n\\]\nFrobenius norm (for matrices): \\[\n\\|\\mathbf{A}\\|_F = \\sqrt{\\sum_{i,j} A_{ij}^2}\n\\]\n\nUsed to compute distances and regularization penalties.\n\n\n\nThe determinant of a square matrix \\(\\mathbf{A}\\) is a scalar value:\n\\[\n\\det(\\mathbf{A})\n\\]\n\n\\(\\det(\\mathbf{A}) = 0\\) means matrix is singular (non-invertible)\n\\(|\\det(\\mathbf{A})|\\) represents volume scaling factor\nUsed in linear transformations and invertibility checks\n\n\n\n\nThe trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(\\mathbf{A}) = \\sum_i A_{ii}\n\\]\nProperties:\n\n\\(\\text{Tr}(\\mathbf{A} + \\mathbf{B}) = \\text{Tr}(\\mathbf{A}) + \\text{Tr}(\\mathbf{B})\\)\n\\(\\text{Tr}(\\mathbf{AB}) = \\text{Tr}(\\mathbf{BA})\\) (cyclic property)\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i \\lambda_i\\) (sum of eigenvalues)\n\n\n\n\nUsed in PCA (dimensionality reduction):\n\\[\n\\mathbf{A}\\mathbf{v} = \\lambda\\mathbf{v}\n\\]\nWhere:\n\n\\(\\mathbf{v}\\) is an eigenvector\n\\(\\lambda\\) is the corresponding eigenvalue\nCharacteristic equation: \\(\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0\\)\n\nProperties:\n\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i \\lambda_i\\) (sum of eigenvalues)\n\\(\\det(\\mathbf{A}) = \\prod_i \\lambda_i\\) (product of eigenvalues)\n\n\n\n\nUsed in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U}\\mathbf{\\Sigma}\\mathbf{V}^T\n\\]\nWhere:\n\n\\(\\mathbf{U}\\): left singular vectors (m × m orthogonal)\n\\(\\mathbf{\\Sigma}\\): diagonal matrix of singular values (m × n)\n\\(\\mathbf{V}\\): right singular vectors (n × n orthogonal)\n\nKey properties:\n\nAlways exists (unlike eigendecomposition)\nSingular values \\(\\sigma_i \\geq 0\\), ordered by magnitude\nLow-rank approximation: keep top \\(k\\) singular values\n\nApplications:\n\nDimensionality reduction (truncated SVD)\nImage compression\nCollaborative filtering\nPseudo-inverse calculation\n\n\n\n\n\nRank: The dimension of the column space (or row space):\n\\[\n\\text{rank}(\\mathbf{A}) = \\text{number of linearly independent columns}\n\\]\nProperties:\n\n\\(\\text{rank}(\\mathbf{A}) \\leq \\min(m, n)\\) for \\(m \\times n\\) matrix\nFull rank: \\(\\text{rank}(\\mathbf{A}) = \\min(m, n)\\)\nRank-deficient: \\(\\text{rank}(\\mathbf{A}) &lt; \\min(m, n)\\)\n\nInvertibility:\n\nSquare matrix \\(\\mathbf{A}\\) is invertible \\(\\Leftrightarrow\\) \\(\\text{rank}(\\mathbf{A}) = n\\)\n\\(\\mathbf{A}^{-1}\\) exists \\(\\Leftrightarrow\\) \\(\\det(\\mathbf{A}) \\neq 0\\)\nFor invertible \\(\\mathbf{A}\\): \\(\\mathbf{AA}^{-1} = \\mathbf{A}^{-1}\\mathbf{A} = \\mathbf{I}\\)\n\nML relevance: Feature redundancy, linear dependence in datasets\n\n\n\nOrthogonal vectors: \\(\\mathbf{x} \\perp \\mathbf{y}\\) if \\(\\mathbf{x}^T\\mathbf{y} = 0\\)\nOrthogonal matrix \\(\\mathbf{Q}\\):\n\n\\(\\mathbf{Q}^T\\mathbf{Q} = \\mathbf{QQ}^T = \\mathbf{I}\\)\nColumns are orthonormal\nPreserves lengths: \\(\\|\\mathbf{Qx}\\| = \\|\\mathbf{x}\\|\\)\n\nProjection matrix \\(\\mathbf{P}\\):\nProjection of \\(\\mathbf{b}\\) onto column space of \\(\\mathbf{A}\\):\n\\[\n\\mathbf{P} = \\mathbf{A}(\\mathbf{A}^T\\mathbf{A})^{-1}\\mathbf{A}^T\n\\]\nProperties:\n\n\\(\\mathbf{P}^2 = \\mathbf{P}\\) (idempotent)\n\\(\\mathbf{P}^T = \\mathbf{P}\\) (symmetric)\n\nQR Decomposition:\n\\[\n\\mathbf{A} = \\mathbf{QR}\n\\]\nWhere \\(\\mathbf{Q}\\) is orthogonal, \\(\\mathbf{R}\\) is upper triangular\nML relevance:\n\nLinear regression (least squares)\nGram-Schmidt orthogonalization\nSolving linear systems\n\n\n\n\nA symmetric matrix \\(\\mathbf{A}\\) is positive definite if:\n\\[\n\\mathbf{x}^T\\mathbf{A}\\mathbf{x} &gt; 0 \\text{ for all } \\mathbf{x} \\neq \\mathbf{0}\n\\]\nEquivalent conditions:\n\nAll eigenvalues \\(\\lambda_i &gt; 0\\)\nAll leading principal minors \\(&gt; 0\\)\n\\(\\mathbf{A} = \\mathbf{B}^T\\mathbf{B}\\) for some invertible \\(\\mathbf{B}\\)\n\nPositive semi-definite: \\(\\mathbf{x}^T\\mathbf{A}\\mathbf{x} \\geq 0\\) (allows zero eigenvalues)\nML relevance:\n\nCovariance matrices (always positive semi-definite)\nHessian matrices in optimization\nConvex optimization (positive definite Hessian → strict convexity)\nConvergence guarantees\n\n\n\n\nGradient (scalar function w.r.t vector):\n\\[\n\\nabla_\\mathbf{x} f(\\mathbf{x}) = \\begin{bmatrix} \\frac{\\partial f}{\\partial x_1} \\\\ \\frac{\\partial f}{\\partial x_2} \\\\ \\vdots \\\\ \\frac{\\partial f}{\\partial x_n} \\end{bmatrix}\n\\]\nJacobian (vector function w.r.t vector):\n\\[\n\\mathbf{J} = \\begin{bmatrix} \\frac{\\partial f_i}{\\partial x_j} \\end{bmatrix} \\text{ (m × n matrix)}\n\\]\nCommon derivatives:\n\n\\(\\nabla_\\mathbf{x}(\\mathbf{a}^T\\mathbf{x}) = \\mathbf{a}\\)\n\\(\\nabla_\\mathbf{x}(\\mathbf{x}^T\\mathbf{A}\\mathbf{x}) = (\\mathbf{A} + \\mathbf{A}^T)\\mathbf{x}\\)\nFor symmetric \\(\\mathbf{A}\\): \\(\\nabla_\\mathbf{x}(\\mathbf{x}^T\\mathbf{A}\\mathbf{x}) = 2\\mathbf{A}\\mathbf{x}\\)\n\\(\\nabla_\\mathbf{x}(\\|\\mathbf{x}\\|^2) = 2\\mathbf{x}\\)\n\nHessian (second derivatives):\n\\[\n\\mathbf{H} = \\begin{bmatrix} \\frac{\\partial^2 f}{\\partial x_i \\partial x_j} \\end{bmatrix}\n\\]\nML relevance:\n\nBackpropagation\nGradient descent optimization\nNeural network training\n\n\n\n\nFor symmetric matrix \\(\\mathbf{A}\\):\n\\[\n\\mathbf{A} = \\mathbf{Q}\\mathbf{\\Lambda}\\mathbf{Q}^T\n\\]\nWhere:\n\n\\(\\mathbf{Q}\\): orthogonal matrix of eigenvectors\n\\(\\mathbf{\\Lambda}\\): diagonal matrix of eigenvalues\n\\(\\mathbf{Q}^T = \\mathbf{Q}^{-1}\\)\n\nProperties:\n\nAll eigenvalues are real\nEigenvectors are orthogonal\nCan always be diagonalized\n\nML relevance:\n\nPrincipal Component Analysis (PCA)\nCovariance matrix diagonalization\nQuadratic forms"
   },
   {
     "objectID": "linear-algebra.html#vectors-and-matrices",
     "href": "linear-algebra.html#vectors-and-matrices",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 3 \\\\ 5 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]"
+    "text": "Vector: A 1D array of numbers, often used to represent features.\nMatrix: A 2D array of numbers, common for representing datasets and weights.\n\nExample:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 3 \\end{bmatrix}, \\quad\n\\mathbf{W} = \\begin{bmatrix} 1 & 2 \\\\ 3 & 4 \\end{bmatrix}\n\\]"
   },
   {
     "objectID": "linear-algebra.html#matrix-multiplication",
     "href": "linear-algebra.html#matrix-multiplication",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Used in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W} \\mathbf{x}\n\\]"
+    "text": "Used in the forward pass of neural networks:\n\\[\n\\mathbf{y} = \\mathbf{W}\\mathbf{x}\n\\]"
   },
   {
     "objectID": "linear-algebra.html#dot-product",
     "href": "linear-algebra.html#dot-product",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Measures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_i a_i b_i\n\\]"
+    "text": "Measures projection or similarity:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i} a_i b_i\n\\]\nGeometric interpretation:\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\|\\mathbf{a}\\| \\|\\mathbf{b}\\| \\cos(\\theta)\n\\]\n\nUsed in cosine similarity for comparing vectors"
   },
   {
     "objectID": "linear-algebra.html#norms-and-distances",
     "href": "linear-algebra.html#norms-and-distances",
     "title": "Linear Algebra",
     "section": "",
-    "text": "L2 Norm (Euclidean length):\n\n\\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nUsed to compute distances and regularization penalties."
+    "text": "L2 norm (Euclidean length): \\[\n\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\n\\]\nL1 norm (Manhattan distance): \\[\n\\|\\mathbf{x}\\|_1 = \\sum_i |x_i|\n\\]\nFrobenius norm (for matrices): \\[\n\\|\\mathbf{A}\\|_F = \\sqrt{\\sum_{i,j} A_{ij}^2}\n\\]\n\nUsed to compute distances and regularization penalties."
   },
   {
     "objectID": "linear-algebra.html#determinant",
     "href": "linear-algebra.html#determinant",
     "title": "Linear Algebra",
     "section": "",
-    "text": "The determinant of a square matrix ( A ) is a scalar value:\n\\[\n\\det(A)\n\\]\nUsed in linear transformations and invertibility checks."
+    "text": "The determinant of a square matrix \\(\\mathbf{A}\\) is a scalar value:\n\\[\n\\det(\\mathbf{A})\n\\]\n\n\\(\\det(\\mathbf{A}) = 0\\) means matrix is singular (non-invertible)\n\\(|\\det(\\mathbf{A})|\\) represents volume scaling factor\nUsed in linear transformations and invertibility checks"
   },
   {
     "objectID": "linear-algebra.html#trace",
     "href": "linear-algebra.html#trace",
     "title": "Linear Algebra",
     "section": "",
-    "text": "The trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(A) = \\sum_i A_{ii}\n\\]"
+    "text": "The trace of a square matrix is the sum of diagonal elements:\n\\[\n\\text{Tr}(\\mathbf{A}) = \\sum_i A_{ii}\n\\]\nProperties:\n\n\\(\\text{Tr}(\\mathbf{A} + \\mathbf{B}) = \\text{Tr}(\\mathbf{A}) + \\text{Tr}(\\mathbf{B})\\)\n\\(\\text{Tr}(\\mathbf{AB}) = \\text{Tr}(\\mathbf{BA})\\) (cyclic property)\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i \\lambda_i\\) (sum of eigenvalues)"
   },
   {
     "objectID": "linear-algebra.html#eigenvalues-and-eigenvectors",
     "href": "linear-algebra.html#eigenvalues-and-eigenvectors",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Used in PCA (dimensionality reduction):\n\\[\n\\mathbf{A} \\mathbf{v} = \\lambda \\mathbf{v}\n\\]"
+    "text": "Used in PCA (dimensionality reduction):\n\\[\n\\mathbf{A}\\mathbf{v} = \\lambda\\mathbf{v}\n\\]\nWhere:\n\n\\(\\mathbf{v}\\) is an eigenvector\n\\(\\lambda\\) is the corresponding eigenvalue\nCharacteristic equation: \\(\\det(\\mathbf{A} - \\lambda\\mathbf{I}) = 0\\)\n\nProperties:\n\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i \\lambda_i\\) (sum of eigenvalues)\n\\(\\det(\\mathbf{A}) = \\prod_i \\lambda_i\\) (product of eigenvalues)"
   },
   {
     "objectID": "linear-algebra.html#singular-value-decomposition-svd",
     "href": "linear-algebra.html#singular-value-decomposition-svd",
     "title": "Linear Algebra",
     "section": "",
-    "text": "Used in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U} \\mathbf{\\Sigma} \\mathbf{V}^T\n\\]"
+    "text": "Used in matrix factorization and recommender systems:\n\\[\n\\mathbf{A} = \\mathbf{U}\\mathbf{\\Sigma}\\mathbf{V}^T\n\\]\nWhere:\n\n\\(\\mathbf{U}\\): left singular vectors (m × m orthogonal)\n\\(\\mathbf{\\Sigma}\\): diagonal matrix of singular values (m × n)\n\\(\\mathbf{V}\\): right singular vectors (n × n orthogonal)\n\nKey properties:\n\nAlways exists (unlike eigendecomposition)\nSingular values \\(\\sigma_i \\geq 0\\), ordered by magnitude\nLow-rank approximation: keep top \\(k\\) singular values\n\nApplications:\n\nDimensionality reduction (truncated SVD)\nImage compression\nCollaborative filtering\nPseudo-inverse calculation"
+  },
+  {
+    "objectID": "linear-algebra.html#matrix-rank-and-invertibility",
+    "href": "linear-algebra.html#matrix-rank-and-invertibility",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Rank: The dimension of the column space (or row space):\n\\[\n\\text{rank}(\\mathbf{A}) = \\text{number of linearly independent columns}\n\\]\nProperties:\n\n\\(\\text{rank}(\\mathbf{A}) \\leq \\min(m, n)\\) for \\(m \\times n\\) matrix\nFull rank: \\(\\text{rank}(\\mathbf{A}) = \\min(m, n)\\)\nRank-deficient: \\(\\text{rank}(\\mathbf{A}) &lt; \\min(m, n)\\)\n\nInvertibility:\n\nSquare matrix \\(\\mathbf{A}\\) is invertible \\(\\Leftrightarrow\\) \\(\\text{rank}(\\mathbf{A}) = n\\)\n\\(\\mathbf{A}^{-1}\\) exists \\(\\Leftrightarrow\\) \\(\\det(\\mathbf{A}) \\neq 0\\)\nFor invertible \\(\\mathbf{A}\\): \\(\\mathbf{AA}^{-1} = \\mathbf{A}^{-1}\\mathbf{A} = \\mathbf{I}\\)\n\nML relevance: Feature redundancy, linear dependence in datasets"
+  },
+  {
+    "objectID": "linear-algebra.html#orthogonality-and-projections",
+    "href": "linear-algebra.html#orthogonality-and-projections",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Orthogonal vectors: \\(\\mathbf{x} \\perp \\mathbf{y}\\) if \\(\\mathbf{x}^T\\mathbf{y} = 0\\)\nOrthogonal matrix \\(\\mathbf{Q}\\):\n\n\\(\\mathbf{Q}^T\\mathbf{Q} = \\mathbf{QQ}^T = \\mathbf{I}\\)\nColumns are orthonormal\nPreserves lengths: \\(\\|\\mathbf{Qx}\\| = \\|\\mathbf{x}\\|\\)\n\nProjection matrix \\(\\mathbf{P}\\):\nProjection of \\(\\mathbf{b}\\) onto column space of \\(\\mathbf{A}\\):\n\\[\n\\mathbf{P} = \\mathbf{A}(\\mathbf{A}^T\\mathbf{A})^{-1}\\mathbf{A}^T\n\\]\nProperties:\n\n\\(\\mathbf{P}^2 = \\mathbf{P}\\) (idempotent)\n\\(\\mathbf{P}^T = \\mathbf{P}\\) (symmetric)\n\nQR Decomposition:\n\\[\n\\mathbf{A} = \\mathbf{QR}\n\\]\nWhere \\(\\mathbf{Q}\\) is orthogonal, \\(\\mathbf{R}\\) is upper triangular\nML relevance:\n\nLinear regression (least squares)\nGram-Schmidt orthogonalization\nSolving linear systems"
+  },
+  {
+    "objectID": "linear-algebra.html#positive-definite-matrices",
+    "href": "linear-algebra.html#positive-definite-matrices",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "A symmetric matrix \\(\\mathbf{A}\\) is positive definite if:\n\\[\n\\mathbf{x}^T\\mathbf{A}\\mathbf{x} &gt; 0 \\text{ for all } \\mathbf{x} \\neq \\mathbf{0}\n\\]\nEquivalent conditions:\n\nAll eigenvalues \\(\\lambda_i &gt; 0\\)\nAll leading principal minors \\(&gt; 0\\)\n\\(\\mathbf{A} = \\mathbf{B}^T\\mathbf{B}\\) for some invertible \\(\\mathbf{B}\\)\n\nPositive semi-definite: \\(\\mathbf{x}^T\\mathbf{A}\\mathbf{x} \\geq 0\\) (allows zero eigenvalues)\nML relevance:\n\nCovariance matrices (always positive semi-definite)\nHessian matrices in optimization\nConvex optimization (positive definite Hessian → strict convexity)\nConvergence guarantees"
+  },
+  {
+    "objectID": "linear-algebra.html#matrix-calculus-basics",
+    "href": "linear-algebra.html#matrix-calculus-basics",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "Gradient (scalar function w.r.t vector):\n\\[\n\\nabla_\\mathbf{x} f(\\mathbf{x}) = \\begin{bmatrix} \\frac{\\partial f}{\\partial x_1} \\\\ \\frac{\\partial f}{\\partial x_2} \\\\ \\vdots \\\\ \\frac{\\partial f}{\\partial x_n} \\end{bmatrix}\n\\]\nJacobian (vector function w.r.t vector):\n\\[\n\\mathbf{J} = \\begin{bmatrix} \\frac{\\partial f_i}{\\partial x_j} \\end{bmatrix} \\text{ (m × n matrix)}\n\\]\nCommon derivatives:\n\n\\(\\nabla_\\mathbf{x}(\\mathbf{a}^T\\mathbf{x}) = \\mathbf{a}\\)\n\\(\\nabla_\\mathbf{x}(\\mathbf{x}^T\\mathbf{A}\\mathbf{x}) = (\\mathbf{A} + \\mathbf{A}^T)\\mathbf{x}\\)\nFor symmetric \\(\\mathbf{A}\\): \\(\\nabla_\\mathbf{x}(\\mathbf{x}^T\\mathbf{A}\\mathbf{x}) = 2\\mathbf{A}\\mathbf{x}\\)\n\\(\\nabla_\\mathbf{x}(\\|\\mathbf{x}\\|^2) = 2\\mathbf{x}\\)\n\nHessian (second derivatives):\n\\[\n\\mathbf{H} = \\begin{bmatrix} \\frac{\\partial^2 f}{\\partial x_i \\partial x_j} \\end{bmatrix}\n\\]\nML relevance:\n\nBackpropagation\nGradient descent optimization\nNeural network training"
+  },
+  {
+    "objectID": "linear-algebra.html#spectral-theorem",
+    "href": "linear-algebra.html#spectral-theorem",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "For symmetric matrix \\(\\mathbf{A}\\):\n\\[\n\\mathbf{A} = \\mathbf{Q}\\mathbf{\\Lambda}\\mathbf{Q}^T\n\\]\nWhere:\n\n\\(\\mathbf{Q}\\): orthogonal matrix of eigenvectors\n\\(\\mathbf{\\Lambda}\\): diagonal matrix of eigenvalues\n\\(\\mathbf{Q}^T = \\mathbf{Q}^{-1}\\)\n\nProperties:\n\nAll eigenvalues are real\nEigenvectors are orthogonal\nCan always be diagonalized\n\nML relevance:\n\nPrincipal Component Analysis (PCA)\nCovariance matrix diagonalization\nQuadratic forms"
+  },
+  {
+    "objectID": "linear-algebra.html#neural-networks",
+    "href": "linear-algebra.html#neural-networks",
+    "title": "Linear Algebra",
+    "section": "2.1 Neural Networks",
+    "text": "2.1 Neural Networks\n\nMatrix multiplication: forward pass (\\(\\mathbf{W}\\mathbf{x} + \\mathbf{b}\\))\nGradients: backpropagation (chain rule with matrices)"
+  },
+  {
+    "objectID": "linear-algebra.html#dimensionality-reduction",
+    "href": "linear-algebra.html#dimensionality-reduction",
+    "title": "Linear Algebra",
+    "section": "2.2 Dimensionality Reduction",
+    "text": "2.2 Dimensionality Reduction\n\nPCA: eigendecomposition of covariance matrix\nSVD: truncated decomposition for low-rank approximation"
+  },
+  {
+    "objectID": "linear-algebra.html#optimization",
+    "href": "linear-algebra.html#optimization",
+    "title": "Linear Algebra",
+    "section": "2.3 Optimization",
+    "text": "2.3 Optimization\n\nGradient descent: \\(\\nabla f(\\mathbf{x})\\) direction\nPositive definite Hessian: convex optimization\nMatrix norms: regularization (L1, L2)"
+  },
+  {
+    "objectID": "linear-algebra.html#linear-regression",
+    "href": "linear-algebra.html#linear-regression",
+    "title": "Linear Algebra",
+    "section": "2.4 Linear Regression",
+    "text": "2.4 Linear Regression\n\nNormal equations: \\((\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\\)\nProjection: \\(\\hat{\\mathbf{y}} = \\mathbf{X}(\\mathbf{X}^T\\mathbf{X})^{-1}\\mathbf{X}^T\\mathbf{y}\\)"
+  },
+  {
+    "objectID": "linear-algebra.html#similarity-distance",
+    "href": "linear-algebra.html#similarity-distance",
+    "title": "Linear Algebra",
+    "section": "2.5 Similarity & Distance",
+    "text": "2.5 Similarity & Distance\n\nCosine similarity: dot product normalized\nEuclidean distance: L2 norm\nRecommender systems: matrix factorization (SVD)"
+  },
+  {
+    "objectID": "linear-algebra.html#data-preprocessing",
+    "href": "linear-algebra.html#data-preprocessing",
+    "title": "Linear Algebra",
+    "section": "2.6 Data Preprocessing",
+    "text": "2.6 Data Preprocessing\n\nCovariance matrices: positive semi-definite\nWhitening: decorrelate features using eigendecomposition\nNormalization: scaling using norms"
+  },
+  {
+    "objectID": "linear-algebra.html#quick-reference-table",
+    "href": "linear-algebra.html#quick-reference-table",
+    "title": "Linear Algebra",
+    "section": "2.7 Quick Reference Table",
+    "text": "2.7 Quick Reference Table\n\n\n\n\n\n\n\n\nConcept\nFormula\nML Application\n\n\n\n\nMatrix Multiplication\n\\(\\mathbf{y} = \\mathbf{W}\\mathbf{x}\\)\nNeural network layers\n\n\nEigendecomposition\n\\(\\mathbf{A}\\mathbf{v} = \\lambda\\mathbf{v}\\)\nPCA\n\n\nSVD\n\\(\\mathbf{A} = \\mathbf{U}\\mathbf{\\Sigma}\\mathbf{V}^T\\)\nRecommender systems\n\n\nGradient\n\\(\\nabla_\\mathbf{x} f(\\mathbf{x})\\)\nBackpropagation\n\n\nProjection\n\\(\\mathbf{P} = \\mathbf{A}(\\mathbf{A}^T\\mathbf{A})^{-1}\\mathbf{A}^T\\)\nLinear regression\n\n\nPositive Definite\n\\(\\mathbf{x}^T\\mathbf{A}\\mathbf{x} &gt; 0\\)\nConvex optimization\n\n\nL2 Norm\n\\(\\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_i x_i^2}\\)\nRegularization\n\n\nTrace\n\\(\\text{Tr}(\\mathbf{A}) = \\sum_i A_{ii}\\)\nSum of eigenvalues"
   }
 ]

@@ -242,6 +242,21 @@ window.Quarto = {
   <li><a href="#trace" id="toc-trace" class="nav-link" data-scroll-target="#trace"><span class="header-section-number">1.6</span> Trace</a></li>
   <li><a href="#eigenvalues-and-eigenvectors" id="toc-eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors"><span class="header-section-number">1.7</span> Eigenvalues and Eigenvectors</a></li>
   <li><a href="#singular-value-decomposition-svd" id="toc-singular-value-decomposition-svd" class="nav-link" data-scroll-target="#singular-value-decomposition-svd"><span class="header-section-number">1.8</span> Singular Value Decomposition (SVD)</a></li>
+  <li><a href="#matrix-rank-and-invertibility" id="toc-matrix-rank-and-invertibility" class="nav-link" data-scroll-target="#matrix-rank-and-invertibility"><span class="header-section-number">1.9</span> Matrix Rank and Invertibility</a></li>
+  <li><a href="#orthogonality-and-projections" id="toc-orthogonality-and-projections" class="nav-link" data-scroll-target="#orthogonality-and-projections"><span class="header-section-number">1.10</span> Orthogonality and Projections</a></li>
+  <li><a href="#positive-definite-matrices" id="toc-positive-definite-matrices" class="nav-link" data-scroll-target="#positive-definite-matrices"><span class="header-section-number">1.11</span> Positive Definite Matrices</a></li>
+  <li><a href="#matrix-calculus-basics" id="toc-matrix-calculus-basics" class="nav-link" data-scroll-target="#matrix-calculus-basics"><span class="header-section-number">1.12</span> Matrix Calculus Basics</a></li>
+  <li><a href="#spectral-theorem" id="toc-spectral-theorem" class="nav-link" data-scroll-target="#spectral-theorem"><span class="header-section-number">1.13</span> Spectral Theorem</a></li>
+  </ul></li>
+  <li><a href="#ml-applications-summary" id="toc-ml-applications-summary" class="nav-link" data-scroll-target="#ml-applications-summary"><span class="header-section-number">2</span> ML Applications Summary</a>
+  <ul class="collapse">
+  <li><a href="#neural-networks" id="toc-neural-networks" class="nav-link" data-scroll-target="#neural-networks"><span class="header-section-number">2.1</span> Neural Networks</a></li>
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction"><span class="header-section-number">2.2</span> Dimensionality Reduction</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">2.3</span> Optimization</a></li>
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">2.4</span> Linear Regression</a></li>
+  <li><a href="#similarity-distance" id="toc-similarity-distance" class="nav-link" data-scroll-target="#similarity-distance"><span class="header-section-number">2.5</span> Similarity &amp; Distance</a></li>
+  <li><a href="#data-preprocessing" id="toc-data-preprocessing" class="nav-link" data-scroll-target="#data-preprocessing"><span class="header-section-number">2.6</span> Data Preprocessing</a></li>
+  <li><a href="#quick-reference-table" id="toc-quick-reference-table" class="nav-link" data-scroll-target="#quick-reference-table"><span class="header-section-number">2.7</span> Quick Reference Table</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -270,7 +285,7 @@ window.Quarto = {
 
 <section id="linear-algebra-for-machine-learning" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Linear Algebra for Machine Learning</h1>
-<p>This section covers essential linear algebra concepts that serve as the mathematical foundation for machine learning and deep learning.</p>
+<p>This section covers essential linear concepts that serve as the mathematical foundation for machine learning and deep learning.</p>
 <section id="vectors-and-matrices" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="vectors-and-matrices"><span class="header-section-number">1.1</span> Vectors and Matrices</h2>
 <ul>
@@ -279,7 +294,7 @@ window.Quarto = {
 </ul>
 <p>Example:</p>
 <p><span class="math display">\[
-\mathbf{x} = \begin{bmatrix} 3 \\ 5 \end{bmatrix}, \quad
+\mathbf{x} = \begin{bmatrix} 2 \\ 3 \end{bmatrix}, \quad
 \mathbf{W} = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}
 \]</span></p>
 </section>
@@ -287,54 +302,341 @@ window.Quarto = {
 <h2 data-number="1.2" class="anchored" data-anchor-id="matrix-multiplication"><span class="header-section-number">1.2</span> Matrix Multiplication</h2>
 <p>Used in the forward pass of neural networks:</p>
 <p><span class="math display">\[
-\mathbf{y} = \mathbf{W} \mathbf{x}
+\mathbf{y} = \mathbf{W}\mathbf{x}
 \]</span></p>
 </section>
 <section id="dot-product" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="dot-product"><span class="header-section-number">1.3</span> Dot Product</h2>
 <p>Measures projection or similarity:</p>
 <p><span class="math display">\[
-\mathbf{a} \cdot \mathbf{b} = \sum_i a_i b_i
+\mathbf{a} \cdot \mathbf{b} = \sum_{i} a_i b_i
 \]</span></p>
+<p><strong>Geometric interpretation</strong>:</p>
+<p><span class="math display">\[
+\mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos(\theta)
+\]</span></p>
+<ul>
+<li>Used in cosine similarity for comparing vectors</li>
+</ul>
 </section>
 <section id="norms-and-distances" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="norms-and-distances"><span class="header-section-number">1.4</span> Norms and Distances</h2>
 <ul>
-<li><strong>L2 Norm</strong> (Euclidean length):</li>
-</ul>
-<p><span class="math display">\[
+<li><p><strong>L2 norm</strong> (Euclidean length): <span class="math display">\[
 \|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}
-\]</span></p>
+\]</span></p></li>
+<li><p><strong>L1 norm</strong> (Manhattan distance): <span class="math display">\[
+\|\mathbf{x}\|_1 = \sum_i |x_i|
+\]</span></p></li>
+<li><p><strong>Frobenius norm</strong> (for matrices): <span class="math display">\[
+\|\mathbf{A}\|_F = \sqrt{\sum_{i,j} A_{ij}^2}
+\]</span></p></li>
+</ul>
 <p>Used to compute distances and regularization penalties.</p>
 </section>
 <section id="determinant" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="determinant"><span class="header-section-number">1.5</span> Determinant</h2>
-<p>The determinant of a square matrix ( A ) is a scalar value:</p>
+<p>The determinant of a square matrix <span class="math inline">\(\mathbf{A}\)</span> is a scalar value:</p>
 <p><span class="math display">\[
-\det(A)
+\det(\mathbf{A})
 \]</span></p>
-<p>Used in linear transformations and invertibility checks.</p>
+<ul>
+<li><span class="math inline">\(\det(\mathbf{A}) = 0\)</span> means matrix is singular (non-invertible)</li>
+<li><span class="math inline">\(|\det(\mathbf{A})|\)</span> represents volume scaling factor</li>
+<li>Used in linear transformations and invertibility checks</li>
+</ul>
 </section>
 <section id="trace" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="trace"><span class="header-section-number">1.6</span> Trace</h2>
 <p>The trace of a square matrix is the sum of diagonal elements:</p>
 <p><span class="math display">\[
-\text{Tr}(A) = \sum_i A_{ii}
+\text{Tr}(\mathbf{A}) = \sum_i A_{ii}
 \]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{Tr}(\mathbf{A} + \mathbf{B}) = \text{Tr}(\mathbf{A}) + \text{Tr}(\mathbf{B})\)</span></li>
+<li><span class="math inline">\(\text{Tr}(\mathbf{AB}) = \text{Tr}(\mathbf{BA})\)</span> (cyclic property)</li>
+<li><span class="math inline">\(\text{Tr}(\mathbf{A}) = \sum_i \lambda_i\)</span> (sum of eigenvalues)</li>
+</ul>
 </section>
 <section id="eigenvalues-and-eigenvectors" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="eigenvalues-and-eigenvectors"><span class="header-section-number">1.7</span> Eigenvalues and Eigenvectors</h2>
 <p>Used in PCA (dimensionality reduction):</p>
 <p><span class="math display">\[
-\mathbf{A} \mathbf{v} = \lambda \mathbf{v}
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v}
 \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{v}\)</span> is an eigenvector</li>
+<li><span class="math inline">\(\lambda\)</span> is the corresponding eigenvalue</li>
+<li>Characteristic equation: <span class="math inline">\(\det(\mathbf{A} - \lambda\mathbf{I}) = 0\)</span></li>
+</ul>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{Tr}(\mathbf{A}) = \sum_i \lambda_i\)</span> (sum of eigenvalues)</li>
+<li><span class="math inline">\(\det(\mathbf{A}) = \prod_i \lambda_i\)</span> (product of eigenvalues)</li>
+</ul>
 </section>
 <section id="singular-value-decomposition-svd" class="level2" data-number="1.8">
 <h2 data-number="1.8" class="anchored" data-anchor-id="singular-value-decomposition-svd"><span class="header-section-number">1.8</span> Singular Value Decomposition (SVD)</h2>
 <p>Used in matrix factorization and recommender systems:</p>
 <p><span class="math display">\[
-\mathbf{A} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^T
+\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T
 \]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{U}\)</span>: left singular vectors (m × m orthogonal)</li>
+<li><span class="math inline">\(\mathbf{\Sigma}\)</span>: diagonal matrix of singular values (m × n)</li>
+<li><span class="math inline">\(\mathbf{V}\)</span>: right singular vectors (n × n orthogonal)</li>
+</ul>
+<p><strong>Key properties</strong>:</p>
+<ul>
+<li>Always exists (unlike eigendecomposition)</li>
+<li>Singular values <span class="math inline">\(\sigma_i \geq 0\)</span>, ordered by magnitude</li>
+<li>Low-rank approximation: keep top <span class="math inline">\(k\)</span> singular values</li>
+</ul>
+<p><strong>Applications</strong>:</p>
+<ul>
+<li>Dimensionality reduction (truncated SVD)</li>
+<li>Image compression</li>
+<li>Collaborative filtering</li>
+<li>Pseudo-inverse calculation</li>
+</ul>
+<hr>
+</section>
+<section id="matrix-rank-and-invertibility" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="matrix-rank-and-invertibility"><span class="header-section-number">1.9</span> Matrix Rank and Invertibility</h2>
+<p><strong>Rank</strong>: The dimension of the column space (or row space):</p>
+<p><span class="math display">\[
+\text{rank}(\mathbf{A}) = \text{number of linearly independent columns}
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{rank}(\mathbf{A}) \leq \min(m, n)\)</span> for <span class="math inline">\(m \times n\)</span> matrix</li>
+<li>Full rank: <span class="math inline">\(\text{rank}(\mathbf{A}) = \min(m, n)\)</span></li>
+<li>Rank-deficient: <span class="math inline">\(\text{rank}(\mathbf{A}) &lt; \min(m, n)\)</span></li>
+</ul>
+<p><strong>Invertibility</strong>:</p>
+<ul>
+<li>Square matrix <span class="math inline">\(\mathbf{A}\)</span> is invertible <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(\text{rank}(\mathbf{A}) = n\)</span></li>
+<li><span class="math inline">\(\mathbf{A}^{-1}\)</span> exists <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(\det(\mathbf{A}) \neq 0\)</span></li>
+<li>For invertible <span class="math inline">\(\mathbf{A}\)</span>: <span class="math inline">\(\mathbf{AA}^{-1} = \mathbf{A}^{-1}\mathbf{A} = \mathbf{I}\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>: Feature redundancy, linear dependence in datasets</p>
+</section>
+<section id="orthogonality-and-projections" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="orthogonality-and-projections"><span class="header-section-number">1.10</span> Orthogonality and Projections</h2>
+<p><strong>Orthogonal vectors</strong>: <span class="math inline">\(\mathbf{x} \perp \mathbf{y}\)</span> if <span class="math inline">\(\mathbf{x}^T\mathbf{y} = 0\)</span></p>
+<p><strong>Orthogonal matrix</strong> <span class="math inline">\(\mathbf{Q}\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{Q}^T\mathbf{Q} = \mathbf{QQ}^T = \mathbf{I}\)</span></li>
+<li>Columns are orthonormal</li>
+<li>Preserves lengths: <span class="math inline">\(\|\mathbf{Qx}\| = \|\mathbf{x}\|\)</span></li>
+</ul>
+<p><strong>Projection matrix</strong> <span class="math inline">\(\mathbf{P}\)</span>:</p>
+<p>Projection of <span class="math inline">\(\mathbf{b}\)</span> onto column space of <span class="math inline">\(\mathbf{A}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{P}^2 = \mathbf{P}\)</span> (idempotent)</li>
+<li><span class="math inline">\(\mathbf{P}^T = \mathbf{P}\)</span> (symmetric)</li>
+</ul>
+<p><strong>QR Decomposition</strong>:</p>
+<p><span class="math display">\[
+\mathbf{A} = \mathbf{QR}
+\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{Q}\)</span> is orthogonal, <span class="math inline">\(\mathbf{R}\)</span> is upper triangular</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Linear regression (least squares)</li>
+<li>Gram-Schmidt orthogonalization</li>
+<li>Solving linear systems</li>
+</ul>
+</section>
+<section id="positive-definite-matrices" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="positive-definite-matrices"><span class="header-section-number">1.11</span> Positive Definite Matrices</h2>
+<p>A symmetric matrix <span class="math inline">\(\mathbf{A}\)</span> is <strong>positive definite</strong> if:</p>
+<p><span class="math display">\[
+\mathbf{x}^T\mathbf{A}\mathbf{x} &gt; 0 \text{ for all } \mathbf{x} \neq \mathbf{0}
+\]</span></p>
+<p><strong>Equivalent conditions</strong>:</p>
+<ul>
+<li>All eigenvalues <span class="math inline">\(\lambda_i &gt; 0\)</span></li>
+<li>All leading principal minors <span class="math inline">\(&gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbf{A} = \mathbf{B}^T\mathbf{B}\)</span> for some invertible <span class="math inline">\(\mathbf{B}\)</span></li>
+</ul>
+<p><strong>Positive semi-definite</strong>: <span class="math inline">\(\mathbf{x}^T\mathbf{A}\mathbf{x} \geq 0\)</span> (allows zero eigenvalues)</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Covariance matrices (always positive semi-definite)</li>
+<li>Hessian matrices in optimization</li>
+<li>Convex optimization (positive definite Hessian → strict convexity)</li>
+<li>Convergence guarantees</li>
+</ul>
+</section>
+<section id="matrix-calculus-basics" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="matrix-calculus-basics"><span class="header-section-number">1.12</span> Matrix Calculus Basics</h2>
+<p><strong>Gradient</strong> (scalar function w.r.t vector):</p>
+<p><span class="math display">\[
+\nabla_\mathbf{x} f(\mathbf{x}) = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+\]</span></p>
+<p><strong>Jacobian</strong> (vector function w.r.t vector):</p>
+<p><span class="math display">\[
+\mathbf{J} = \begin{bmatrix} \frac{\partial f_i}{\partial x_j} \end{bmatrix} \text{ (m × n matrix)}
+\]</span></p>
+<p><strong>Common derivatives</strong>:</p>
+<ul>
+<li><span class="math inline">\(\nabla_\mathbf{x}(\mathbf{a}^T\mathbf{x}) = \mathbf{a}\)</span></li>
+<li><span class="math inline">\(\nabla_\mathbf{x}(\mathbf{x}^T\mathbf{A}\mathbf{x}) = (\mathbf{A} + \mathbf{A}^T)\mathbf{x}\)</span></li>
+<li>For symmetric <span class="math inline">\(\mathbf{A}\)</span>: <span class="math inline">\(\nabla_\mathbf{x}(\mathbf{x}^T\mathbf{A}\mathbf{x}) = 2\mathbf{A}\mathbf{x}\)</span></li>
+<li><span class="math inline">\(\nabla_\mathbf{x}(\|\mathbf{x}\|^2) = 2\mathbf{x}\)</span></li>
+</ul>
+<p><strong>Hessian</strong> (second derivatives):</p>
+<p><span class="math display">\[
+\mathbf{H} = \begin{bmatrix} \frac{\partial^2 f}{\partial x_i \partial x_j} \end{bmatrix}
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Backpropagation</li>
+<li>Gradient descent optimization</li>
+<li>Neural network training</li>
+</ul>
+</section>
+<section id="spectral-theorem" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="spectral-theorem"><span class="header-section-number">1.13</span> Spectral Theorem</h2>
+<p>For <strong>symmetric matrix</strong> <span class="math inline">\(\mathbf{A}\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{A} = \mathbf{Q}\mathbf{\Lambda}\mathbf{Q}^T
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{Q}\)</span>: orthogonal matrix of eigenvectors</li>
+<li><span class="math inline">\(\mathbf{\Lambda}\)</span>: diagonal matrix of eigenvalues</li>
+<li><span class="math inline">\(\mathbf{Q}^T = \mathbf{Q}^{-1}\)</span></li>
+</ul>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>All eigenvalues are real</li>
+<li>Eigenvectors are orthogonal</li>
+<li>Can always be diagonalized</li>
+</ul>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Principal Component Analysis (PCA)</li>
+<li>Covariance matrix diagonalization</li>
+<li>Quadratic forms</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="ml-applications-summary" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> ML Applications Summary</h1>
+<section id="neural-networks" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="neural-networks"><span class="header-section-number">2.1</span> Neural Networks</h2>
+<ul>
+<li><strong>Matrix multiplication</strong>: forward pass (<span class="math inline">\(\mathbf{W}\mathbf{x} + \mathbf{b}\)</span>)</li>
+<li><strong>Gradients</strong>: backpropagation (chain rule with matrices)</li>
+</ul>
+</section>
+<section id="dimensionality-reduction" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dimensionality-reduction"><span class="header-section-number">2.2</span> Dimensionality Reduction</h2>
+<ul>
+<li><strong>PCA</strong>: eigendecomposition of covariance matrix</li>
+<li><strong>SVD</strong>: truncated decomposition for low-rank approximation</li>
+</ul>
+</section>
+<section id="optimization" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="optimization"><span class="header-section-number">2.3</span> Optimization</h2>
+<ul>
+<li><strong>Gradient descent</strong>: <span class="math inline">\(\nabla f(\mathbf{x})\)</span> direction</li>
+<li><strong>Positive definite Hessian</strong>: convex optimization</li>
+<li><strong>Matrix norms</strong>: regularization (L1, L2)</li>
+</ul>
+</section>
+<section id="linear-regression" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">2.4</span> Linear Regression</h2>
+<ul>
+<li><strong>Normal equations</strong>: <span class="math inline">\((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
+<li><strong>Projection</strong>: <span class="math inline">\(\hat{\mathbf{y}} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\)</span></li>
+</ul>
+</section>
+<section id="similarity-distance" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="similarity-distance"><span class="header-section-number">2.5</span> Similarity &amp; Distance</h2>
+<ul>
+<li><strong>Cosine similarity</strong>: dot product normalized</li>
+<li><strong>Euclidean distance</strong>: L2 norm</li>
+<li><strong>Recommender systems</strong>: matrix factorization (SVD)</li>
+</ul>
+</section>
+<section id="data-preprocessing" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="data-preprocessing"><span class="header-section-number">2.6</span> Data Preprocessing</h2>
+<ul>
+<li><strong>Covariance matrices</strong>: positive semi-definite</li>
+<li><strong>Whitening</strong>: decorrelate features using eigendecomposition</li>
+<li><strong>Normalization</strong>: scaling using norms</li>
+</ul>
+<hr>
+</section>
+<section id="quick-reference-table" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="quick-reference-table"><span class="header-section-number">2.7</span> Quick Reference Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Formula</th>
+<th>ML Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Matrix Multiplication</td>
+<td><span class="math inline">\(\mathbf{y} = \mathbf{W}\mathbf{x}\)</span></td>
+<td>Neural network layers</td>
+</tr>
+<tr class="even">
+<td>Eigendecomposition</td>
+<td><span class="math inline">\(\mathbf{A}\mathbf{v} = \lambda\mathbf{v}\)</span></td>
+<td>PCA</td>
+</tr>
+<tr class="odd">
+<td>SVD</td>
+<td><span class="math inline">\(\mathbf{A} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^T\)</span></td>
+<td>Recommender systems</td>
+</tr>
+<tr class="even">
+<td>Gradient</td>
+<td><span class="math inline">\(\nabla_\mathbf{x} f(\mathbf{x})\)</span></td>
+<td>Backpropagation</td>
+</tr>
+<tr class="odd">
+<td>Projection</td>
+<td><span class="math inline">\(\mathbf{P} = \mathbf{A}(\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\)</span></td>
+<td>Linear regression</td>
+</tr>
+<tr class="even">
+<td>Positive Definite</td>
+<td><span class="math inline">\(\mathbf{x}^T\mathbf{A}\mathbf{x} &gt; 0\)</span></td>
+<td>Convex optimization</td>
+</tr>
+<tr class="odd">
+<td>L2 Norm</td>
+<td><span class="math inline">\(\|\mathbf{x}\|_2 = \sqrt{\sum_i x_i^2}\)</span></td>
+<td>Regularization</td>
+</tr>
+<tr class="even">
+<td>Trace</td>
+<td><span class="math inline">\(\text{Tr}(\mathbf{A}) = \sum_i A_{ii}\)</span></td>
+<td>Sum of eigenvalues</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
