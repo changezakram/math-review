@@ -53,56 +53,161 @@
     "href": "calculus.html",
     "title": "Calculus",
     "section": "",
-    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nA general method for rewriting quadratic expressions:\n\\[\na x^2 - 2 b x = a \\left( x - \\frac{b}{a} \\right)^2 - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\n\nKL divergence simplification\n\nOptimization of quadratic objectives\n\n\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\n\n\n\nUsed when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\n\n\n\nFor a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization.\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+    "text": "This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.\n\n\nA general method for rewriting quadratic expressions:\n\\[\nx^2 - 2bx + c = \\left(x - b\\right)^2 + \\frac{b^2}{c} - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\nKL divergence simplification\nOptimization of quadratic objectives\n\n\n\n\nThe derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\nCommon derivatives:\n\n\\(\\frac{d}{dx}(x^n) = nx^{n-1}\\) (power rule)\n\\(\\frac{d}{dx}(e^x) = e^x\\)\n\\(\\frac{d}{dx}(\\ln x) = \\frac{1}{x}\\)\n\\(\\frac{d}{dx}(\\sin x) = \\cos x\\)\n\\(\\frac{d}{dx}(\\cos x) = -\\sin x\\)\n\\(\\frac{d}{dx}(\\tanh x) = 1 - \\tanh^2 x\\) (used in activation functions)\n\nRules:\n\nProduct rule: \\((fg)' = f'g + fg'\\)\nQuotient rule: \\(\\left(\\frac{f}{g}\\right)' = \\frac{f'g - fg'}{g^2}\\)\nChain rule: \\(\\frac{d}{dx}f(g(x)) = f'(g(x)) \\cdot g'(x)\\)\n\n\n\n\nUsed when dealing with multivariable functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\nExample: For \\(f(x,y) = x^2y + 3y^2\\): - \\(\\frac{\\partial f}{\\partial x} = 2xy\\) - \\(\\frac{\\partial f}{\\partial y} = x^2 + 6y\\)\nML relevance: Computing gradients for each parameter in neural networks\n\n\n\nThe gradient is a vector of all partial derivatives:\n\\[\n\\nabla f = \\begin{bmatrix} \\frac{\\partial f}{\\partial x_1} \\\\ \\frac{\\partial f}{\\partial x_2} \\\\ \\vdots \\\\ \\frac{\\partial f}{\\partial x_n} \\end{bmatrix}\n\\]\nProperties:\n\nPoints in direction of steepest ascent\nMagnitude indicates steepness\nPerpendicular to level curves/surfaces\n\nML relevance: Gradient descent uses \\(-\\nabla f\\) to minimize loss functions\n\n\n\nFor a vector-valued function \\(\\mathbf{f}: \\mathbb{R}^n \\to \\mathbb{R}^m\\), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\nDimensions: \\(m \\times n\\) matrix\nExample: For \\(\\mathbf{f}(x,y) = [x^2y, xy^2]\\):\n\\[\nJ = \\begin{bmatrix}\n2xy & x^2 \\\\\ny^2 & 2xy\n\\end{bmatrix}\n\\]\nML relevance:\n\nBackpropagation through layers\nComputing derivatives of vector outputs\n\n\n\n\nSecond-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nProperties:\n\nSymmetric matrix (if \\(f\\) is twice differentiable)\nDiagonal elements: \\(\\frac{\\partial^2 f}{\\partial x_i^2}\\)\nOff-diagonal: mixed partials \\(\\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\\)\n\nUsed in curvature analysis and second-order optimization.\nML relevance:\n\nNewton’s method optimization\nAnalyzing convergence properties\nIdentifying saddle points vs local minima\n\n\n\n\nFor composed functions \\(f(g(x))\\):\n\\[\n\\frac{\\partial f}{\\partial x_i} = \\sum_j \\frac{\\partial f}{\\partial g_j} \\cdot \\frac{\\partial g_j}{\\partial x_i}\n\\]\nMatrix form:\n\\[\n\\frac{\\partial f}{\\partial \\mathbf{x}} = \\frac{\\partial f}{\\partial \\mathbf{g}} \\cdot \\frac{\\partial \\mathbf{g}}{\\partial \\mathbf{x}}\n\\]\nML relevance: Foundation of backpropagation algorithm\n\n\n\nRate of change of \\(f\\) in direction of unit vector \\(\\mathbf{u}\\):\n\\[\nD_\\mathbf{u} f = \\nabla f \\cdot \\mathbf{u}\n\\]\nProperties:\n\nMaximum when \\(\\mathbf{u}\\) aligned with \\(\\nabla f\\)\nZero when \\(\\mathbf{u}\\) perpendicular to \\(\\nabla f\\)\n\nML relevance: Understanding optimization landscapes\n\n\n\nApproximating functions using derivatives:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x + \\frac{1}{2}f''(x)\\Delta x^2 + \\cdots\n\\]\nFirst-order (linear) approximation:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x\n\\]\nSecond-order (quadratic) approximation:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x + \\frac{1}{2}f''(x)\\Delta x^2\n\\]\nMultivariate Taylor expansion:\n\\[\nf(\\mathbf{x} + \\mathbf{\\Delta x}) \\approx f(\\mathbf{x}) + \\nabla f(\\mathbf{x})^T \\mathbf{\\Delta x} + \\frac{1}{2}\\mathbf{\\Delta x}^T H \\mathbf{\\Delta x}\n\\]\nML relevance:\n\nLocal approximations in optimization\nNewton’s method derivation\nTrust region methods\n\n\n\n\nArea under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\nCommon integrals:\n\n\\(\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C\\) (for \\(n \\neq -1\\))\n\\(\\int e^x \\, dx = e^x + C\\)\n\\(\\int \\frac{1}{x} \\, dx = \\ln|x| + C\\)\n\\(\\int \\sin x \\, dx = -\\cos x + C\\)\n\\(\\int \\cos x \\, dx = \\sin x + C\\)\n\nML relevance:\n\nComputing expectations in probability\nNormalizing probability distributions\nDeriving closed-form solutions\n\n\n\n\nA useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]\nML relevance:\n\nDeriving variational bounds\nEvidence lower bound (ELBO) derivations\n\n\n\n\nLinks differentiation and integration:\n\\[\n\\frac{d}{dx} \\int_a^x f(t) \\, dt = f(x)\n\\]\n\\[\n\\int_a^b f'(x) \\, dx = f(b) - f(a)\n\\]\n\n\n\n\n\nAt a local minimum/maximum \\(x^*\\):\n\\[\n\\nabla f(x^*) = \\mathbf{0}\n\\]\nCritical points: Where gradient vanishes\n\n\n\nFor a local minimum at \\(x^*\\):\n\n\\(\\nabla f(x^*) = \\mathbf{0}\\) (first-order condition)\nHessian \\(H(x^*)\\) is positive definite (all eigenvalues &gt; 0)\n\nFor a local maximum: - Hessian \\(H(x^*)\\) is negative definite (all eigenvalues &lt; 0)\nSaddle point: Hessian has both positive and negative eigenvalues\nML relevance: Analyzing loss function landscapes\n\n\n\n\nA function \\(f\\) is convex if:\n\\[\nf(\\lambda x + (1-\\lambda)y) \\leq \\lambda f(x) + (1-\\lambda)f(y)\n\\]\nfor all \\(x, y\\) and \\(\\lambda \\in [0,1]\\)\nEquivalent conditions:\n\n\\(f''(x) \\geq 0\\) (for univariate functions)\nHessian \\(H\\) is positive semi-definite (for multivariate)\nAny local minimum is a global minimum\n\nStrictly convex: Use strict inequalities (\\(&gt;\\) instead of \\(\\geq\\))\nML relevance:\n\nGuarantees for optimization convergence\nLinear regression, logistic regression are convex\nNeural networks are generally non-convex\n\n\n\n\nFor constrained optimization:\n\\[\n\\min f(\\mathbf{x}) \\quad \\text{subject to} \\quad g(\\mathbf{x}) = 0\n\\]\nMethod: Solve:\n\\[\n\\nabla f(\\mathbf{x}) = \\lambda \\nabla g(\\mathbf{x})\n\\]\nand \\(g(\\mathbf{x}) = 0\\)\nLagrangian:\n\\[\n\\mathcal{L}(\\mathbf{x}, \\lambda) = f(\\mathbf{x}) - \\lambda g(\\mathbf{x})\n\\]\nML relevance:\n\nSupport Vector Machines (SVM)\nConstrained optimization problems\nDual formulations\n\n\n\n\nFor indeterminate forms \\(\\frac{0}{0}\\) or \\(\\frac{\\infty}{\\infty}\\):\n\\[\n\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)}\n\\]\nML relevance: Analyzing limiting behavior of loss functions\n\n\n\nSigmoid: \\(\\sigma(x) = \\frac{1}{1 + e^{-x}}\\)\n\\[\n\\sigma'(x) = \\sigma(x)(1 - \\sigma(x))\n\\]\nTanh: \\(\\tanh(x) = \\frac{e^x - e^{-x}}{e^x + e^{-x}}\\)\n\\[\n\\tanh'(x) = 1 - \\tanh^2(x)\n\\]\nReLU: \\(\\text{ReLU}(x) = \\max(0, x)\\)\n\\[\n\\text{ReLU}'(x) = \\begin{cases} 1 & \\text{if } x &gt; 0 \\\\ 0 & \\text{if } x &lt; 0 \\\\ \\text{undefined} & \\text{if } x = 0 \\end{cases}\n\\]\nSoftmax: For vector \\(\\mathbf{z}\\), \\(\\text{softmax}(\\mathbf{z})_i = \\frac{e^{z_i}}{\\sum_j e^{z_j}}\\)\n\\[\n\\frac{\\partial \\text{softmax}(\\mathbf{z})_i}{\\partial z_j} = \\text{softmax}(\\mathbf{z})_i (\\delta_{ij} - \\text{softmax}(\\mathbf{z})_j)\n\\]\nwhere \\(\\delta_{ij}\\) is the Kronecker delta"
   },
   {
     "objectID": "calculus.html#completing-the-square",
     "href": "calculus.html#completing-the-square",
     "title": "Calculus",
     "section": "",
-    "text": "A general method for rewriting quadratic expressions:\n\\[\na x^2 - 2 b x = a \\left( x - \\frac{b}{a} \\right)^2 - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\n\nKL divergence simplification\n\nOptimization of quadratic objectives"
+    "text": "A general method for rewriting quadratic expressions:\n\\[\nx^2 - 2bx + c = \\left(x - b\\right)^2 + \\frac{b^2}{c} - \\frac{b^2}{a}\n\\]\nThis transformation is widely used in:\n\nGaussian probability density derivations\nKL divergence simplification\nOptimization of quadratic objectives"
   },
   {
     "objectID": "calculus.html#derivatives",
     "href": "calculus.html#derivatives",
     "title": "Calculus",
     "section": "",
-    "text": "The derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]"
+    "text": "The derivative of a function measures the rate of change:\n\\[\n\\frac{d}{dx} f(x)\n\\]\nCommon derivatives:\n\n\\(\\frac{d}{dx}(x^n) = nx^{n-1}\\) (power rule)\n\\(\\frac{d}{dx}(e^x) = e^x\\)\n\\(\\frac{d}{dx}(\\ln x) = \\frac{1}{x}\\)\n\\(\\frac{d}{dx}(\\sin x) = \\cos x\\)\n\\(\\frac{d}{dx}(\\cos x) = -\\sin x\\)\n\\(\\frac{d}{dx}(\\tanh x) = 1 - \\tanh^2 x\\) (used in activation functions)\n\nRules:\n\nProduct rule: \\((fg)' = f'g + fg'\\)\nQuotient rule: \\(\\left(\\frac{f}{g}\\right)' = \\frac{f'g - fg'}{g^2}\\)\nChain rule: \\(\\frac{d}{dx}f(g(x)) = f'(g(x)) \\cdot g'(x)\\)"
   },
   {
     "objectID": "calculus.html#partial-derivatives",
     "href": "calculus.html#partial-derivatives",
     "title": "Calculus",
     "section": "",
-    "text": "Used when dealing with multivariate functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]"
+    "text": "Used when dealing with multivariable functions:\n\\[\n\\frac{\\partial f}{\\partial x}, \\quad \\frac{\\partial f}{\\partial y}\n\\]\nExample: For \\(f(x,y) = x^2y + 3y^2\\): - \\(\\frac{\\partial f}{\\partial x} = 2xy\\) - \\(\\frac{\\partial f}{\\partial y} = x^2 + 6y\\)\nML relevance: Computing gradients for each parameter in neural networks"
+  },
+  {
+    "objectID": "calculus.html#gradient-vector",
+    "href": "calculus.html#gradient-vector",
+    "title": "Calculus",
+    "section": "",
+    "text": "The gradient is a vector of all partial derivatives:\n\\[\n\\nabla f = \\begin{bmatrix} \\frac{\\partial f}{\\partial x_1} \\\\ \\frac{\\partial f}{\\partial x_2} \\\\ \\vdots \\\\ \\frac{\\partial f}{\\partial x_n} \\end{bmatrix}\n\\]\nProperties:\n\nPoints in direction of steepest ascent\nMagnitude indicates steepness\nPerpendicular to level curves/surfaces\n\nML relevance: Gradient descent uses \\(-\\nabla f\\) to minimize loss functions"
   },
   {
     "objectID": "calculus.html#jacobian-matrix",
     "href": "calculus.html#jacobian-matrix",
     "title": "Calculus",
     "section": "",
-    "text": "For a vector-valued function ( : ^n ^m ), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]"
+    "text": "For a vector-valued function \\(\\mathbf{f}: \\mathbb{R}^n \\to \\mathbb{R}^m\\), the Jacobian is:\n\\[\nJ_{ij} = \\frac{\\partial f_i}{\\partial x_j}\n\\]\nDimensions: \\(m \\times n\\) matrix\nExample: For \\(\\mathbf{f}(x,y) = [x^2y, xy^2]\\):\n\\[\nJ = \\begin{bmatrix}\n2xy & x^2 \\\\\ny^2 & 2xy\n\\end{bmatrix}\n\\]\nML relevance:\n\nBackpropagation through layers\nComputing derivatives of vector outputs"
   },
   {
     "objectID": "calculus.html#hessian-matrix",
     "href": "calculus.html#hessian-matrix",
     "title": "Calculus",
     "section": "",
-    "text": "Second-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nUsed in curvature analysis and second-order optimization."
+    "text": "Second-order partial derivatives:\n\\[\nH_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\n\\]\nProperties:\n\nSymmetric matrix (if \\(f\\) is twice differentiable)\nDiagonal elements: \\(\\frac{\\partial^2 f}{\\partial x_i^2}\\)\nOff-diagonal: mixed partials \\(\\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\\)\n\nUsed in curvature analysis and second-order optimization.\nML relevance:\n\nNewton’s method optimization\nAnalyzing convergence properties\nIdentifying saddle points vs local minima"
+  },
+  {
+    "objectID": "calculus.html#chain-rule-multivariate",
+    "href": "calculus.html#chain-rule-multivariate",
+    "title": "Calculus",
+    "section": "",
+    "text": "For composed functions \\(f(g(x))\\):\n\\[\n\\frac{\\partial f}{\\partial x_i} = \\sum_j \\frac{\\partial f}{\\partial g_j} \\cdot \\frac{\\partial g_j}{\\partial x_i}\n\\]\nMatrix form:\n\\[\n\\frac{\\partial f}{\\partial \\mathbf{x}} = \\frac{\\partial f}{\\partial \\mathbf{g}} \\cdot \\frac{\\partial \\mathbf{g}}{\\partial \\mathbf{x}}\n\\]\nML relevance: Foundation of backpropagation algorithm"
+  },
+  {
+    "objectID": "calculus.html#directional-derivative",
+    "href": "calculus.html#directional-derivative",
+    "title": "Calculus",
+    "section": "",
+    "text": "Rate of change of \\(f\\) in direction of unit vector \\(\\mathbf{u}\\):\n\\[\nD_\\mathbf{u} f = \\nabla f \\cdot \\mathbf{u}\n\\]\nProperties:\n\nMaximum when \\(\\mathbf{u}\\) aligned with \\(\\nabla f\\)\nZero when \\(\\mathbf{u}\\) perpendicular to \\(\\nabla f\\)\n\nML relevance: Understanding optimization landscapes"
+  },
+  {
+    "objectID": "calculus.html#taylor-series-expansion",
+    "href": "calculus.html#taylor-series-expansion",
+    "title": "Calculus",
+    "section": "",
+    "text": "Approximating functions using derivatives:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x + \\frac{1}{2}f''(x)\\Delta x^2 + \\cdots\n\\]\nFirst-order (linear) approximation:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x\n\\]\nSecond-order (quadratic) approximation:\n\\[\nf(x + \\Delta x) \\approx f(x) + f'(x)\\Delta x + \\frac{1}{2}f''(x)\\Delta x^2\n\\]\nMultivariate Taylor expansion:\n\\[\nf(\\mathbf{x} + \\mathbf{\\Delta x}) \\approx f(\\mathbf{x}) + \\nabla f(\\mathbf{x})^T \\mathbf{\\Delta x} + \\frac{1}{2}\\mathbf{\\Delta x}^T H \\mathbf{\\Delta x}\n\\]\nML relevance:\n\nLocal approximations in optimization\nNewton’s method derivation\nTrust region methods"
   },
   {
     "objectID": "calculus.html#integration",
     "href": "calculus.html#integration",
     "title": "Calculus",
     "section": "",
-    "text": "Area under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]"
+    "text": "Area under a curve:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\nCommon integrals:\n\n\\(\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + C\\) (for \\(n \\neq -1\\))\n\\(\\int e^x \\, dx = e^x + C\\)\n\\(\\int \\frac{1}{x} \\, dx = \\ln|x| + C\\)\n\\(\\int \\sin x \\, dx = -\\cos x + C\\)\n\\(\\int \\cos x \\, dx = \\sin x + C\\)\n\nML relevance:\n\nComputing expectations in probability\nNormalizing probability distributions\nDeriving closed-form solutions"
   },
   {
     "objectID": "calculus.html#integration-by-parts",
     "href": "calculus.html#integration-by-parts",
     "title": "Calculus",
     "section": "",
-    "text": "A useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]"
+    "text": "A useful transformation:\n\\[\n\\int u \\, dv = uv - \\int v \\, du\n\\]\nML relevance:\n\nDeriving variational bounds\nEvidence lower bound (ELBO) derivations"
+  },
+  {
+    "objectID": "calculus.html#fundamental-theorem-of-calculus",
+    "href": "calculus.html#fundamental-theorem-of-calculus",
+    "title": "Calculus",
+    "section": "",
+    "text": "Links differentiation and integration:\n\\[\n\\frac{d}{dx} \\int_a^x f(t) \\, dt = f(x)\n\\]\n\\[\n\\int_a^b f'(x) \\, dx = f(b) - f(a)\n\\]"
+  },
+  {
+    "objectID": "calculus.html#optimization-conditions",
+    "href": "calculus.html#optimization-conditions",
+    "title": "Calculus",
+    "section": "",
+    "text": "At a local minimum/maximum \\(x^*\\):\n\\[\n\\nabla f(x^*) = \\mathbf{0}\n\\]\nCritical points: Where gradient vanishes\n\n\n\nFor a local minimum at \\(x^*\\):\n\n\\(\\nabla f(x^*) = \\mathbf{0}\\) (first-order condition)\nHessian \\(H(x^*)\\) is positive definite (all eigenvalues &gt; 0)\n\nFor a local maximum: - Hessian \\(H(x^*)\\) is negative definite (all eigenvalues &lt; 0)\nSaddle point: Hessian has both positive and negative eigenvalues\nML relevance: Analyzing loss function landscapes"
+  },
+  {
+    "objectID": "calculus.html#convexity",
+    "href": "calculus.html#convexity",
+    "title": "Calculus",
+    "section": "",
+    "text": "A function \\(f\\) is convex if:\n\\[\nf(\\lambda x + (1-\\lambda)y) \\leq \\lambda f(x) + (1-\\lambda)f(y)\n\\]\nfor all \\(x, y\\) and \\(\\lambda \\in [0,1]\\)\nEquivalent conditions:\n\n\\(f''(x) \\geq 0\\) (for univariate functions)\nHessian \\(H\\) is positive semi-definite (for multivariate)\nAny local minimum is a global minimum\n\nStrictly convex: Use strict inequalities (\\(&gt;\\) instead of \\(\\geq\\))\nML relevance:\n\nGuarantees for optimization convergence\nLinear regression, logistic regression are convex\nNeural networks are generally non-convex"
+  },
+  {
+    "objectID": "calculus.html#lagrange-multipliers",
+    "href": "calculus.html#lagrange-multipliers",
+    "title": "Calculus",
+    "section": "",
+    "text": "For constrained optimization:\n\\[\n\\min f(\\mathbf{x}) \\quad \\text{subject to} \\quad g(\\mathbf{x}) = 0\n\\]\nMethod: Solve:\n\\[\n\\nabla f(\\mathbf{x}) = \\lambda \\nabla g(\\mathbf{x})\n\\]\nand \\(g(\\mathbf{x}) = 0\\)\nLagrangian:\n\\[\n\\mathcal{L}(\\mathbf{x}, \\lambda) = f(\\mathbf{x}) - \\lambda g(\\mathbf{x})\n\\]\nML relevance:\n\nSupport Vector Machines (SVM)\nConstrained optimization problems\nDual formulations"
+  },
+  {
+    "objectID": "calculus.html#lhôpitals-rule",
+    "href": "calculus.html#lhôpitals-rule",
+    "title": "Calculus",
+    "section": "",
+    "text": "For indeterminate forms \\(\\frac{0}{0}\\) or \\(\\frac{\\infty}{\\infty}\\):\n\\[\n\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)}\n\\]\nML relevance: Analyzing limiting behavior of loss functions"
+  },
+  {
+    "objectID": "calculus.html#common-activation-function-derivatives",
+    "href": "calculus.html#common-activation-function-derivatives",
+    "title": "Calculus",
+    "section": "",
+    "text": "Sigmoid: \\(\\sigma(x) = \\frac{1}{1 + e^{-x}}\\)\n\\[\n\\sigma'(x) = \\sigma(x)(1 - \\sigma(x))\n\\]\nTanh: \\(\\tanh(x) = \\frac{e^x - e^{-x}}{e^x + e^{-x}}\\)\n\\[\n\\tanh'(x) = 1 - \\tanh^2(x)\n\\]\nReLU: \\(\\text{ReLU}(x) = \\max(0, x)\\)\n\\[\n\\text{ReLU}'(x) = \\begin{cases} 1 & \\text{if } x &gt; 0 \\\\ 0 & \\text{if } x &lt; 0 \\\\ \\text{undefined} & \\text{if } x = 0 \\end{cases}\n\\]\nSoftmax: For vector \\(\\mathbf{z}\\), \\(\\text{softmax}(\\mathbf{z})_i = \\frac{e^{z_i}}{\\sum_j e^{z_j}}\\)\n\\[\n\\frac{\\partial \\text{softmax}(\\mathbf{z})_i}{\\partial z_j} = \\text{softmax}(\\mathbf{z})_i (\\delta_{ij} - \\text{softmax}(\\mathbf{z})_j)\n\\]\nwhere \\(\\delta_{ij}\\) is the Kronecker delta"
+  },
+  {
+    "objectID": "calculus.html#gradient-descent",
+    "href": "calculus.html#gradient-descent",
+    "title": "Calculus",
+    "section": "2.1 Gradient Descent",
+    "text": "2.1 Gradient Descent\nUpdate rule:\n\\[\n\\mathbf{x}_{t+1} = \\mathbf{x}_t - \\alpha \\nabla f(\\mathbf{x}_t)\n\\]\nwhere \\(\\alpha\\) is the learning rate\nVariants: - Stochastic Gradient Descent (SGD): Use gradient from single sample - Mini-batch GD: Use gradient from small batch - Momentum: \\(\\mathbf{v}_{t+1} = \\beta \\mathbf{v}_t + \\nabla f(\\mathbf{x}_t)\\)"
+  },
+  {
+    "objectID": "calculus.html#backpropagation",
+    "href": "calculus.html#backpropagation",
+    "title": "Calculus",
+    "section": "2.2 Backpropagation",
+    "text": "2.2 Backpropagation\nChain rule application:\nFor loss \\(L\\) and layer outputs \\(\\mathbf{z}^{(l)}\\):\n\\[\n\\frac{\\partial L}{\\partial \\mathbf{w}^{(l)}} = \\frac{\\partial L}{\\partial \\mathbf{z}^{(l)}} \\cdot \\frac{\\partial \\mathbf{z}^{(l)}}{\\partial \\mathbf{w}^{(l)}}\n\\]\nRecursive gradient flow:\n\\[\n\\frac{\\partial L}{\\partial \\mathbf{z}^{(l)}} = \\frac{\\partial L}{\\partial \\mathbf{z}^{(l+1)}} \\cdot \\frac{\\partial \\mathbf{z}^{(l+1)}}{\\partial \\mathbf{z}^{(l)}}\n\\]"
+  },
+  {
+    "objectID": "calculus.html#loss-functions-and-their-derivatives",
+    "href": "calculus.html#loss-functions-and-their-derivatives",
+    "title": "Calculus",
+    "section": "2.3 Loss Functions and Their Derivatives",
+    "text": "2.3 Loss Functions and Their Derivatives\nMean Squared Error (MSE):\n\\[\nL = \\frac{1}{n}\\sum_{i=1}^n (y_i - \\hat{y}_i)^2\n\\]\n\\[\n\\frac{\\partial L}{\\partial \\hat{y}_i} = -\\frac{2}{n}(y_i - \\hat{y}_i)\n\\]\nCross-Entropy Loss (binary):\n\\[\nL = -\\frac{1}{n}\\sum_{i=1}^n [y_i \\log(\\hat{y}_i) + (1-y_i)\\log(1-\\hat{y}_i)]\n\\]\n\\[\n\\frac{\\partial L}{\\partial \\hat{y}_i} = -\\frac{1}{n}\\left[\\frac{y_i}{\\hat{y}_i} - \\frac{1-y_i}{1-\\hat{y}_i}\\right]\n\\]\nCategorical Cross-Entropy (with softmax):\n\\[\nL = -\\sum_{i=1}^n y_i \\log(\\hat{y}_i)\n\\]\nCombined softmax + cross-entropy derivative simplifies to:\n\\[\n\\frac{\\partial L}{\\partial z_i} = \\hat{y}_i - y_i\n\\]"
+  },
+  {
+    "objectID": "calculus.html#regularization-terms",
+    "href": "calculus.html#regularization-terms",
+    "title": "Calculus",
+    "section": "2.4 Regularization Terms",
+    "text": "2.4 Regularization Terms\nL2 Regularization (Ridge):\n\\[\nR(\\mathbf{w}) = \\frac{\\lambda}{2}\\|\\mathbf{w}\\|_2^2 = \\frac{\\lambda}{2}\\sum_i w_i^2\n\\]\n\\[\n\\frac{\\partial R}{\\partial w_i} = \\lambda w_i\n\\]\nL1 Regularization (Lasso):\n\\[\nR(\\mathbf{w}) = \\lambda\\|\\mathbf{w}\\|_1 = \\lambda\\sum_i |w_i|\n\\]\n\\[\n\\frac{\\partial R}{\\partial w_i} = \\lambda \\cdot \\text{sign}(w_i)\n\\]"
+  },
+  {
+    "objectID": "calculus.html#quick-reference-table",
+    "href": "calculus.html#quick-reference-table",
+    "title": "Calculus",
+    "section": "2.5 Quick Reference Table",
+    "text": "2.5 Quick Reference Table\n\n\n\n\n\n\n\n\nConcept\nFormula\nML Application\n\n\n\n\nGradient\n\\(\\nabla f\\)\nGradient descent direction\n\n\nJacobian\n\\(J_{ij} = \\frac{\\partial f_i}{\\partial x_j}\\)\nBackpropagation\n\n\nHessian\n\\(H_{ij} = \\frac{\\partial^2 f}{\\partial x_i \\partial x_j}\\)\nSecond-order optimization\n\n\nChain Rule\n\\(\\frac{df}{dx} = \\frac{df}{dg} \\cdot \\frac{dg}{dx}\\)\nBackpropagation\n\n\nTaylor Expansion\n\\(f(x+\\Delta x) \\approx f(x) + f'(x)\\Delta x\\)\nLocal approximation\n\n\nConvexity\n\\(f''(x) \\geq 0\\)\nOptimization guarantees\n\n\nLagrange Multipliers\n\\(\\nabla f = \\lambda \\nabla g\\)\nConstrained optimization\n\n\nSigmoid Derivative\n\\(\\sigma'(x) = \\sigma(x)(1-\\sigma(x))\\)\nNeural network activations"
   },
   {
     "objectID": "linear-algebra.html",

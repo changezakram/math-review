@@ -237,10 +237,28 @@ window.Quarto = {
   <li><a href="#completing-the-square" id="toc-completing-the-square" class="nav-link" data-scroll-target="#completing-the-square"><span class="header-section-number">1.1</span> Completing the Square</a></li>
   <li><a href="#derivatives" id="toc-derivatives" class="nav-link" data-scroll-target="#derivatives"><span class="header-section-number">1.2</span> Derivatives</a></li>
   <li><a href="#partial-derivatives" id="toc-partial-derivatives" class="nav-link" data-scroll-target="#partial-derivatives"><span class="header-section-number">1.3</span> Partial Derivatives</a></li>
-  <li><a href="#jacobian-matrix" id="toc-jacobian-matrix" class="nav-link" data-scroll-target="#jacobian-matrix"><span class="header-section-number">1.4</span> Jacobian Matrix</a></li>
-  <li><a href="#hessian-matrix" id="toc-hessian-matrix" class="nav-link" data-scroll-target="#hessian-matrix"><span class="header-section-number">1.5</span> Hessian Matrix</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">1.6</span> Integration</a></li>
-  <li><a href="#integration-by-parts" id="toc-integration-by-parts" class="nav-link" data-scroll-target="#integration-by-parts"><span class="header-section-number">1.7</span> Integration by Parts</a></li>
+  <li><a href="#gradient-vector" id="toc-gradient-vector" class="nav-link" data-scroll-target="#gradient-vector"><span class="header-section-number">1.4</span> Gradient Vector</a></li>
+  <li><a href="#jacobian-matrix" id="toc-jacobian-matrix" class="nav-link" data-scroll-target="#jacobian-matrix"><span class="header-section-number">1.5</span> Jacobian Matrix</a></li>
+  <li><a href="#hessian-matrix" id="toc-hessian-matrix" class="nav-link" data-scroll-target="#hessian-matrix"><span class="header-section-number">1.6</span> Hessian Matrix</a></li>
+  <li><a href="#chain-rule-multivariate" id="toc-chain-rule-multivariate" class="nav-link" data-scroll-target="#chain-rule-multivariate"><span class="header-section-number">1.7</span> Chain Rule (Multivariate)</a></li>
+  <li><a href="#directional-derivative" id="toc-directional-derivative" class="nav-link" data-scroll-target="#directional-derivative"><span class="header-section-number">1.8</span> Directional Derivative</a></li>
+  <li><a href="#taylor-series-expansion" id="toc-taylor-series-expansion" class="nav-link" data-scroll-target="#taylor-series-expansion"><span class="header-section-number">1.9</span> Taylor Series Expansion</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">1.10</span> Integration</a></li>
+  <li><a href="#integration-by-parts" id="toc-integration-by-parts" class="nav-link" data-scroll-target="#integration-by-parts"><span class="header-section-number">1.11</span> Integration by Parts</a></li>
+  <li><a href="#fundamental-theorem-of-calculus" id="toc-fundamental-theorem-of-calculus" class="nav-link" data-scroll-target="#fundamental-theorem-of-calculus"><span class="header-section-number">1.12</span> Fundamental Theorem of Calculus</a></li>
+  <li><a href="#optimization-conditions" id="toc-optimization-conditions" class="nav-link" data-scroll-target="#optimization-conditions"><span class="header-section-number">1.13</span> Optimization Conditions</a></li>
+  <li><a href="#convexity" id="toc-convexity" class="nav-link" data-scroll-target="#convexity"><span class="header-section-number">1.14</span> Convexity</a></li>
+  <li><a href="#lagrange-multipliers" id="toc-lagrange-multipliers" class="nav-link" data-scroll-target="#lagrange-multipliers"><span class="header-section-number">1.15</span> Lagrange Multipliers</a></li>
+  <li><a href="#lhôpitals-rule" id="toc-lhôpitals-rule" class="nav-link" data-scroll-target="#lhôpitals-rule"><span class="header-section-number">1.16</span> L’Hôpital’s Rule</a></li>
+  <li><a href="#common-activation-function-derivatives" id="toc-common-activation-function-derivatives" class="nav-link" data-scroll-target="#common-activation-function-derivatives"><span class="header-section-number">1.17</span> Common Activation Function Derivatives</a></li>
+  </ul></li>
+  <li><a href="#ml-applications-summary" id="toc-ml-applications-summary" class="nav-link" data-scroll-target="#ml-applications-summary"><span class="header-section-number">2</span> ML Applications Summary</a>
+  <ul class="collapse">
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent"><span class="header-section-number">2.1</span> Gradient Descent</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="header-section-number">2.2</span> Backpropagation</a></li>
+  <li><a href="#loss-functions-and-their-derivatives" id="toc-loss-functions-and-their-derivatives" class="nav-link" data-scroll-target="#loss-functions-and-their-derivatives"><span class="header-section-number">2.3</span> Loss Functions and Their Derivatives</a></li>
+  <li><a href="#regularization-terms" id="toc-regularization-terms" class="nav-link" data-scroll-target="#regularization-terms"><span class="header-section-number">2.4</span> Regularization Terms</a></li>
+  <li><a href="#quick-reference-table" id="toc-quick-reference-table" class="nav-link" data-scroll-target="#quick-reference-table"><span class="header-section-number">2.5</span> Quick Reference Table</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -274,14 +292,12 @@ window.Quarto = {
 <h2 data-number="1.1" class="anchored" data-anchor-id="completing-the-square"><span class="header-section-number">1.1</span> Completing the Square</h2>
 <p>A general method for rewriting quadratic expressions:</p>
 <p><span class="math display">\[
-a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+x^2 - 2bx + c = \left(x - b\right)^2 + \frac{b^2}{c} - \frac{b^2}{a}
 \]</span></p>
 <p>This transformation is widely used in:</p>
 <ul>
-<li>Gaussian probability density derivations<br>
-</li>
-<li>KL divergence simplification<br>
-</li>
+<li>Gaussian probability density derivations</li>
+<li>KL divergence simplification</li>
 <li>Optimization of quadratic objectives</li>
 </ul>
 </section>
@@ -291,42 +307,396 @@ a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
 <p><span class="math display">\[
 \frac{d}{dx} f(x)
 \]</span></p>
+<p><strong>Common derivatives</strong>:</p>
+<ul>
+<li><span class="math inline">\(\frac{d}{dx}(x^n) = nx^{n-1}\)</span> (power rule)</li>
+<li><span class="math inline">\(\frac{d}{dx}(e^x) = e^x\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\ln x) = \frac{1}{x}\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\sin x) = \cos x\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\cos x) = -\sin x\)</span></li>
+<li><span class="math inline">\(\frac{d}{dx}(\tanh x) = 1 - \tanh^2 x\)</span> (used in activation functions)</li>
+</ul>
+<p><strong>Rules</strong>:</p>
+<ul>
+<li>Product rule: <span class="math inline">\((fg)' = f'g + fg'\)</span></li>
+<li>Quotient rule: <span class="math inline">\(\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}\)</span></li>
+<li>Chain rule: <span class="math inline">\(\frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x)\)</span></li>
+</ul>
 </section>
 <section id="partial-derivatives" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="partial-derivatives"><span class="header-section-number">1.3</span> Partial Derivatives</h2>
-<p>Used when dealing with multivariate functions:</p>
+<p>Used when dealing with multivariable functions:</p>
 <p><span class="math display">\[
 \frac{\partial f}{\partial x}, \quad \frac{\partial f}{\partial y}
 \]</span></p>
+<p><strong>Example</strong>: For <span class="math inline">\(f(x,y) = x^2y + 3y^2\)</span>: - <span class="math inline">\(\frac{\partial f}{\partial x} = 2xy\)</span> - <span class="math inline">\(\frac{\partial f}{\partial y} = x^2 + 6y\)</span></p>
+<p><strong>ML relevance</strong>: Computing gradients for each parameter in neural networks</p>
 </section>
-<section id="jacobian-matrix" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="jacobian-matrix"><span class="header-section-number">1.4</span> Jacobian Matrix</h2>
-<p>For a vector-valued function ( : ^n ^m ), the Jacobian is:</p>
+<section id="gradient-vector" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="gradient-vector"><span class="header-section-number">1.4</span> Gradient Vector</h2>
+<p>The gradient is a vector of all partial derivatives:</p>
+<p><span class="math display">\[
+\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Points in direction of steepest ascent</li>
+<li>Magnitude indicates steepness</li>
+<li>Perpendicular to level curves/surfaces</li>
+</ul>
+<p><strong>ML relevance</strong>: Gradient descent uses <span class="math inline">\(-\nabla f\)</span> to minimize loss functions</p>
+</section>
+<section id="jacobian-matrix" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="jacobian-matrix"><span class="header-section-number">1.5</span> Jacobian Matrix</h2>
+<p>For a vector-valued function <span class="math inline">\(\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m\)</span>, the Jacobian is:</p>
 <p><span class="math display">\[
 J_{ij} = \frac{\partial f_i}{\partial x_j}
 \]</span></p>
+<p><strong>Dimensions</strong>: <span class="math inline">\(m \times n\)</span> matrix</p>
+<p><strong>Example</strong>: For <span class="math inline">\(\mathbf{f}(x,y) = [x^2y, xy^2]\)</span>:</p>
+<p><span class="math display">\[
+J = \begin{bmatrix}
+2xy &amp; x^2 \\
+y^2 &amp; 2xy
+\end{bmatrix}
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Backpropagation through layers</li>
+<li>Computing derivatives of vector outputs</li>
+</ul>
 </section>
-<section id="hessian-matrix" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="hessian-matrix"><span class="header-section-number">1.5</span> Hessian Matrix</h2>
+<section id="hessian-matrix" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="hessian-matrix"><span class="header-section-number">1.6</span> Hessian Matrix</h2>
 <p>Second-order partial derivatives:</p>
 <p><span class="math display">\[
 H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
 \]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Symmetric matrix (if <span class="math inline">\(f\)</span> is twice differentiable)</li>
+<li>Diagonal elements: <span class="math inline">\(\frac{\partial^2 f}{\partial x_i^2}\)</span></li>
+<li>Off-diagonal: mixed partials <span class="math inline">\(\frac{\partial^2 f}{\partial x_i \partial x_j}\)</span></li>
+</ul>
 <p>Used in curvature analysis and second-order optimization.</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Newton’s method optimization</li>
+<li>Analyzing convergence properties</li>
+<li>Identifying saddle points vs local minima</li>
+</ul>
 </section>
-<section id="integration" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="integration"><span class="header-section-number">1.6</span> Integration</h2>
+<section id="chain-rule-multivariate" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="chain-rule-multivariate"><span class="header-section-number">1.7</span> Chain Rule (Multivariate)</h2>
+<p>For composed functions <span class="math inline">\(f(g(x))\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial f}{\partial x_i} = \sum_j \frac{\partial f}{\partial g_j} \cdot \frac{\partial g_j}{\partial x_i}
+\]</span></p>
+<p><strong>Matrix form</strong>:</p>
+<p><span class="math display">\[
+\frac{\partial f}{\partial \mathbf{x}} = \frac{\partial f}{\partial \mathbf{g}} \cdot \frac{\partial \mathbf{g}}{\partial \mathbf{x}}
+\]</span></p>
+<p><strong>ML relevance</strong>: Foundation of backpropagation algorithm</p>
+</section>
+<section id="directional-derivative" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="directional-derivative"><span class="header-section-number">1.8</span> Directional Derivative</h2>
+<p>Rate of change of <span class="math inline">\(f\)</span> in direction of unit vector <span class="math inline">\(\mathbf{u}\)</span>:</p>
+<p><span class="math display">\[
+D_\mathbf{u} f = \nabla f \cdot \mathbf{u}
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Maximum when <span class="math inline">\(\mathbf{u}\)</span> aligned with <span class="math inline">\(\nabla f\)</span></li>
+<li>Zero when <span class="math inline">\(\mathbf{u}\)</span> perpendicular to <span class="math inline">\(\nabla f\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>: Understanding optimization landscapes</p>
+</section>
+<section id="taylor-series-expansion" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="taylor-series-expansion"><span class="header-section-number">1.9</span> Taylor Series Expansion</h2>
+<p>Approximating functions using derivatives:</p>
+<p><span class="math display">\[
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x + \frac{1}{2}f''(x)\Delta x^2 + \cdots
+\]</span></p>
+<p><strong>First-order (linear) approximation</strong>:</p>
+<p><span class="math display">\[
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x
+\]</span></p>
+<p><strong>Second-order (quadratic) approximation</strong>:</p>
+<p><span class="math display">\[
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x + \frac{1}{2}f''(x)\Delta x^2
+\]</span></p>
+<p><strong>Multivariate Taylor expansion</strong>:</p>
+<p><span class="math display">\[
+f(\mathbf{x} + \mathbf{\Delta x}) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \mathbf{\Delta x} + \frac{1}{2}\mathbf{\Delta x}^T H \mathbf{\Delta x}
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Local approximations in optimization</li>
+<li>Newton’s method derivation</li>
+<li>Trust region methods</li>
+</ul>
+</section>
+<section id="integration" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="integration"><span class="header-section-number">1.10</span> Integration</h2>
 <p>Area under a curve:</p>
 <p><span class="math display">\[
 \int_a^b f(x) \, dx
 \]</span></p>
+<p><strong>Common integrals</strong>:</p>
+<ul>
+<li><span class="math inline">\(\int x^n \, dx = \frac{x^{n+1}}{n+1} + C\)</span> (for <span class="math inline">\(n \neq -1\)</span>)</li>
+<li><span class="math inline">\(\int e^x \, dx = e^x + C\)</span></li>
+<li><span class="math inline">\(\int \frac{1}{x} \, dx = \ln|x| + C\)</span></li>
+<li><span class="math inline">\(\int \sin x \, dx = -\cos x + C\)</span></li>
+<li><span class="math inline">\(\int \cos x \, dx = \sin x + C\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Computing expectations in probability</li>
+<li>Normalizing probability distributions</li>
+<li>Deriving closed-form solutions</li>
+</ul>
 </section>
-<section id="integration-by-parts" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="integration-by-parts"><span class="header-section-number">1.7</span> Integration by Parts</h2>
+<section id="integration-by-parts" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="integration-by-parts"><span class="header-section-number">1.11</span> Integration by Parts</h2>
 <p>A useful transformation:</p>
 <p><span class="math display">\[
 \int u \, dv = uv - \int v \, du
 \]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Deriving variational bounds</li>
+<li>Evidence lower bound (ELBO) derivations</li>
+</ul>
+</section>
+<section id="fundamental-theorem-of-calculus" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="fundamental-theorem-of-calculus"><span class="header-section-number">1.12</span> Fundamental Theorem of Calculus</h2>
+<p>Links differentiation and integration:</p>
+<p><span class="math display">\[
+\frac{d}{dx} \int_a^x f(t) \, dt = f(x)
+\]</span></p>
+<p><span class="math display">\[
+\int_a^b f'(x) \, dx = f(b) - f(a)
+\]</span></p>
+</section>
+<section id="optimization-conditions" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="optimization-conditions"><span class="header-section-number">1.13</span> Optimization Conditions</h2>
+<section id="first-order-necessary-condition" class="level3" data-number="1.13.1">
+<h3 data-number="1.13.1" class="anchored" data-anchor-id="first-order-necessary-condition"><span class="header-section-number">1.13.1</span> First-Order Necessary Condition</h3>
+<p>At a local minimum/maximum <span class="math inline">\(x^*\)</span>:</p>
+<p><span class="math display">\[
+\nabla f(x^*) = \mathbf{0}
+\]</span></p>
+<p><strong>Critical points</strong>: Where gradient vanishes</p>
+</section>
+<section id="second-order-sufficient-condition" class="level3" data-number="1.13.2">
+<h3 data-number="1.13.2" class="anchored" data-anchor-id="second-order-sufficient-condition"><span class="header-section-number">1.13.2</span> Second-Order Sufficient Condition</h3>
+<p>For a local minimum at <span class="math inline">\(x^*\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\nabla f(x^*) = \mathbf{0}\)</span> (first-order condition)</li>
+<li>Hessian <span class="math inline">\(H(x^*)\)</span> is positive definite (all eigenvalues &gt; 0)</li>
+</ul>
+<p>For a local maximum: - Hessian <span class="math inline">\(H(x^*)\)</span> is negative definite (all eigenvalues &lt; 0)</p>
+<p><strong>Saddle point</strong>: Hessian has both positive and negative eigenvalues</p>
+<p><strong>ML relevance</strong>: Analyzing loss function landscapes</p>
+</section>
+</section>
+<section id="convexity" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="convexity"><span class="header-section-number">1.14</span> Convexity</h2>
+<p>A function <span class="math inline">\(f\)</span> is <strong>convex</strong> if:</p>
+<p><span class="math display">\[
+f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)
+\]</span></p>
+<p>for all <span class="math inline">\(x, y\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span></p>
+<p><strong>Equivalent conditions</strong>:</p>
+<ul>
+<li><span class="math inline">\(f''(x) \geq 0\)</span> (for univariate functions)</li>
+<li>Hessian <span class="math inline">\(H\)</span> is positive semi-definite (for multivariate)</li>
+<li>Any local minimum is a global minimum</li>
+</ul>
+<p><strong>Strictly convex</strong>: Use strict inequalities (<span class="math inline">\(&gt;\)</span> instead of <span class="math inline">\(\geq\)</span>)</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Guarantees for optimization convergence</li>
+<li>Linear regression, logistic regression are convex</li>
+<li>Neural networks are generally non-convex</li>
+</ul>
+</section>
+<section id="lagrange-multipliers" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="lagrange-multipliers"><span class="header-section-number">1.15</span> Lagrange Multipliers</h2>
+<p>For constrained optimization:</p>
+<p><span class="math display">\[
+\min f(\mathbf{x}) \quad \text{subject to} \quad g(\mathbf{x}) = 0
+\]</span></p>
+<p><strong>Method</strong>: Solve:</p>
+<p><span class="math display">\[
+\nabla f(\mathbf{x}) = \lambda \nabla g(\mathbf{x})
+\]</span></p>
+<p>and <span class="math inline">\(g(\mathbf{x}) = 0\)</span></p>
+<p><strong>Lagrangian</strong>:</p>
+<p><span class="math display">\[
+\mathcal{L}(\mathbf{x}, \lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Support Vector Machines (SVM)</li>
+<li>Constrained optimization problems</li>
+<li>Dual formulations</li>
+</ul>
+</section>
+<section id="lhôpitals-rule" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="lhôpitals-rule"><span class="header-section-number">1.16</span> L’Hôpital’s Rule</h2>
+<p>For indeterminate forms <span class="math inline">\(\frac{0}{0}\)</span> or <span class="math inline">\(\frac{\infty}{\infty}\)</span>:</p>
+<p><span class="math display">\[
+\lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)}
+\]</span></p>
+<p><strong>ML relevance</strong>: Analyzing limiting behavior of loss functions</p>
+</section>
+<section id="common-activation-function-derivatives" class="level2" data-number="1.17">
+<h2 data-number="1.17" class="anchored" data-anchor-id="common-activation-function-derivatives"><span class="header-section-number">1.17</span> Common Activation Function Derivatives</h2>
+<p><strong>Sigmoid</strong>: <span class="math inline">\(\sigma(x) = \frac{1}{1 + e^{-x}}\)</span></p>
+<p><span class="math display">\[
+\sigma'(x) = \sigma(x)(1 - \sigma(x))
+\]</span></p>
+<p><strong>Tanh</strong>: <span class="math inline">\(\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}\)</span></p>
+<p><span class="math display">\[
+\tanh'(x) = 1 - \tanh^2(x)
+\]</span></p>
+<p><strong>ReLU</strong>: <span class="math inline">\(\text{ReLU}(x) = \max(0, x)\)</span></p>
+<p><span class="math display">\[
+\text{ReLU}'(x) = \begin{cases} 1 &amp; \text{if } x &gt; 0 \\ 0 &amp; \text{if } x &lt; 0 \\ \text{undefined} &amp; \text{if } x = 0 \end{cases}
+\]</span></p>
+<p><strong>Softmax</strong>: For vector <span class="math inline">\(\mathbf{z}\)</span>, <span class="math inline">\(\text{softmax}(\mathbf{z})_i = \frac{e^{z_i}}{\sum_j e^{z_j}}\)</span></p>
+<p><span class="math display">\[
+\frac{\partial \text{softmax}(\mathbf{z})_i}{\partial z_j} = \text{softmax}(\mathbf{z})_i (\delta_{ij} - \text{softmax}(\mathbf{z})_j)
+\]</span></p>
+<p>where <span class="math inline">\(\delta_{ij}\)</span> is the Kronecker delta</p>
+<hr>
+</section>
+</section>
+<section id="ml-applications-summary" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> ML Applications Summary</h1>
+<section id="gradient-descent" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="gradient-descent"><span class="header-section-number">2.1</span> Gradient Descent</h2>
+<p>Update rule:</p>
+<p><span class="math display">\[
+\mathbf{x}_{t+1} = \mathbf{x}_t - \alpha \nabla f(\mathbf{x}_t)
+\]</span></p>
+<p>where <span class="math inline">\(\alpha\)</span> is the learning rate</p>
+<p><strong>Variants</strong>: - <strong>Stochastic Gradient Descent (SGD)</strong>: Use gradient from single sample - <strong>Mini-batch GD</strong>: Use gradient from small batch - <strong>Momentum</strong>: <span class="math inline">\(\mathbf{v}_{t+1} = \beta \mathbf{v}_t + \nabla f(\mathbf{x}_t)\)</span></p>
+</section>
+<section id="backpropagation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="backpropagation"><span class="header-section-number">2.2</span> Backpropagation</h2>
+<p><strong>Chain rule application</strong>:</p>
+<p>For loss <span class="math inline">\(L\)</span> and layer outputs <span class="math inline">\(\mathbf{z}^{(l)}\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial \mathbf{w}^{(l)}} = \frac{\partial L}{\partial \mathbf{z}^{(l)}} \cdot \frac{\partial \mathbf{z}^{(l)}}{\partial \mathbf{w}^{(l)}}
+\]</span></p>
+<p><strong>Recursive gradient flow</strong>:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial \mathbf{z}^{(l)}} = \frac{\partial L}{\partial \mathbf{z}^{(l+1)}} \cdot \frac{\partial \mathbf{z}^{(l+1)}}{\partial \mathbf{z}^{(l)}}
+\]</span></p>
+</section>
+<section id="loss-functions-and-their-derivatives" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="loss-functions-and-their-derivatives"><span class="header-section-number">2.3</span> Loss Functions and Their Derivatives</h2>
+<p><strong>Mean Squared Error (MSE)</strong>:</p>
+<p><span class="math display">\[
+L = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial \hat{y}_i} = -\frac{2}{n}(y_i - \hat{y}_i)
+\]</span></p>
+<p><strong>Cross-Entropy Loss</strong> (binary):</p>
+<p><span class="math display">\[
+L = -\frac{1}{n}\sum_{i=1}^n [y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)]
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial \hat{y}_i} = -\frac{1}{n}\left[\frac{y_i}{\hat{y}_i} - \frac{1-y_i}{1-\hat{y}_i}\right]
+\]</span></p>
+<p><strong>Categorical Cross-Entropy</strong> (with softmax):</p>
+<p><span class="math display">\[
+L = -\sum_{i=1}^n y_i \log(\hat{y}_i)
+\]</span></p>
+<p>Combined softmax + cross-entropy derivative simplifies to:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial z_i} = \hat{y}_i - y_i
+\]</span></p>
+</section>
+<section id="regularization-terms" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="regularization-terms"><span class="header-section-number">2.4</span> Regularization Terms</h2>
+<p><strong>L2 Regularization</strong> (Ridge):</p>
+<p><span class="math display">\[
+R(\mathbf{w}) = \frac{\lambda}{2}\|\mathbf{w}\|_2^2 = \frac{\lambda}{2}\sum_i w_i^2
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial R}{\partial w_i} = \lambda w_i
+\]</span></p>
+<p><strong>L1 Regularization</strong> (Lasso):</p>
+<p><span class="math display">\[
+R(\mathbf{w}) = \lambda\|\mathbf{w}\|_1 = \lambda\sum_i |w_i|
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial R}{\partial w_i} = \lambda \cdot \text{sign}(w_i)
+\]</span></p>
+</section>
+<section id="quick-reference-table" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="quick-reference-table"><span class="header-section-number">2.5</span> Quick Reference Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Formula</th>
+<th>ML Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gradient</td>
+<td><span class="math inline">\(\nabla f\)</span></td>
+<td>Gradient descent direction</td>
+</tr>
+<tr class="even">
+<td>Jacobian</td>
+<td><span class="math inline">\(J_{ij} = \frac{\partial f_i}{\partial x_j}\)</span></td>
+<td>Backpropagation</td>
+</tr>
+<tr class="odd">
+<td>Hessian</td>
+<td><span class="math inline">\(H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}\)</span></td>
+<td>Second-order optimization</td>
+</tr>
+<tr class="even">
+<td>Chain Rule</td>
+<td><span class="math inline">\(\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}\)</span></td>
+<td>Backpropagation</td>
+</tr>
+<tr class="odd">
+<td>Taylor Expansion</td>
+<td><span class="math inline">\(f(x+\Delta x) \approx f(x) + f'(x)\Delta x\)</span></td>
+<td>Local approximation</td>
+</tr>
+<tr class="even">
+<td>Convexity</td>
+<td><span class="math inline">\(f''(x) \geq 0\)</span></td>
+<td>Optimization guarantees</td>
+</tr>
+<tr class="odd">
+<td>Lagrange Multipliers</td>
+<td><span class="math inline">\(\nabla f = \lambda \nabla g\)</span></td>
+<td>Constrained optimization</td>
+</tr>
+<tr class="even">
+<td>Sigmoid Derivative</td>
+<td><span class="math inline">\(\sigma'(x) = \sigma(x)(1-\sigma(x))\)</span></td>
+<td>Neural network activations</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

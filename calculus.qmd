@@ -7,21 +7,19 @@ format: html
 
 This section covers core calculus concepts used in machine learning — especially in optimization, backpropagation, and probability.
 
-
 ## Completing the Square
 
 A general method for rewriting quadratic expressions:
 
 $$
-a x^2 - 2 b x = a \left( x - \frac{b}{a} \right)^2 - \frac{b^2}{a}
+x^2 - 2bx + c = \left(x - b\right)^2 + \frac{b^2}{c} - \frac{b^2}{a}
 $$
 
 This transformation is widely used in:
 
-- Gaussian probability density derivations  
-- KL divergence simplification  
+- Gaussian probability density derivations
+- KL divergence simplification
 - Optimization of quadratic objectives
-
 
 ## Derivatives
 
@@ -31,21 +29,74 @@ $$
 \frac{d}{dx} f(x)
 $$
 
+**Common derivatives**:
+
+- $\frac{d}{dx}(x^n) = nx^{n-1}$ (power rule)
+- $\frac{d}{dx}(e^x) = e^x$
+- $\frac{d}{dx}(\ln x) = \frac{1}{x}$
+- $\frac{d}{dx}(\sin x) = \cos x$
+- $\frac{d}{dx}(\cos x) = -\sin x$
+- $\frac{d}{dx}(\tanh x) = 1 - \tanh^2 x$ (used in activation functions)
+
+**Rules**:
+
+- Product rule: $(fg)' = f'g + fg'$
+- Quotient rule: $\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$
+- Chain rule: $\frac{d}{dx}f(g(x)) = f'(g(x)) \cdot g'(x)$
+
 ## Partial Derivatives
 
-Used when dealing with multivariate functions:
+Used when dealing with multivariable functions:
 
 $$
 \frac{\partial f}{\partial x}, \quad \frac{\partial f}{\partial y}
 $$
 
+**Example**: For $f(x,y) = x^2y + 3y^2$:
+- $\frac{\partial f}{\partial x} = 2xy$
+- $\frac{\partial f}{\partial y} = x^2 + 6y$
+
+**ML relevance**: Computing gradients for each parameter in neural networks
+
+## Gradient Vector
+
+The gradient is a vector of all partial derivatives:
+
+$$
+\nabla f = \begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_n} \end{bmatrix}
+$$
+
+**Properties**:
+
+- Points in direction of steepest ascent
+- Magnitude indicates steepness
+- Perpendicular to level curves/surfaces
+
+**ML relevance**: Gradient descent uses $-\nabla f$ to minimize loss functions
+
 ## Jacobian Matrix
 
-For a vector-valued function \( \mathbf{f} : \mathbb{R}^n \to \mathbb{R}^m \), the Jacobian is:
+For a vector-valued function $\mathbf{f}: \mathbb{R}^n \to \mathbb{R}^m$, the Jacobian is:
 
 $$
 J_{ij} = \frac{\partial f_i}{\partial x_j}
 $$
+
+**Dimensions**: $m \times n$ matrix
+
+**Example**: For $\mathbf{f}(x,y) = [x^2y, xy^2]$:
+
+$$
+J = \begin{bmatrix} 
+2xy & x^2 \\ 
+y^2 & 2xy 
+\end{bmatrix}
+$$
+
+**ML relevance**: 
+
+- Backpropagation through layers
+- Computing derivatives of vector outputs
 
 ## Hessian Matrix
 
@@ -55,7 +106,82 @@ $$
 H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}
 $$
 
+**Properties**:
+
+- Symmetric matrix (if $f$ is twice differentiable)
+- Diagonal elements: $\frac{\partial^2 f}{\partial x_i^2}$
+- Off-diagonal: mixed partials $\frac{\partial^2 f}{\partial x_i \partial x_j}$
+
 Used in curvature analysis and second-order optimization.
+
+**ML relevance**:
+
+- Newton's method optimization
+- Analyzing convergence properties
+- Identifying saddle points vs local minima
+
+## Chain Rule (Multivariate)
+
+For composed functions $f(g(x))$:
+
+$$
+\frac{\partial f}{\partial x_i} = \sum_j \frac{\partial f}{\partial g_j} \cdot \frac{\partial g_j}{\partial x_i}
+$$
+
+**Matrix form**:
+
+$$
+\frac{\partial f}{\partial \mathbf{x}} = \frac{\partial f}{\partial \mathbf{g}} \cdot \frac{\partial \mathbf{g}}{\partial \mathbf{x}}
+$$
+
+**ML relevance**: Foundation of backpropagation algorithm
+
+## Directional Derivative
+
+Rate of change of $f$ in direction of unit vector $\mathbf{u}$:
+
+$$
+D_\mathbf{u} f = \nabla f \cdot \mathbf{u}
+$$
+
+**Properties**:
+
+- Maximum when $\mathbf{u}$ aligned with $\nabla f$
+- Zero when $\mathbf{u}$ perpendicular to $\nabla f$
+
+**ML relevance**: Understanding optimization landscapes
+
+## Taylor Series Expansion
+
+Approximating functions using derivatives:
+
+$$
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x + \frac{1}{2}f''(x)\Delta x^2 + \cdots
+$$
+
+**First-order (linear) approximation**:
+
+$$
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x
+$$
+
+**Second-order (quadratic) approximation**:
+
+$$
+f(x + \Delta x) \approx f(x) + f'(x)\Delta x + \frac{1}{2}f''(x)\Delta x^2
+$$
+
+**Multivariate Taylor expansion**:
+
+$$
+f(\mathbf{x} + \mathbf{\Delta x}) \approx f(\mathbf{x}) + \nabla f(\mathbf{x})^T \mathbf{\Delta x} + \frac{1}{2}\mathbf{\Delta x}^T H \mathbf{\Delta x}
+$$
+
+**ML relevance**:
+
+- Local approximations in optimization
+- Newton's method derivation
+- Trust region methods
 
 ## Integration
 
@@ -65,6 +191,20 @@ $$
 \int_a^b f(x) \, dx
 $$
 
+**Common integrals**:
+
+- $\int x^n \, dx = \frac{x^{n+1}}{n+1} + C$ (for $n \neq -1$)
+- $\int e^x \, dx = e^x + C$
+- $\int \frac{1}{x} \, dx = \ln|x| + C$
+- $\int \sin x \, dx = -\cos x + C$
+- $\int \cos x \, dx = \sin x + C$
+
+**ML relevance**: 
+
+- Computing expectations in probability
+- Normalizing probability distributions
+- Deriving closed-form solutions
+
 ## Integration by Parts
 
 A useful transformation:
@@ -72,3 +212,240 @@ A useful transformation:
 $$
 \int u \, dv = uv - \int v \, du
 $$
+
+**ML relevance**: 
+
+- Deriving variational bounds
+- Evidence lower bound (ELBO) derivations
+
+## Fundamental Theorem of Calculus
+
+Links differentiation and integration:
+
+$$
+\frac{d}{dx} \int_a^x f(t) \, dt = f(x)
+$$
+
+$$
+\int_a^b f'(x) \, dx = f(b) - f(a)
+$$
+
+## Optimization Conditions
+
+### First-Order Necessary Condition
+
+At a local minimum/maximum $x^*$:
+
+$$
+\nabla f(x^*) = \mathbf{0}
+$$
+
+**Critical points**: Where gradient vanishes
+
+### Second-Order Sufficient Condition
+
+For a local minimum at $x^*$:
+
+- $\nabla f(x^*) = \mathbf{0}$ (first-order condition)
+- Hessian $H(x^*)$ is positive definite (all eigenvalues > 0)
+
+For a local maximum:
+- Hessian $H(x^*)$ is negative definite (all eigenvalues < 0)
+
+**Saddle point**: Hessian has both positive and negative eigenvalues
+
+**ML relevance**: Analyzing loss function landscapes
+
+## Convexity
+
+A function $f$ is **convex** if:
+
+$$
+f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda)f(y)
+$$
+
+for all $x, y$ and $\lambda \in [0,1]$
+
+**Equivalent conditions**:
+
+- $f''(x) \geq 0$ (for univariate functions)
+- Hessian $H$ is positive semi-definite (for multivariate)
+- Any local minimum is a global minimum
+
+**Strictly convex**: Use strict inequalities ($>$ instead of $\geq$)
+
+**ML relevance**:
+
+- Guarantees for optimization convergence
+- Linear regression, logistic regression are convex
+- Neural networks are generally non-convex
+
+## Lagrange Multipliers
+
+For constrained optimization:
+
+$$
+\min f(\mathbf{x}) \quad \text{subject to} \quad g(\mathbf{x}) = 0
+$$
+
+**Method**: Solve:
+
+$$
+\nabla f(\mathbf{x}) = \lambda \nabla g(\mathbf{x})
+$$
+
+and $g(\mathbf{x}) = 0$
+
+**Lagrangian**:
+
+$$
+\mathcal{L}(\mathbf{x}, \lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})
+$$
+
+**ML relevance**:
+
+- Support Vector Machines (SVM)
+- Constrained optimization problems
+- Dual formulations
+
+## L'Hôpital's Rule
+
+For indeterminate forms $\frac{0}{0}$ or $\frac{\infty}{\infty}$:
+
+$$
+\lim_{x \to c} \frac{f(x)}{g(x)} = \lim_{x \to c} \frac{f'(x)}{g'(x)}
+$$
+
+**ML relevance**: Analyzing limiting behavior of loss functions
+
+## Common Activation Function Derivatives
+
+**Sigmoid**: $\sigma(x) = \frac{1}{1 + e^{-x}}$
+
+$$
+\sigma'(x) = \sigma(x)(1 - \sigma(x))
+$$
+
+**Tanh**: $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$
+
+$$
+\tanh'(x) = 1 - \tanh^2(x)
+$$
+
+**ReLU**: $\text{ReLU}(x) = \max(0, x)$
+
+$$
+\text{ReLU}'(x) = \begin{cases} 1 & \text{if } x > 0 \\ 0 & \text{if } x < 0 \\ \text{undefined} & \text{if } x = 0 \end{cases}
+$$
+
+**Softmax**: For vector $\mathbf{z}$, $\text{softmax}(\mathbf{z})_i = \frac{e^{z_i}}{\sum_j e^{z_j}}$
+
+$$
+\frac{\partial \text{softmax}(\mathbf{z})_i}{\partial z_j} = \text{softmax}(\mathbf{z})_i (\delta_{ij} - \text{softmax}(\mathbf{z})_j)
+$$
+
+where $\delta_{ij}$ is the Kronecker delta
+
+---
+
+# ML Applications Summary
+
+## Gradient Descent
+
+Update rule:
+
+$$
+\mathbf{x}_{t+1} = \mathbf{x}_t - \alpha \nabla f(\mathbf{x}_t)
+$$
+
+where $\alpha$ is the learning rate
+
+**Variants**:
+- **Stochastic Gradient Descent (SGD)**: Use gradient from single sample
+- **Mini-batch GD**: Use gradient from small batch
+- **Momentum**: $\mathbf{v}_{t+1} = \beta \mathbf{v}_t + \nabla f(\mathbf{x}_t)$
+
+## Backpropagation
+
+**Chain rule application**:
+
+For loss $L$ and layer outputs $\mathbf{z}^{(l)}$:
+
+$$
+\frac{\partial L}{\partial \mathbf{w}^{(l)}} = \frac{\partial L}{\partial \mathbf{z}^{(l)}} \cdot \frac{\partial \mathbf{z}^{(l)}}{\partial \mathbf{w}^{(l)}}
+$$
+
+**Recursive gradient flow**:
+
+$$
+\frac{\partial L}{\partial \mathbf{z}^{(l)}} = \frac{\partial L}{\partial \mathbf{z}^{(l+1)}} \cdot \frac{\partial \mathbf{z}^{(l+1)}}{\partial \mathbf{z}^{(l)}}
+$$
+
+## Loss Functions and Their Derivatives
+
+**Mean Squared Error (MSE)**:
+
+$$
+L = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
+$$
+
+$$
+\frac{\partial L}{\partial \hat{y}_i} = -\frac{2}{n}(y_i - \hat{y}_i)
+$$
+
+**Cross-Entropy Loss** (binary):
+
+$$
+L = -\frac{1}{n}\sum_{i=1}^n [y_i \log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)]
+$$
+
+$$
+\frac{\partial L}{\partial \hat{y}_i} = -\frac{1}{n}\left[\frac{y_i}{\hat{y}_i} - \frac{1-y_i}{1-\hat{y}_i}\right]
+$$
+
+**Categorical Cross-Entropy** (with softmax):
+
+$$
+L = -\sum_{i=1}^n y_i \log(\hat{y}_i)
+$$
+
+Combined softmax + cross-entropy derivative simplifies to:
+
+$$
+\frac{\partial L}{\partial z_i} = \hat{y}_i - y_i
+$$
+
+## Regularization Terms
+
+**L2 Regularization** (Ridge):
+
+$$
+R(\mathbf{w}) = \frac{\lambda}{2}\|\mathbf{w}\|_2^2 = \frac{\lambda}{2}\sum_i w_i^2
+$$
+
+$$
+\frac{\partial R}{\partial w_i} = \lambda w_i
+$$
+
+**L1 Regularization** (Lasso):
+
+$$
+R(\mathbf{w}) = \lambda\|\mathbf{w}\|_1 = \lambda\sum_i |w_i|
+$$
+
+$$
+\frac{\partial R}{\partial w_i} = \lambda \cdot \text{sign}(w_i)
+$$
+
+## Quick Reference Table
+
+| Concept | Formula | ML Application |
+|---------|---------|----------------|
+| Gradient | $\nabla f$ | Gradient descent direction |
+| Jacobian | $J_{ij} = \frac{\partial f_i}{\partial x_j}$ | Backpropagation |
+| Hessian | $H_{ij} = \frac{\partial^2 f}{\partial x_i \partial x_j}$ | Second-order optimization |
+| Chain Rule | $\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$ | Backpropagation |
+| Taylor Expansion | $f(x+\Delta x) \approx f(x) + f'(x)\Delta x$ | Local approximation |
+| Convexity | $f''(x) \geq 0$ | Optimization guarantees |
+| Lagrange Multipliers | $\nabla f = \lambda \nabla g$ | Constrained optimization |
+| Sigmoid Derivative | $\sigma'(x) = \sigma(x)(1-\sigma(x))$ | Neural network activations |
