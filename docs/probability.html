@@ -236,10 +236,29 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#random-variables-and-distributions" id="toc-random-variables-and-distributions" class="nav-link" data-scroll-target="#random-variables-and-distributions"><span class="header-section-number">1.1</span> Random Variables and Distributions</a></li>
   <li><a href="#expectation-and-variance" id="toc-expectation-and-variance" class="nav-link" data-scroll-target="#expectation-and-variance"><span class="header-section-number">1.2</span> Expectation and Variance</a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">1.3</span> Bayes’ Theorem</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"><span class="header-section-number">1.4</span> Probability Distributions</a></li>
-  <li><a href="#maximum-likelihood-estimation-mle" id="toc-maximum-likelihood-estimation-mle" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle"><span class="header-section-number">1.5</span> Maximum Likelihood Estimation (MLE)</a></li>
-  <li><a href="#kl-divergence" id="toc-kl-divergence" class="nav-link" data-scroll-target="#kl-divergence"><span class="header-section-number">1.6</span> KL Divergence</a></li>
+  <li><a href="#joint-marginal-and-conditional-probability" id="toc-joint-marginal-and-conditional-probability" class="nav-link" data-scroll-target="#joint-marginal-and-conditional-probability"><span class="header-section-number">1.3</span> Joint, Marginal, and Conditional Probability</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence"><span class="header-section-number">1.4</span> Independence</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">1.5</span> Bayes’ Theorem</a></li>
+  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability"><span class="header-section-number">1.6</span> Law of Total Probability</a></li>
+  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"><span class="header-section-number">1.7</span> Probability Distributions</a></li>
+  <li><a href="#maximum-likelihood-estimation-mle" id="toc-maximum-likelihood-estimation-mle" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-mle"><span class="header-section-number">1.8</span> Maximum Likelihood Estimation (MLE)</a></li>
+  <li><a href="#maximum-a-posteriori-map-estimation" id="toc-maximum-a-posteriori-map-estimation" class="nav-link" data-scroll-target="#maximum-a-posteriori-map-estimation"><span class="header-section-number">1.9</span> Maximum A Posteriori (MAP) Estimation</a></li>
+  <li><a href="#kl-divergence" id="toc-kl-divergence" class="nav-link" data-scroll-target="#kl-divergence"><span class="header-section-number">1.10</span> KL Divergence</a></li>
+  <li><a href="#cross-entropy" id="toc-cross-entropy" class="nav-link" data-scroll-target="#cross-entropy"><span class="header-section-number">1.11</span> Cross-Entropy</a></li>
+  <li><a href="#entropy" id="toc-entropy" class="nav-link" data-scroll-target="#entropy"><span class="header-section-number">1.12</span> Entropy</a></li>
+  <li><a href="#mutual-information" id="toc-mutual-information" class="nav-link" data-scroll-target="#mutual-information"><span class="header-section-number">1.13</span> Mutual Information</a></li>
+  <li><a href="#central-limit-theorem-clt" id="toc-central-limit-theorem-clt" class="nav-link" data-scroll-target="#central-limit-theorem-clt"><span class="header-section-number">1.14</span> Central Limit Theorem (CLT)</a></li>
+  <li><a href="#law-of-large-numbers-lln" id="toc-law-of-large-numbers-lln" class="nav-link" data-scroll-target="#law-of-large-numbers-lln"><span class="header-section-number">1.15</span> Law of Large Numbers (LLN)</a></li>
+  <li><a href="#jensens-inequality" id="toc-jensens-inequality" class="nav-link" data-scroll-target="#jensens-inequality"><span class="header-section-number">1.16</span> Jensen’s Inequality</a></li>
+  </ul></li>
+  <li><a href="#ml-applications-summary" id="toc-ml-applications-summary" class="nav-link" data-scroll-target="#ml-applications-summary"><span class="header-section-number">2</span> ML Applications Summary</a>
+  <ul class="collapse">
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">2.1</span> Classification</a></li>
+  <li><a href="#naive-bayes-classifier" id="toc-naive-bayes-classifier" class="nav-link" data-scroll-target="#naive-bayes-classifier"><span class="header-section-number">2.2</span> Naive Bayes Classifier</a></li>
+  <li><a href="#gaussian-mixture-models-gmm" id="toc-gaussian-mixture-models-gmm" class="nav-link" data-scroll-target="#gaussian-mixture-models-gmm"><span class="header-section-number">2.3</span> Gaussian Mixture Models (GMM)</a></li>
+  <li><a href="#expectation-maximization-em-algorithm" id="toc-expectation-maximization-em-algorithm" class="nav-link" data-scroll-target="#expectation-maximization-em-algorithm"><span class="header-section-number">2.4</span> Expectation-Maximization (EM) Algorithm</a></li>
+  <li><a href="#sampling-methods" id="toc-sampling-methods" class="nav-link" data-scroll-target="#sampling-methods"><span class="header-section-number">2.5</span> Sampling Methods</a></li>
+  <li><a href="#quick-reference-table" id="toc-quick-reference-table" class="nav-link" data-scroll-target="#quick-reference-table"><span class="header-section-number">2.6</span> Quick Reference Table</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -269,78 +288,168 @@ window.Quarto = {
 <section id="probability-for-machine-learning" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Probability for Machine Learning</h1>
 <p>Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.</p>
-<hr>
 <section id="random-variables-and-distributions" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="random-variables-and-distributions"><span class="header-section-number">1.1</span> Random Variables and Distributions</h2>
+<section id="types-of-random-variables" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="types-of-random-variables"><span class="header-section-number">1.1.1</span> Types of Random Variables</h3>
 <ul>
-<li><strong>Discrete</strong>: Bernoulli, Binomial</li>
-<li><strong>Continuous</strong>: Normal (Gaussian), Exponential</li>
+<li><strong>Discrete</strong>: Bernoulli, Binomial, Poisson, Categorical</li>
+<li><strong>Continuous</strong>: Normal (Gaussian), Exponential, Uniform, Beta</li>
 </ul>
-<p>Examples:</p>
-<p><span class="math display">\[
-P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
-\]</span></p>
-<hr>
+<p><strong>Notation</strong>:</p>
+<ul>
+<li><span class="math inline">\(P(X = x)\)</span> (discrete): Probability mass function (PMF)</li>
+<li><span class="math inline">\(f_X(x)\)</span> (continuous): Probability density function (PDF)</li>
+<li><span class="math inline">\(F_X(x) = P(X \leq x)\)</span>: Cumulative distribution function (CDF)</li>
+</ul>
+</section>
 </section>
 <section id="expectation-and-variance" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="expectation-and-variance"><span class="header-section-number">1.2</span> Expectation and Variance</h2>
-<ul>
-<li><strong>Expected value</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\mathbb{E}[X] = \sum_x x P(X=x) \quad \text{or} \quad \mathbb{E}[X] = \int x f_X(x)\, dx
+<section id="expected-value" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="expected-value"><span class="header-section-number">1.2.1</span> Expected Value</h3>
+<p>The average or mean value:</p>
+<p><strong>Discrete</strong>: <span class="math display">\[
+\mathbb{E}[X] = \sum_x x P(X = x)
 \]</span></p>
-<hr>
-<ul>
-<li><strong>Variance</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
+<p><strong>Continuous</strong>: <span class="math display">\[
+\mathbb{E}[X] = \int x f_X(x) \, dx
 \]</span></p>
-<hr>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Linearity: <span class="math inline">\(\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]\)</span></li>
+<li><span class="math inline">\(\mathbb{E}[c] = c\)</span> for constant <span class="math inline">\(c\)</span></li>
+<li><span class="math inline">\(\mathbb{E}[g(X)] = \sum_x g(x)P(X=x)\)</span> or <span class="math inline">\(\int g(x)f_X(x)dx\)</span></li>
+</ul>
 </section>
-<section id="bayes-theorem" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">1.3</span> Bayes’ Theorem</h2>
+<section id="variance" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="variance"><span class="header-section-number">1.2.2</span> Variance</h3>
+<p>Measure of spread around the mean:</p>
+<p><span class="math display">\[
+\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{Var}(aX + b) = a^2 \text{Var}(X)\)</span></li>
+<li>For independent <span class="math inline">\(X, Y\)</span>: <span class="math inline">\(\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)\)</span></li>
+</ul>
+<p><strong>Standard Deviation</strong>: <span class="math inline">\(\sigma = \sqrt{\text{Var}(X)}\)</span></p>
+</section>
+<section id="covariance-and-correlation" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="covariance-and-correlation"><span class="header-section-number">1.2.3</span> Covariance and Correlation</h3>
+<p><strong>Covariance</strong>: Measures linear relationship between two variables</p>
+<p><span class="math display">\[
+\text{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(\text{Cov}(X, X) = \text{Var}(X)\)</span></li>
+<li><span class="math inline">\(\text{Cov}(X, Y) = \text{Cov}(Y, X)\)</span> (symmetric)</li>
+<li>If <span class="math inline">\(X, Y\)</span> independent: <span class="math inline">\(\text{Cov}(X, Y) = 0\)</span> (converse not always true)</li>
+</ul>
+<p><strong>Correlation coefficient</strong>:</p>
+<p><span class="math display">\[
+\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}
+\]</span></p>
+<p>where <span class="math inline">\(-1 \leq \rho \leq 1\)</span></p>
+<p><strong>ML relevance</strong>: Feature correlation analysis, covariance matrices in PCA</p>
+</section>
+</section>
+<section id="joint-marginal-and-conditional-probability" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="joint-marginal-and-conditional-probability"><span class="header-section-number">1.3</span> Joint, Marginal, and Conditional Probability</h2>
+<section id="joint-probability" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="joint-probability"><span class="header-section-number">1.3.1</span> Joint Probability</h3>
+<p>Probability of multiple events occurring together:</p>
+<p><span class="math display">\[
+P(X = x, Y = y) \quad \text{or} \quad f_{X,Y}(x, y)
+\]</span></p>
+</section>
+<section id="marginal-probability" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="marginal-probability"><span class="header-section-number">1.3.2</span> Marginal Probability</h3>
+<p>Probability of one variable, ignoring others:</p>
+<p><strong>Discrete</strong>: <span class="math display">\[
+P(X = x) = \sum_y P(X = x, Y = y)
+\]</span></p>
+<p><strong>Continuous</strong>: <span class="math display">\[
+f_X(x) = \int f_{X,Y}(x, y) \, dy
+\]</span></p>
+</section>
+<section id="conditional-probability" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">1.3.3</span> Conditional Probability</h3>
+<p>Probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> has occurred:</p>
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A, B)}{P(B)}
+\]</span></p>
+<p><strong>Chain rule</strong>: <span class="math display">\[
+P(A, B) = P(A \mid B) P(B) = P(B \mid A) P(A)
+\]</span></p>
+<p><strong>General chain rule</strong> (for multiple variables): <span class="math display">\[
+P(X_1, X_2, \ldots, X_n) = P(X_1) P(X_2 \mid X_1) P(X_3 \mid X_1, X_2) \cdots P(X_n \mid X_1, \ldots, X_{n-1})
+\]</span></p>
+</section>
+</section>
+<section id="independence" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="independence"><span class="header-section-number">1.4</span> Independence</h2>
+<section id="statistical-independence" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="statistical-independence"><span class="header-section-number">1.4.1</span> Statistical Independence</h3>
+<p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if:</p>
+<p><span class="math display">\[
+P(X, Y) = P(X) P(Y)
+\]</span></p>
+<p><strong>Equivalent conditions</strong>:</p>
+<ul>
+<li><span class="math inline">\(P(X \mid Y) = P(X)\)</span></li>
+<li><span class="math inline">\(P(Y \mid X) = P(Y)\)</span></li>
+<li><span class="math inline">\(\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]\)</span></li>
+</ul>
+</section>
+<section id="conditional-independence" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="conditional-independence"><span class="header-section-number">1.4.2</span> Conditional Independence</h3>
+<p><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are conditionally independent given <span class="math inline">\(Z\)</span> if:</p>
+<p><span class="math display">\[
+P(X, Y \mid Z) = P(X \mid Z) P(Y \mid Z)
+\]</span></p>
+<p><strong>Notation</strong>: <span class="math inline">\(X \perp Y \mid Z\)</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Naive Bayes assumes features are conditionally independent given class</li>
+<li>Graphical models encode conditional independence</li>
+</ul>
+</section>
+</section>
+<section id="bayes-theorem" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">1.5</span> Bayes’ Theorem</h2>
 <p>Bayes’ Theorem lets us <strong>update what we believe</strong> about a situation after seeing new evidence.</p>
-<p>It answers the question:<br>
-<em>“Given that something has happened (<span class="math inline">\(B\)</span>), how likely is it that some other condition (<span class="math inline">\(A\)</span>) was true?”</em></p>
-<p>The formula is:</p>
+<p><strong>The formula</strong>:</p>
 <p><span class="math display">\[
 P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
 \]</span></p>
+<p><strong>Components</strong>:</p>
 <ul>
-<li><span class="math inline">\(P(A \mid B)\)</span>: <strong>Posterior</strong> — the probability of <span class="math inline">\(A\)</span> given that <span class="math inline">\(B\)</span> happened<br>
-</li>
-<li><span class="math inline">\(P(B \mid A)\)</span>: <strong>Likelihood</strong> — how likely is <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> is true<br>
-</li>
-<li><span class="math inline">\(P(A)\)</span>: <strong>Prior</strong> — our initial belief about <span class="math inline">\(A\)</span><br>
-</li>
+<li><span class="math inline">\(P(A \mid B)\)</span>: <strong>Posterior</strong> — probability of <span class="math inline">\(A\)</span> given that <span class="math inline">\(B\)</span> happened</li>
+<li><span class="math inline">\(P(B \mid A)\)</span>: <strong>Likelihood</strong> — how likely is <span class="math inline">\(B\)</span> if <span class="math inline">\(A\)</span> is true</li>
+<li><span class="math inline">\(P(A)\)</span>: <strong>Prior</strong> — our initial belief about <span class="math inline">\(A\)</span></li>
 <li><span class="math inline">\(P(B)\)</span>: <strong>Evidence</strong> — total probability of <span class="math inline">\(B\)</span> happening under all possibilities</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled" title="What is Bayes' Theorem really doing?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What is Bayes’ Theorem really doing?
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<p><strong>Expanded form</strong> (Law of Total Probability):</p>
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B \mid A)P(A) + P(B \mid A^c)P(A^c)}
+\]</span></p>
+<section id="what-is-bayes-theorem-really-doing" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="what-is-bayes-theorem-really-doing"><span class="header-section-number">1.5.1</span> What is Bayes’ Theorem really doing?</h3>
 <p>Bayes’ Theorem is about <strong>updating your belief</strong>:</p>
-<ul>
-<li>Start with your <strong>prior</strong> belief (<span class="math inline">\(P(A)\)</span>)</li>
-<li>Then observe new evidence (<span class="math inline">\(B\)</span>)</li>
+<ol type="1">
+<li>Start with your <strong>prior</strong> belief <span class="math inline">\(P(A)\)</span></li>
+<li>Then observe new evidence <span class="math inline">\((B)\)</span></li>
 <li>Update your belief using how likely that evidence is under <span class="math inline">\(A\)</span> (<span class="math inline">\(P(B \mid A)\)</span>)</li>
-</ul>
-</div>
-</div>
-<section id="example-medical-test" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="example-medical-test"><span class="header-section-number">1.3.1</span> Example: Medical Test</h3>
+</ol>
+</section>
+<section id="example-medical-test" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="example-medical-test"><span class="header-section-number">1.5.2</span> Example: Medical Test</h3>
 <p>Suppose a disease affects <strong>1%</strong> of the population.</p>
 <p>You take a test that is: - <span class="math inline">\(P(\text{Positive} \mid \text{Disease}) = 0.99\)</span> (true positive rate) - <span class="math inline">\(P(\text{Positive} \mid \text{No Disease}) = 0.05\)</span> (false positive rate)</p>
 <p>You test positive. What is the chance you actually have the disease?</p>
-<p>We want to compute:</p>
+<p><strong>We want to compute</strong>:</p>
 <p><span class="math display">\[
 P(\text{Disease} \mid \text{Positive}) = \frac{P(\text{Positive} \mid \text{Disease}) \cdot P(\text{Disease})}{P(\text{Positive})}
 \]</span></p>
@@ -349,121 +458,526 @@ P(\text{Disease} \mid \text{Positive}) = \frac{P(\text{Positive} \mid \text{Dise
 <p><span class="math display">\[
 P(\text{Disease} \mid \text{Positive}) = \frac{0.99 \cdot 0.01}{0.0594} \approx 0.167
 \]</span></p>
-<div class="callout callout-style-default callout-note callout-titled" title="Surprising result">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Surprising result
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Even after a positive test, the chance of having the disease is only about <strong>16.7%</strong>, because false positives are more common than true positives.</p>
-</div>
-</div>
+<p><strong>Surprising result</strong>: Even after a positive test, the chance of having the disease is only about <strong>16.7%</strong>, because false positives are more common than true positives.</p>
 </section>
-<section id="why-it-matters" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="why-it-matters"><span class="header-section-number">1.3.2</span> Why It Matters</h3>
+<section id="why-it-matters" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="why-it-matters"><span class="header-section-number">1.5.3</span> Why It Matters</h3>
 <p>Bayes’ Theorem is widely used in:</p>
 <ul>
-<li>Medical diagnosis<br>
-</li>
-<li>Spam detection<br>
-</li>
-<li>Probabilistic machine learning (e.g., Naive Bayes classifiers)<br>
-</li>
+<li>Medical diagnosis</li>
+<li>Spam detection</li>
+<li>Probabilistic machine learning (e.g., Naive Bayes classifiers)</li>
 <li>Updating beliefs in AI models</li>
+<li>A/B testing and experimental design</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="Proportional version of Bayes' Rule">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Proportional version of Bayes’ Rule
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section>
+<section id="proportional-version-of-bayes-rule" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="proportional-version-of-bayes-rule"><span class="header-section-number">1.5.4</span> Proportional Version of Bayes’ Rule</h3>
 <p>In many machine learning applications, the denominator <span class="math inline">\(P(B)\)</span> is the same for all outcomes and can be ignored:</p>
 <p><span class="math display">\[
 P(A \mid B) \propto P(B \mid A) \cdot P(A)
 \]</span></p>
-<p>This version is often used for ranking outcomes instead of calculating exact probabilities.</p>
-</div>
-</div>
-<hr>
+<p>This version is often used for <strong>ranking outcomes</strong> instead of calculating exact probabilities.</p>
+<p><strong>ML relevance</strong>: Naive Bayes classification, Bayesian inference</p>
 </section>
 </section>
-<section id="probability-distributions" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">1.4</span> Probability Distributions</h2>
-<p>Probability distributions describe how values of a random variable are distributed.</p>
-<ul>
-<li><strong>Discrete</strong>: Bernoulli, Binomial</li>
-<li><strong>Continuous</strong>: Normal, Exponential</li>
-</ul>
-<p><strong>PDF of normal distribution in 1D</strong></p>
+<section id="law-of-total-probability" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="law-of-total-probability"><span class="header-section-number">1.6</span> Law of Total Probability</h2>
+<p>For a partition of the sample space <span class="math inline">\(\{A_1, A_2, \ldots, A_n\}\)</span>:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
+P(B) = \sum_{i=1}^n P(B \mid A_i) P(A_i)
 \]</span></p>
-<section id="multivariate-normal-distribution" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="multivariate-normal-distribution"><span class="header-section-number">1.4.1</span> Multivariate Normal Distribution</h3>
-<p>The normal (Gaussian) distribution can be extended to multiple variables — for example, when <span class="math inline">\(x\)</span> is a vector instead of just a number.</p>
-<p>When <span class="math inline">\(x\)</span> is a vector in <span class="math inline">\(\mathbb{R}^d\)</span> (i.e., a list of <span class="math inline">\(d\)</span> values), the multivariate Gaussian looks like:</p>
+<p><strong>Continuous version</strong>:</p>
 <p><span class="math display">\[
-\mathcal{N}(x \mid \mu, \Sigma) =
-\frac{1}{(2\pi)^{d/2} \, |\Sigma|^{1/2}}
-\exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1}(x - \mu) \right)
+P(B) = \int P(B \mid A = a) P(A = a) \, da
+\]</span></p>
+<p><strong>ML relevance</strong>: Computing marginal probabilities, evidence in Bayesian inference</p>
+</section>
+<section id="probability-distributions" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">1.7</span> Probability Distributions</h2>
+<p>Probability distributions describe how values of a random variable are distributed.</p>
+<section id="discrete-distributions" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="discrete-distributions"><span class="header-section-number">1.7.1</span> Discrete Distributions</h3>
+<section id="bernoulli-distribution" class="level4" data-number="1.7.1.1">
+<h4 data-number="1.7.1.1" class="anchored" data-anchor-id="bernoulli-distribution"><span class="header-section-number">1.7.1.1</span> Bernoulli Distribution</h4>
+<p>Single binary trial (success/failure):</p>
+<p><span class="math display">\[
+P(X = 1) = p, \quad P(X = 0) = 1 - p
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X] = p\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = p(1-p)\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>: Binary classification outputs</p>
+</section>
+<section id="binomial-distribution" class="level4" data-number="1.7.1.2">
+<h4 data-number="1.7.1.2" class="anchored" data-anchor-id="binomial-distribution"><span class="header-section-number">1.7.1.2</span> Binomial Distribution</h4>
+<p>Number of successes in <span class="math inline">\(n\)</span> Bernoulli trials:</p>
+<p><span class="math display">\[
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X] = np\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = np(1-p)\)</span></li>
+</ul>
+</section>
+<section id="categorical-multinoulli-distribution" class="level4" data-number="1.7.1.3">
+<h4 data-number="1.7.1.3" class="anchored" data-anchor-id="categorical-multinoulli-distribution"><span class="header-section-number">1.7.1.3</span> Categorical (Multinoulli) Distribution</h4>
+<p>Generalization of Bernoulli to <span class="math inline">\(k\)</span> categories:</p>
+<p><span class="math display">\[
+P(X = i) = p_i, \quad \sum_{i=1}^k p_i = 1
+\]</span></p>
+<p><strong>ML relevance</strong>: Multi-class classification</p>
+</section>
+<section id="poisson-distribution" class="level4" data-number="1.7.1.4">
+<h4 data-number="1.7.1.4" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">1.7.1.4</span> Poisson Distribution</h4>
+<p>Number of events in fixed interval:</p>
+<p><span class="math display">\[
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X] = \lambda\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = \lambda\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>: Count data, rare events</p>
+</section>
+</section>
+<section id="continuous-distributions" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="continuous-distributions"><span class="header-section-number">1.7.2</span> Continuous Distributions</h3>
+<section id="uniform-distribution" class="level4" data-number="1.7.2.1">
+<h4 data-number="1.7.2.1" class="anchored" data-anchor-id="uniform-distribution"><span class="header-section-number">1.7.2.1</span> Uniform Distribution</h4>
+<p>Equal probability over interval <span class="math inline">\([a, b]\)</span>:</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{b - a}, \quad a \leq x \leq b
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X] = \frac{a + b}{2}\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = \frac{(b-a)^2}{12}\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>: Random initialization, data augmentation</p>
+</section>
+<section id="exponential-distribution" class="level4" data-number="1.7.2.2">
+<h4 data-number="1.7.2.2" class="anchored" data-anchor-id="exponential-distribution"><span class="header-section-number">1.7.2.2</span> Exponential Distribution</h4>
+<p>Time between events in Poisson process:</p>
+<p><span class="math display">\[
+f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{E}[X] = \frac{1}{\lambda}\)</span></li>
+<li><span class="math inline">\(\text{Var}(X) = \frac{1}{\lambda^2}\)</span></li>
+</ul>
+</section>
+<section id="normal-gaussian-distribution" class="level4" data-number="1.7.2.3">
+<h4 data-number="1.7.2.3" class="anchored" data-anchor-id="normal-gaussian-distribution"><span class="header-section-number">1.7.2.3</span> Normal (Gaussian) Distribution</h4>
+<p><strong>PDF of normal distribution in 1D</strong>:</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]</span></p>
+<p><strong>Notation</strong>: <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma^2)\)</span></p>
+<p><strong>Parameters</strong>: - <span class="math inline">\(\mu\)</span>: mean - <span class="math inline">\(\sigma^2\)</span>: variance - <span class="math inline">\(\sigma\)</span>: standard deviation</p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li>Symmetric around <span class="math inline">\(\mu\)</span></li>
+<li>68-95-99.7 rule: ~68% within 1σ, ~95% within 2σ, ~99.7% within 3σ</li>
+<li>Sum of independent Gaussians is Gaussian</li>
+<li>Central Limit Theorem: sum of many i.i.d. variables → Gaussian</li>
+</ul>
+<p><strong>Standard Normal</strong>: <span class="math inline">\(\mathcal{N}(0, 1)\)</span></p>
+<p><span class="math display">\[
+Z = \frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1)
+\]</span></p>
+</section>
+<section id="multivariate-normal-distribution" class="level4" data-number="1.7.2.4">
+<h4 data-number="1.7.2.4" class="anchored" data-anchor-id="multivariate-normal-distribution"><span class="header-section-number">1.7.2.4</span> Multivariate Normal Distribution</h4>
+<p>The normal (Gaussian) distribution can be extended to multiple variables — for example, when <span class="math inline">\(\mathbf{x}\)</span> is a vector instead of just a number.</p>
+<p>When <span class="math inline">\(\mathbf{x}\)</span> is a vector in <span class="math inline">\(\mathbb{R}^d\)</span> (i.e., a list of <span class="math inline">\(d\)</span> values), the multivariate Gaussian looks like:</p>
+<p><span class="math display">\[
+\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right)
 \]</span></p>
 <p><strong>What do all these symbols mean?</strong></p>
 <ul>
-<li><span class="math inline">\(x\)</span>: A <span class="math inline">\(d\)</span>-dimensional vector (e.g., an image flattened into a 1D array)</li>
-<li><span class="math inline">\(\mu\)</span>: The mean vector (the “center” of the distribution)</li>
-<li><span class="math inline">\(\Sigma\)</span>: The <span class="math inline">\(d \times d\)</span> covariance matrix, which captures the spread and correlation of the variables</li>
-<li><span class="math inline">\(|\Sigma|\)</span>: The <strong>determinant</strong> of <span class="math inline">\(\Sigma\)</span>, representing the volume of the distribution</li>
+<li><span class="math inline">\(\mathbf{x}\)</span>: A <span class="math inline">\(d\)</span>-dimensional vector (e.g., an image flattened into a 1D array)</li>
+<li><span class="math inline">\(\boldsymbol{\mu}\)</span>: The mean vector (the “center” of the distribution)</li>
+<li><span class="math inline">\(\boldsymbol{\Sigma}\)</span>: The <span class="math inline">\(d \times d\)</span> covariance matrix, which captures the spread and correlation of the variables</li>
+<li><span class="math inline">\(|\boldsymbol{\Sigma}|\)</span>: The <strong>determinant</strong> of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, representing the volume scaling</li>
 <li><span class="math inline">\((2\pi)^{d/2}\)</span>: Comes from extending the 1D normalizing constant to <span class="math inline">\(d\)</span> dimensions</li>
-<li><span class="math inline">\((x - \mu)^T \Sigma^{-1}(x - \mu)\)</span>: A <strong>generalized squared distance</strong> from <span class="math inline">\(x\)</span> to the mean — see below!</li>
+<li><span class="math inline">\((\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\)</span>: A <strong>generalized squared distance</strong> from <span class="math inline">\(\mathbf{x}\)</span> to the mean — see below!</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="What’s the Mahalanobis Distance?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What’s the Mahalanobis Distance?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The term <span class="math inline">\((x - \mu)^T \Sigma^{-1}(x - \mu)\)</span> measures how far <span class="math inline">\(x\)</span> is from the mean <span class="math inline">\(\mu\)</span>, taking into account how spread out the data is in different directions. It’s like Euclidean distance, but <strong>adjusted</strong> for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.</p>
-</div>
-</div>
-</section>
-<section id="special-case-spherical-gaussian" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="special-case-spherical-gaussian"><span class="header-section-number">1.4.2</span> Special Case: Spherical Gaussian</h3>
-<p>If all variables are independent and have equal variance <span class="math inline">\(\sigma^2\)</span>, then <span class="math inline">\(\Sigma = \sigma^2 I\)</span> and the formula simplifies to:</p>
+<p><strong>What’s the Mahalanobis Distance?</strong></p>
+<p>The term <span class="math inline">\((\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\)</span> measures how far <span class="math inline">\(\mathbf{x}\)</span> is from the mean <span class="math inline">\(\boldsymbol{\mu}\)</span>, taking into account how spread out the data is in different directions. It’s like Euclidean distance, but <strong>adjusted</strong> for direction-dependent variance. The more variance in a direction, the less distance is penalized in that direction.</p>
+<p><strong>Special Case: Spherical Gaussian</strong></p>
+<p>If all variables are independent and have equal variance <span class="math inline">\(\sigma^2\)</span>, then <span class="math inline">\(\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}\)</span> and the formula simplifies to:</p>
 <p><span class="math display">\[
-\mathcal{N}(x \mid \mu, \sigma^2 I) =
-\frac{1}{(2\pi \sigma^2)^{d/2}}
-\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \sigma^2 \mathbf{I}) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left(-\frac{1}{2\sigma^2}\|\mathbf{x} - \boldsymbol{\mu}\|^2\right)
 \]</span></p>
 <p>This looks more like the familiar 1D bell curve — but extended to <span class="math inline">\(d\)</span> dimensions.</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Gaussian Mixture Models (GMM)</li>
+<li>Latent variable models (VAE)</li>
+<li>Gaussian processes</li>
+<li>Discriminant analysis</li>
+</ul>
+</section>
+<section id="beta-distribution" class="level4" data-number="1.7.2.5">
+<h4 data-number="1.7.2.5" class="anchored" data-anchor-id="beta-distribution"><span class="header-section-number">1.7.2.5</span> Beta Distribution</h4>
+<p>Probability distribution over probabilities <span class="math inline">\([0, 1]\)</span>:</p>
+<p><span class="math display">\[
+f(x) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha, \beta)}, \quad 0 \leq x \leq 1
+\]</span></p>
+<p>where <span class="math inline">\(B(\alpha, \beta)\)</span> is the beta function</p>
+<p><strong>ML relevance</strong>: Bayesian inference (conjugate prior for Bernoulli/Binomial)</p>
+</section>
+<section id="gamma-distribution" class="level4" data-number="1.7.2.6">
+<h4 data-number="1.7.2.6" class="anchored" data-anchor-id="gamma-distribution"><span class="header-section-number">1.7.2.6</span> Gamma Distribution</h4>
+<p>Generalization of exponential distribution:</p>
+<p><span class="math display">\[
+f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x \geq 0
+\]</span></p>
+<p><strong>ML relevance</strong>: Prior distributions in Bayesian models</p>
 </section>
 </section>
-<section id="maximum-likelihood-estimation-mle" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="maximum-likelihood-estimation-mle"><span class="header-section-number">1.5</span> Maximum Likelihood Estimation (MLE)</h2>
+</section>
+<section id="maximum-likelihood-estimation-mle" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="maximum-likelihood-estimation-mle"><span class="header-section-number">1.8</span> Maximum Likelihood Estimation (MLE)</h2>
 <p>Used to estimate parameters of models:</p>
 <p><span class="math display">\[
-\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(D \mid \theta)
+\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(\mathcal{D} \mid \theta)
 \]</span></p>
-<hr>
+<p><strong>Equivalently</strong> (using log-likelihood):</p>
+<p><span class="math display">\[
+\hat{\theta}_{\text{MLE}} = \arg\max_\theta \sum_{i=1}^n \log P(x_i \mid \theta)
+\]</span></p>
+<p><strong>Why log-likelihood?</strong></p>
+<ul>
+<li>Products become sums (easier to optimize)</li>
+<li>Numerically more stable</li>
+<li>Same maximum as likelihood</li>
+</ul>
+<p><strong>Example: MLE for Gaussian</strong></p>
+<p>Given data <span class="math inline">\(\{x_1, \ldots, x_n\}\)</span> from <span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span>:</p>
+<p><span class="math display">\[
+\hat{\mu}_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n x_i \quad \text{(sample mean)}
+\]</span></p>
+<p><span class="math display">\[
+\hat{\sigma}^2_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{\mu})^2 \quad \text{(sample variance)}
+\]</span></p>
+<p><strong>ML relevance</strong>: Training probabilistic models, logistic regression</p>
 </section>
-<section id="kl-divergence" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="kl-divergence"><span class="header-section-number">1.6</span> KL Divergence</h2>
+<section id="maximum-a-posteriori-map-estimation" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="maximum-a-posteriori-map-estimation"><span class="header-section-number">1.9</span> Maximum A Posteriori (MAP) Estimation</h2>
+<p>Incorporates prior knowledge:</p>
+<p><span class="math display">\[
+\hat{\theta}_{\text{MAP}} = \arg\max_\theta P(\theta \mid \mathcal{D}) = \arg\max_\theta P(\mathcal{D} \mid \theta) P(\theta)
+\]</span></p>
+<p><strong>Using log</strong>:</p>
+<p><span class="math display">\[
+\hat{\theta}_{\text{MAP}} = \arg\max_\theta \left[\log P(\mathcal{D} \mid \theta) + \log P(\theta)\right]
+\]</span></p>
+<p><strong>Difference from MLE</strong>: MAP includes prior <span class="math inline">\(P(\theta)\)</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Regularization (L2 = Gaussian prior, L1 = Laplace prior)</li>
+<li>Bayesian neural networks</li>
+</ul>
+</section>
+<section id="kl-divergence" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="kl-divergence"><span class="header-section-number">1.10</span> KL Divergence</h2>
 <p>Measures how one distribution diverges from another:</p>
 <p><span class="math display">\[
-D_{\text{KL}}(P \parallel Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
+D_{\text{KL}}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
 \]</span></p>
-<p>Used in training VAEs and information-theoretic learning.</p>
+<p><strong>Continuous</strong>:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(P \| Q) = \int P(x) \log \frac{P(x)}{Q(x)} \, dx
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(D_{\text{KL}}(P \| Q) \geq 0\)</span> (Gibb’s inequality)</li>
+<li><span class="math inline">\(D_{\text{KL}}(P \| Q) = 0\)</span> iff <span class="math inline">\(P = Q\)</span></li>
+<li><strong>Not symmetric</strong>: <span class="math inline">\(D_{\text{KL}}(P \| Q) \neq D_{\text{KL}}(Q \| P)\)</span></li>
+<li>Not a true distance metric</li>
+</ul>
+<p><strong>Equivalent form</strong>:</p>
+<p><span class="math display">\[
+D_{\text{KL}}(P \| Q) = \mathbb{E}_{x \sim P}\left[\log \frac{P(x)}{Q(x)}\right] = \mathbb{E}_{x \sim P}[\log P(x)] - \mathbb{E}_{x \sim P}[\log Q(x)]
+\]</span></p>
+<p><span class="math display">\[
+= -H(P) - \mathbb{E}_{x \sim P}[\log Q(x)]
+\]</span></p>
+<p>where <span class="math inline">\(H(P)\)</span> is the entropy of <span class="math inline">\(P\)</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Variational inference</li>
+<li>Training VAEs (ELBO)</li>
+<li>Information-theoretic learning</li>
+<li>Model comparison</li>
+</ul>
+</section>
+<section id="cross-entropy" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="cross-entropy"><span class="header-section-number">1.11</span> Cross-Entropy</h2>
+<p>Measures expected log-likelihood under distribution <span class="math inline">\(Q\)</span> when true distribution is <span class="math inline">\(P\)</span>:</p>
+<p><span class="math display">\[
+H(P, Q) = -\sum_x P(x) \log Q(x)
+\]</span></p>
+<p><strong>Continuous</strong>:</p>
+<p><span class="math display">\[
+H(P, Q) = -\int P(x) \log Q(x) \, dx
+\]</span></p>
+<p><strong>Relation to KL divergence</strong>:</p>
+<p><span class="math display">\[
+H(P, Q) = H(P) + D_{\text{KL}}(P \| Q)
+\]</span></p>
+<p>where <span class="math inline">\(H(P) = -\sum_x P(x) \log P(x)\)</span> is the entropy</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Cross-entropy loss in classification</li>
+<li>Minimizing cross-entropy ≡ minimizing KL divergence (since <span class="math inline">\(H(P)\)</span> is constant)</li>
+</ul>
+</section>
+<section id="entropy" class="level2" data-number="1.12">
+<h2 data-number="1.12" class="anchored" data-anchor-id="entropy"><span class="header-section-number">1.12</span> Entropy</h2>
+<p>Measures uncertainty or information content:</p>
+<p><strong>Shannon Entropy</strong>:</p>
+<p><span class="math display">\[
+H(X) = -\sum_x P(x) \log P(x) = \mathbb{E}[-\log P(X)]
+\]</span></p>
+<p><strong>Continuous</strong> (Differential Entropy):</p>
+<p><span class="math display">\[
+H(X) = -\int f(x) \log f(x) \, dx
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(H(X) \geq 0\)</span></li>
+<li>Maximum entropy for discrete uniform distribution</li>
+<li>Higher entropy = more uncertainty</li>
+</ul>
+<p><strong>Conditional Entropy</strong>:</p>
+<p><span class="math display">\[
+H(Y \mid X) = \sum_x P(x) H(Y \mid X = x)
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Information gain in decision trees</li>
+<li>Entropy regularization</li>
+<li>Information theory foundations</li>
+</ul>
+</section>
+<section id="mutual-information" class="level2" data-number="1.13">
+<h2 data-number="1.13" class="anchored" data-anchor-id="mutual-information"><span class="header-section-number">1.13</span> Mutual Information</h2>
+<p>Measures dependence between variables:</p>
+<p><span class="math display">\[
+I(X; Y) = D_{\text{KL}}(P(X,Y) \| P(X)P(Y))
+\]</span></p>
+<p><strong>Equivalent forms</strong>:</p>
+<p><span class="math display">\[
+I(X; Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X)
+\]</span></p>
+<p><span class="math display">\[
+I(X; Y) = H(X) + H(Y) - H(X, Y)
+\]</span></p>
+<p><strong>Properties</strong>:</p>
+<ul>
+<li><span class="math inline">\(I(X; Y) \geq 0\)</span></li>
+<li><span class="math inline">\(I(X; Y) = 0\)</span> iff <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent</li>
+<li>Symmetric: <span class="math inline">\(I(X; Y) = I(Y; X)\)</span></li>
+</ul>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Feature selection</li>
+<li>Information bottleneck theory</li>
+<li>Variational information maximization</li>
+</ul>
+</section>
+<section id="central-limit-theorem-clt" class="level2" data-number="1.14">
+<h2 data-number="1.14" class="anchored" data-anchor-id="central-limit-theorem-clt"><span class="header-section-number">1.14</span> Central Limit Theorem (CLT)</h2>
+<p>For i.i.d. random variables <span class="math inline">\(X_1, \ldots, X_n\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>:</p>
+<p><span class="math display">\[
+\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1)
+\]</span></p>
+<p>where <span class="math inline">\(\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i\)</span></p>
+<p><strong>Practical form</strong>: For large <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[
+\bar{X}_n \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Justifies Gaussian assumptions</li>
+<li>Confidence intervals</li>
+<li>Bootstrap methods</li>
+</ul>
+</section>
+<section id="law-of-large-numbers-lln" class="level2" data-number="1.15">
+<h2 data-number="1.15" class="anchored" data-anchor-id="law-of-large-numbers-lln"><span class="header-section-number">1.15</span> Law of Large Numbers (LLN)</h2>
+<section id="weak-lln" class="level3" data-number="1.15.1">
+<h3 data-number="1.15.1" class="anchored" data-anchor-id="weak-lln"><span class="header-section-number">1.15.1</span> Weak LLN</h3>
+<p>For i.i.d. <span class="math inline">\(X_1, \ldots, X_n\)</span> with mean <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\bar{X}_n \xrightarrow{P} \mu
+\]</span></p>
+<p>(Sample mean converges in probability to true mean)</p>
+</section>
+<section id="strong-lln" class="level3" data-number="1.15.2">
+<h3 data-number="1.15.2" class="anchored" data-anchor-id="strong-lln"><span class="header-section-number">1.15.2</span> Strong LLN</h3>
+<p><span class="math display">\[
+\bar{X}_n \xrightarrow{\text{a.s.}} \mu
+\]</span></p>
+<p>(Sample mean converges almost surely)</p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Monte Carlo methods</li>
+<li>Justifies empirical risk minimization</li>
+</ul>
+</section>
+</section>
+<section id="jensens-inequality" class="level2" data-number="1.16">
+<h2 data-number="1.16" class="anchored" data-anchor-id="jensens-inequality"><span class="header-section-number">1.16</span> Jensen’s Inequality</h2>
+<p>For convex function <span class="math inline">\(f\)</span> and random variable <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]
+\]</span></p>
+<p>For <strong>concave</strong> function: reverse inequality</p>
+<p><strong>Example</strong>: <span class="math inline">\(\log\)</span> is concave, so:</p>
+<p><span class="math display">\[
+\log(\mathbb{E}[X]) \geq \mathbb{E}[\log(X)]
+\]</span></p>
+<p><strong>ML relevance</strong>:</p>
+<ul>
+<li>Derives EM algorithm</li>
+<li>Variational inference bounds</li>
+<li>Information theory inequalities</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="ml-applications-summary" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> ML Applications Summary</h1>
+<section id="classification" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="classification"><span class="header-section-number">2.1</span> Classification</h2>
+<p><strong>Logistic Regression</strong> (binary):</p>
+<p><span class="math display">\[
+P(y = 1 \mid \mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x}) = \frac{1}{1 + e^{-\mathbf{w}^T\mathbf{x}}}
+\]</span></p>
+<p><strong>Softmax</strong> (multi-class):</p>
+<p><span class="math display">\[
+P(y = k \mid \mathbf{x}) = \frac{e^{\mathbf{w}_k^T\mathbf{x}}}{\sum_{j=1}^K e^{\mathbf{w}_j^T\mathbf{x}}}
+\]</span></p>
+</section>
+<section id="naive-bayes-classifier" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="naive-bayes-classifier"><span class="header-section-number">2.2</span> Naive Bayes Classifier</h2>
+<p>Assumes features conditionally independent:</p>
+<p><span class="math display">\[
+P(y \mid \mathbf{x}) \propto P(y) \prod_{i=1}^d P(x_i \mid y)
+\]</span></p>
+<p><strong>Decision rule</strong>:</p>
+<p><span class="math display">\[
+\hat{y} = \arg\max_y P(y) \prod_{i=1}^d P(x_i \mid y)
+\]</span></p>
+</section>
+<section id="gaussian-mixture-models-gmm" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="gaussian-mixture-models-gmm"><span class="header-section-number">2.3</span> Gaussian Mixture Models (GMM)</h2>
+<p>Mixture of <span class="math inline">\(K\)</span> Gaussians:</p>
+<p><span class="math display">\[
+P(\mathbf{x}) = \sum_{k=1}^K \pi_k \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+\]</span></p>
+<p>where <span class="math inline">\(\sum_{k=1}^K \pi_k = 1\)</span> (mixing coefficients)</p>
+<p><strong>ML relevance</strong>: Clustering, density estimation, generative models</p>
+</section>
+<section id="expectation-maximization-em-algorithm" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="expectation-maximization-em-algorithm"><span class="header-section-number">2.4</span> Expectation-Maximization (EM) Algorithm</h2>
+<p>Iterative method for MLE with latent variables:</p>
+<p><strong>E-step</strong>: Compute expected log-likelihood</p>
+<p><span class="math display">\[
+Q(\theta \mid \theta^{(t)}) = \mathbb{E}_{Z \mid X, \theta^{(t)}}[\log P(X, Z \mid \theta)]
+\]</span></p>
+<p><strong>M-step</strong>: Maximize w.r.t. <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[
+\theta^{(t+1)} = \arg\max_\theta Q(\theta \mid \theta^{(t)})
+\]</span></p>
+<p><strong>ML relevance</strong>: Training GMMs, hidden Markov models</p>
+</section>
+<section id="sampling-methods" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sampling-methods"><span class="header-section-number">2.5</span> Sampling Methods</h2>
+<section id="monte-carlo-estimation" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="monte-carlo-estimation"><span class="header-section-number">2.5.1</span> Monte Carlo Estimation</h3>
+<p>Approximate expectation by sampling:</p>
+<p><span class="math display">\[
+\mathbb{E}[f(X)] \approx \frac{1}{N}\sum_{i=1}^N f(x_i), \quad x_i \sim P(X)
+\]</span></p>
+</section>
+<section id="markov-chain-monte-carlo-mcmc" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="markov-chain-monte-carlo-mcmc"><span class="header-section-number">2.5.2</span> Markov Chain Monte Carlo (MCMC)</h3>
+<p>Generate samples from complex distributions:</p>
+<ul>
+<li><strong>Metropolis-Hastings</strong>: Accept/reject samples based on ratio</li>
+<li><strong>Gibbs Sampling</strong>: Sample each variable conditional on others</li>
+</ul>
+<p><strong>ML relevance</strong>: Bayesian inference, probabilistic programming</p>
+</section>
+</section>
+<section id="quick-reference-table" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="quick-reference-table"><span class="header-section-number">2.6</span> Quick Reference Table</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concept</th>
+<th>Formula</th>
+<th>ML Application</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bayes’ Theorem</td>
+<td><span class="math inline">\(P(A \mid B) = \frac{P(B \mid A)P(A)}{P(B)}\)</span></td>
+<td>Classification, inference</td>
+</tr>
+<tr class="even">
+<td>KL Divergence</td>
+<td><span class="math inline">\(D_{\text{KL}}(P \| Q) = \sum P(x)\log\frac{P(x)}{Q(x)}\)</span></td>
+<td>VAE training, model comparison</td>
+</tr>
+<tr class="odd">
+<td>Cross-Entropy</td>
+<td><span class="math inline">\(H(P,Q) = -\sum P(x)\log Q(x)\)</span></td>
+<td>Classification loss</td>
+</tr>
+<tr class="even">
+<td>Entropy</td>
+<td><span class="math inline">\(H(X) = -\sum P(x)\log P(x)\)</span></td>
+<td>Information theory, decision trees</td>
+</tr>
+<tr class="odd">
+<td>Gaussian PDF</td>
+<td><span class="math inline">\(\mathcal{N}(\mu, \sigma^2)\)</span></td>
+<td>Continuous modeling</td>
+</tr>
+<tr class="even">
+<td>MLE</td>
+<td><span class="math inline">\(\hat{\theta} = \arg\max P(\mathcal{D} \mid \theta)\)</span></td>
+<td>Parameter estimation</td>
+</tr>
+<tr class="odd">
+<td>MAP</td>
+<td><span class="math inline">\(\hat{\theta} = \arg\max P(\theta \mid \mathcal{D})\)</span></td>
+<td>Bayesian estimation</td>
+</tr>
+<tr class="even">
+<td>Covariance</td>
+<td><span class="math inline">\(\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]\)</span></td>
+<td>Feature correlation</td>
+</tr>
+<tr class="odd">
+<td>CLT</td>
+<td><span class="math inline">\(\bar{X}_n \to \mathcal{N}(\mu, \sigma^2/n)\)</span></td>
+<td>Statistical inference</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

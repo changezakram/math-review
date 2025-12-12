@@ -7,64 +7,183 @@ format: html
 
 Probability is central to machine learning — particularly in generative models, classification, and Bayesian methods.
 
----
-
 ## Random Variables and Distributions
 
-- **Discrete**: Bernoulli, Binomial
-- **Continuous**: Normal (Gaussian), Exponential
+### Types of Random Variables
 
-Examples:
+- **Discrete**: Bernoulli, Binomial, Poisson, Categorical
+- **Continuous**: Normal (Gaussian), Exponential, Uniform, Beta
 
-$$
-P(X = x) \quad \text{(discrete)}, \qquad f_X(x) \quad \text{(continuous)}
-$$
+**Notation**:
 
---- 
+- $P(X = x)$ (discrete): Probability mass function (PMF)
+- $f_X(x)$ (continuous): Probability density function (PDF)
+- $F_X(x) = P(X \leq x)$: Cumulative distribution function (CDF)
 
 ## Expectation and Variance
 
-- **Expected value**:
+### Expected Value
 
+The average or mean value:
+
+**Discrete**:
 $$
-\mathbb{E}[X] = \sum_x x P(X=x) \quad \text{or} \quad \mathbb{E}[X] = \int x f_X(x)\, dx
-$$
-
----
-
-- **Variance**:
-
-$$
-\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]
+\mathbb{E}[X] = \sum_x x P(X = x)
 $$
 
----
+**Continuous**:
+$$
+\mathbb{E}[X] = \int x f_X(x) \, dx
+$$
 
-## Bayes’ Theorem
+**Properties**:
 
-Bayes’ Theorem lets us **update what we believe** about a situation after seeing new evidence.
+- Linearity: $\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]$
+- $\mathbb{E}[c] = c$ for constant $c$
+- $\mathbb{E}[g(X)] = \sum_x g(x)P(X=x)$ or $\int g(x)f_X(x)dx$
 
-It answers the question:  
-_“Given that something has happened ($B$), how likely is it that some other condition ($A$) was true?”_
+### Variance
 
-The formula is:
+Measure of spread around the mean:
+
+$$
+\text{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+$$
+
+**Properties**:
+
+- $\text{Var}(aX + b) = a^2 \text{Var}(X)$
+- For independent $X, Y$: $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$
+
+**Standard Deviation**: $\sigma = \sqrt{\text{Var}(X)}$
+
+### Covariance and Correlation
+
+**Covariance**: Measures linear relationship between two variables
+
+$$
+\text{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]
+$$
+
+**Properties**:
+
+- $\text{Cov}(X, X) = \text{Var}(X)$
+- $\text{Cov}(X, Y) = \text{Cov}(Y, X)$ (symmetric)
+- If $X, Y$ independent: $\text{Cov}(X, Y) = 0$ (converse not always true)
+
+**Correlation coefficient**:
+
+$$
+\rho(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}
+$$
+
+where $-1 \leq \rho \leq 1$
+
+**ML relevance**: Feature correlation analysis, covariance matrices in PCA
+
+## Joint, Marginal, and Conditional Probability
+
+### Joint Probability
+
+Probability of multiple events occurring together:
+
+$$
+P(X = x, Y = y) \quad \text{or} \quad f_{X,Y}(x, y)
+$$
+
+### Marginal Probability
+
+Probability of one variable, ignoring others:
+
+**Discrete**:
+$$
+P(X = x) = \sum_y P(X = x, Y = y)
+$$
+
+**Continuous**:
+$$
+f_X(x) = \int f_{X,Y}(x, y) \, dy
+$$
+
+### Conditional Probability
+
+Probability of $A$ given $B$ has occurred:
+
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A, B)}{P(B)}
+$$
+
+**Chain rule**:
+$$
+P(A, B) = P(A \mid B) P(B) = P(B \mid A) P(A)
+$$
+
+**General chain rule** (for multiple variables):
+$$
+P(X_1, X_2, \ldots, X_n) = P(X_1) P(X_2 \mid X_1) P(X_3 \mid X_1, X_2) \cdots P(X_n \mid X_1, \ldots, X_{n-1})
+$$
+
+## Independence
+
+### Statistical Independence
+
+$X$ and $Y$ are independent if:
+
+$$
+P(X, Y) = P(X) P(Y)
+$$
+
+**Equivalent conditions**:
+
+- $P(X \mid Y) = P(X)$
+- $P(Y \mid X) = P(Y)$
+- $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$
+
+### Conditional Independence
+
+$X$ and $Y$ are conditionally independent given $Z$ if:
+
+$$
+P(X, Y \mid Z) = P(X \mid Z) P(Y \mid Z)
+$$
+
+**Notation**: $X \perp Y \mid Z$
+
+**ML relevance**: 
+
+- Naive Bayes assumes features are conditionally independent given class
+- Graphical models encode conditional independence
+
+## Bayes' Theorem
+
+Bayes' Theorem lets us **update what we believe** about a situation after seeing new evidence.
+
+**The formula**:
 
 $$
 P(A \mid B) = \frac{P(B \mid A) \cdot P(A)}{P(B)}
 $$
 
-- $P(A \mid B)$: **Posterior** — the probability of $A$ given that $B$ happened  
-- $P(B \mid A)$: **Likelihood** — how likely is $B$ if $A$ is true  
-- $P(A)$: **Prior** — our initial belief about $A$  
+**Components**:
+
+- $P(A \mid B)$: **Posterior** — probability of $A$ given that $B$ happened
+- $P(B \mid A)$: **Likelihood** — how likely is $B$ if $A$ is true
+- $P(A)$: **Prior** — our initial belief about $A$
 - $P(B)$: **Evidence** — total probability of $B$ happening under all possibilities
 
-::: {.callout-note title="What is Bayes' Theorem really doing?"}
-Bayes’ Theorem is about **updating your belief**:
+**Expanded form** (Law of Total Probability):
 
-- Start with your **prior** belief ($P(A)$)
-- Then observe new evidence ($B$)
-- Update your belief using how likely that evidence is under $A$ ($P(B \mid A)$)
-:::
+$$
+P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B \mid A)P(A) + P(B \mid A^c)P(A^c)}
+$$
+
+### What is Bayes' Theorem really doing?
+
+Bayes' Theorem is about **updating your belief**:
+
+1. Start with your **prior** belief $P(A)$
+2. Then observe new evidence $(B)$
+3. Update your belief using how likely that evidence is under $A$ ($P(B \mid A)$)
 
 ### Example: Medical Test
 
@@ -76,13 +195,13 @@ You take a test that is:
 
 You test positive. What is the chance you actually have the disease?
 
-We want to compute:
+**We want to compute**:
 
 $$
 P(\text{Disease} \mid \text{Positive}) = \frac{P(\text{Positive} \mid \text{Disease}) \cdot P(\text{Disease})}{P(\text{Positive})}
 $$
 
-Let’s plug in values:
+Let's plug in values:
 - $P(\text{Disease}) = 0.01$
 - $P(\text{No Disease}) = 0.99$
 - $P(\text{Positive}) = 0.99 \cdot 0.01 + 0.05 \cdot 0.99 = 0.0594$
@@ -93,97 +212,561 @@ $$
 P(\text{Disease} \mid \text{Positive}) = \frac{0.99 \cdot 0.01}{0.0594} \approx 0.167
 $$
 
-::: {.callout-note title="Surprising result"}
-Even after a positive test, the chance of having the disease is only about **16.7%**, because false positives are more common than true positives.
-:::
+**Surprising result**: Even after a positive test, the chance of having the disease is only about **16.7%**, because false positives are more common than true positives.
 
 ### Why It Matters
 
 Bayes' Theorem is widely used in:
 
-- Medical diagnosis  
-- Spam detection  
-- Probabilistic machine learning (e.g., Naive Bayes classifiers)  
+- Medical diagnosis
+- Spam detection
+- Probabilistic machine learning (e.g., Naive Bayes classifiers)
 - Updating beliefs in AI models
+- A/B testing and experimental design
 
-::: {.callout-tip title="Proportional version of Bayes' Rule"}
+### Proportional Version of Bayes' Rule
+
 In many machine learning applications, the denominator $P(B)$ is the same for all outcomes and can be ignored:
 
 $$
 P(A \mid B) \propto P(B \mid A) \cdot P(A)
 $$
 
-This version is often used for ranking outcomes instead of calculating exact probabilities.
-:::
+This version is often used for **ranking outcomes** instead of calculating exact probabilities.
 
----
+**ML relevance**: Naive Bayes classification, Bayesian inference
+
+## Law of Total Probability
+
+For a partition of the sample space $\{A_1, A_2, \ldots, A_n\}$:
+
+$$
+P(B) = \sum_{i=1}^n P(B \mid A_i) P(A_i)
+$$
+
+**Continuous version**:
+
+$$
+P(B) = \int P(B \mid A = a) P(A = a) \, da
+$$
+
+**ML relevance**: Computing marginal probabilities, evidence in Bayesian inference
 
 ## Probability Distributions
 
 Probability distributions describe how values of a random variable are distributed.
 
-- **Discrete**: Bernoulli, Binomial
-- **Continuous**: Normal, Exponential
+### Discrete Distributions
 
-**PDF of normal distribution in 1D**
+#### Bernoulli Distribution
 
-$$
-f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)
-$$
-
-### Multivariate Normal Distribution
-
-The normal (Gaussian) distribution can be extended to multiple variables — for example, when $x$ is a vector instead of just a number.
-
-When $x$ is a vector in $\mathbb{R}^d$ (i.e., a list of $d$ values), the multivariate Gaussian looks like:
+Single binary trial (success/failure):
 
 $$
-\mathcal{N}(x \mid \mu, \Sigma) = 
-\frac{1}{(2\pi)^{d/2} \, |\Sigma|^{1/2}} 
-\exp\left( -\frac{1}{2}(x - \mu)^T \Sigma^{-1}(x - \mu) \right)
+P(X = 1) = p, \quad P(X = 0) = 1 - p
+$$
+
+- $\mathbb{E}[X] = p$
+- $\text{Var}(X) = p(1-p)$
+
+**ML relevance**: Binary classification outputs
+
+#### Binomial Distribution
+
+Number of successes in $n$ Bernoulli trials:
+
+$$
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+- $\mathbb{E}[X] = np$
+- $\text{Var}(X) = np(1-p)$
+
+#### Categorical (Multinoulli) Distribution
+
+Generalization of Bernoulli to $k$ categories:
+
+$$
+P(X = i) = p_i, \quad \sum_{i=1}^k p_i = 1
+$$
+
+**ML relevance**: Multi-class classification
+
+#### Poisson Distribution
+
+Number of events in fixed interval:
+
+$$
+P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}
+$$
+
+- $\mathbb{E}[X] = \lambda$
+- $\text{Var}(X) = \lambda$
+
+**ML relevance**: Count data, rare events
+
+### Continuous Distributions
+
+#### Uniform Distribution
+
+Equal probability over interval $[a, b]$:
+
+$$
+f(x) = \frac{1}{b - a}, \quad a \leq x \leq b
+$$
+
+- $\mathbb{E}[X] = \frac{a + b}{2}$
+- $\text{Var}(X) = \frac{(b-a)^2}{12}$
+
+**ML relevance**: Random initialization, data augmentation
+
+#### Exponential Distribution
+
+Time between events in Poisson process:
+
+$$
+f(x) = \lambda e^{-\lambda x}, \quad x \geq 0
+$$
+
+- $\mathbb{E}[X] = \frac{1}{\lambda}$
+- $\text{Var}(X) = \frac{1}{\lambda^2}$
+
+#### Normal (Gaussian) Distribution
+
+**PDF of normal distribution in 1D**:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+$$
+
+**Notation**: $X \sim \mathcal{N}(\mu, \sigma^2)$
+
+**Parameters**:
+- $\mu$: mean
+- $\sigma^2$: variance
+- $\sigma$: standard deviation
+
+**Properties**:
+
+- Symmetric around $\mu$
+- 68-95-99.7 rule: ~68% within 1σ, ~95% within 2σ, ~99.7% within 3σ
+- Sum of independent Gaussians is Gaussian
+- Central Limit Theorem: sum of many i.i.d. variables → Gaussian
+
+**Standard Normal**: $\mathcal{N}(0, 1)$
+
+$$
+Z = \frac{X - \mu}{\sigma} \sim \mathcal{N}(0, 1)
+$$
+
+#### Multivariate Normal Distribution
+
+The normal (Gaussian) distribution can be extended to multiple variables — for example, when $\mathbf{x}$ is a vector instead of just a number.
+
+When $\mathbf{x}$ is a vector in $\mathbb{R}^d$ (i.e., a list of $d$ values), the multivariate Gaussian looks like:
+
+$$
+\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = \frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right)
 $$
 
 **What do all these symbols mean?**
 
-- $x$: A $d$-dimensional vector (e.g., an image flattened into a 1D array)
-- $\mu$: The mean vector (the "center" of the distribution)
-- $\Sigma$: The $d \times d$ covariance matrix, which captures the spread and correlation of the variables
-- $|\Sigma|$: The **determinant** of $\Sigma$, representing the volume of the distribution
+- $\mathbf{x}$: A $d$-dimensional vector (e.g., an image flattened into a 1D array)
+- $\boldsymbol{\mu}$: The mean vector (the "center" of the distribution)
+- $\boldsymbol{\Sigma}$: The $d \times d$ covariance matrix, which captures the spread and correlation of the variables
+- $|\boldsymbol{\Sigma}|$: The **determinant** of $\boldsymbol{\Sigma}$, representing the volume scaling
 - $(2\pi)^{d/2}$: Comes from extending the 1D normalizing constant to $d$ dimensions
-- $(x - \mu)^T \Sigma^{-1}(x - \mu)$: A **generalized squared distance** from $x$ to the mean — see below!
+- $(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})$: A **generalized squared distance** from $\mathbf{x}$ to the mean — see below!
 
-::: {.callout-tip title="What’s the Mahalanobis Distance?"}
-The term $(x - \mu)^T \Sigma^{-1}(x - \mu)$ measures how far $x$ is from the mean $\mu$, taking into account how spread out the data is in different directions. It’s like Euclidean distance, but **adjusted** for direction-dependent variance. The more noise (variance) in a direction, the less the distance is penalized in that direction.
-:::
+**What's the Mahalanobis Distance?**
 
-### Special Case: Spherical Gaussian
+The term $(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})$ measures how far $\mathbf{x}$ is from the mean $\boldsymbol{\mu}$, taking into account how spread out the data is in different directions. It's like Euclidean distance, but **adjusted** for direction-dependent variance. The more variance in a direction, the less distance is penalized in that direction.
 
-If all variables are independent and have equal variance $\sigma^2$, then $\Sigma = \sigma^2 I$ and the formula simplifies to:
+**Special Case: Spherical Gaussian**
+
+If all variables are independent and have equal variance $\sigma^2$, then $\boldsymbol{\Sigma} = \sigma^2 \mathbf{I}$ and the formula simplifies to:
 
 $$
-\mathcal{N}(x \mid \mu, \sigma^2 I) = 
-\frac{1}{(2\pi \sigma^2)^{d/2}} 
-\exp\left( -\frac{1}{2\sigma^2} \|x - \mu\|^2 \right)
+\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}, \sigma^2 \mathbf{I}) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left(-\frac{1}{2\sigma^2}\|\mathbf{x} - \boldsymbol{\mu}\|^2\right)
 $$
 
 This looks more like the familiar 1D bell curve — but extended to $d$ dimensions.
+
+**ML relevance**: 
+
+- Gaussian Mixture Models (GMM)
+- Latent variable models (VAE)
+- Gaussian processes
+- Discriminant analysis
+
+#### Beta Distribution
+
+Probability distribution over probabilities $[0, 1]$:
+
+$$
+f(x) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha, \beta)}, \quad 0 \leq x \leq 1
+$$
+
+where $B(\alpha, \beta)$ is the beta function
+
+**ML relevance**: Bayesian inference (conjugate prior for Bernoulli/Binomial)
+
+#### Gamma Distribution
+
+Generalization of exponential distribution:
+
+$$
+f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x \geq 0
+$$
+
+**ML relevance**: Prior distributions in Bayesian models
 
 ## Maximum Likelihood Estimation (MLE)
 
 Used to estimate parameters of models:
 
 $$
-\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(D \mid \theta)
+\hat{\theta}_{\text{MLE}} = \arg\max_\theta P(\mathcal{D} \mid \theta)
 $$
 
---- 
+**Equivalently** (using log-likelihood):
+
+$$
+\hat{\theta}_{\text{MLE}} = \arg\max_\theta \sum_{i=1}^n \log P(x_i \mid \theta)
+$$
+
+**Why log-likelihood?**
+
+- Products become sums (easier to optimize)
+- Numerically more stable
+- Same maximum as likelihood
+
+**Example: MLE for Gaussian**
+
+Given data $\{x_1, \ldots, x_n\}$ from $\mathcal{N}(\mu, \sigma^2)$:
+
+$$
+\hat{\mu}_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n x_i \quad \text{(sample mean)}
+$$
+
+$$
+\hat{\sigma}^2_{\text{MLE}} = \frac{1}{n}\sum_{i=1}^n (x_i - \hat{\mu})^2 \quad \text{(sample variance)}
+$$
+
+**ML relevance**: Training probabilistic models, logistic regression
+
+## Maximum A Posteriori (MAP) Estimation
+
+Incorporates prior knowledge:
+
+$$
+\hat{\theta}_{\text{MAP}} = \arg\max_\theta P(\theta \mid \mathcal{D}) = \arg\max_\theta P(\mathcal{D} \mid \theta) P(\theta)
+$$
+
+**Using log**:
+
+$$
+\hat{\theta}_{\text{MAP}} = \arg\max_\theta \left[\log P(\mathcal{D} \mid \theta) + \log P(\theta)\right]
+$$
+
+**Difference from MLE**: MAP includes prior $P(\theta)$
+
+**ML relevance**: 
+
+- Regularization (L2 = Gaussian prior, L1 = Laplace prior)
+- Bayesian neural networks
 
 ## KL Divergence
 
 Measures how one distribution diverges from another:
 
 $$
-D_{\text{KL}}(P \parallel Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
+D_{\text{KL}}(P \| Q) = \sum_x P(x) \log \frac{P(x)}{Q(x)}
 $$
 
-Used in training VAEs and information-theoretic learning.
+**Continuous**:
+
+$$
+D_{\text{KL}}(P \| Q) = \int P(x) \log \frac{P(x)}{Q(x)} \, dx
+$$
+
+**Properties**:
+
+- $D_{\text{KL}}(P \| Q) \geq 0$ (Gibb's inequality)
+- $D_{\text{KL}}(P \| Q) = 0$ iff $P = Q$
+- **Not symmetric**: $D_{\text{KL}}(P \| Q) \neq D_{\text{KL}}(Q \| P)$
+- Not a true distance metric
+
+**Equivalent form**:
+
+$$
+D_{\text{KL}}(P \| Q) = \mathbb{E}_{x \sim P}\left[\log \frac{P(x)}{Q(x)}\right] = \mathbb{E}_{x \sim P}[\log P(x)] - \mathbb{E}_{x \sim P}[\log Q(x)]
+$$
+
+$$
+= -H(P) - \mathbb{E}_{x \sim P}[\log Q(x)]
+$$
+
+where $H(P)$ is the entropy of $P$
+
+**ML relevance**: 
+
+- Variational inference
+- Training VAEs (ELBO)
+- Information-theoretic learning
+- Model comparison
+
+## Cross-Entropy
+
+Measures expected log-likelihood under distribution $Q$ when true distribution is $P$:
+
+$$
+H(P, Q) = -\sum_x P(x) \log Q(x)
+$$
+
+**Continuous**:
+
+$$
+H(P, Q) = -\int P(x) \log Q(x) \, dx
+$$
+
+**Relation to KL divergence**:
+
+$$
+H(P, Q) = H(P) + D_{\text{KL}}(P \| Q)
+$$
+
+where $H(P) = -\sum_x P(x) \log P(x)$ is the entropy
+
+**ML relevance**: 
+
+- Cross-entropy loss in classification
+- Minimizing cross-entropy ≡ minimizing KL divergence (since $H(P)$ is constant)
+
+## Entropy
+
+Measures uncertainty or information content:
+
+**Shannon Entropy**:
+
+$$
+H(X) = -\sum_x P(x) \log P(x) = \mathbb{E}[-\log P(X)]
+$$
+
+**Continuous** (Differential Entropy):
+
+$$
+H(X) = -\int f(x) \log f(x) \, dx
+$$
+
+**Properties**:
+
+- $H(X) \geq 0$
+- Maximum entropy for discrete uniform distribution
+- Higher entropy = more uncertainty
+
+**Conditional Entropy**:
+
+$$
+H(Y \mid X) = \sum_x P(x) H(Y \mid X = x)
+$$
+
+**ML relevance**: 
+
+- Information gain in decision trees
+- Entropy regularization
+- Information theory foundations
+
+## Mutual Information
+
+Measures dependence between variables:
+
+$$
+I(X; Y) = D_{\text{KL}}(P(X,Y) \| P(X)P(Y))
+$$
+
+**Equivalent forms**:
+
+$$
+I(X; Y) = H(X) - H(X \mid Y) = H(Y) - H(Y \mid X)
+$$
+
+$$
+I(X; Y) = H(X) + H(Y) - H(X, Y)
+$$
+
+**Properties**:
+
+- $I(X; Y) \geq 0$
+- $I(X; Y) = 0$ iff $X$ and $Y$ independent
+- Symmetric: $I(X; Y) = I(Y; X)$
+
+**ML relevance**: 
+
+- Feature selection
+- Information bottleneck theory
+- Variational information maximization
+
+## Central Limit Theorem (CLT)
+
+For i.i.d. random variables $X_1, \ldots, X_n$ with mean $\mu$ and variance $\sigma^2$:
+
+$$
+\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1)
+$$
+
+where $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$
+
+**Practical form**: For large $n$:
+
+$$
+\bar{X}_n \approx \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)
+$$
+
+**ML relevance**: 
+
+- Justifies Gaussian assumptions
+- Confidence intervals
+- Bootstrap methods
+
+## Law of Large Numbers (LLN)
+
+### Weak LLN
+
+For i.i.d. $X_1, \ldots, X_n$ with mean $\mu$:
+
+$$
+\bar{X}_n \xrightarrow{P} \mu
+$$
+
+(Sample mean converges in probability to true mean)
+
+### Strong LLN
+
+$$
+\bar{X}_n \xrightarrow{\text{a.s.}} \mu
+$$
+
+(Sample mean converges almost surely)
+
+**ML relevance**: 
+
+- Monte Carlo methods
+- Justifies empirical risk minimization
+
+## Jensen's Inequality
+
+For convex function $f$ and random variable $X$:
+
+$$
+f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]
+$$
+
+For **concave** function: reverse inequality
+
+**Example**: $\log$ is concave, so:
+
+$$
+\log(\mathbb{E}[X]) \geq \mathbb{E}[\log(X)]
+$$
+
+**ML relevance**: 
+
+- Derives EM algorithm
+- Variational inference bounds
+- Information theory inequalities
+
+---
+
+# ML Applications Summary
+
+## Classification
+
+**Logistic Regression** (binary):
+
+$$
+P(y = 1 \mid \mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x}) = \frac{1}{1 + e^{-\mathbf{w}^T\mathbf{x}}}
+$$
+
+**Softmax** (multi-class):
+
+$$
+P(y = k \mid \mathbf{x}) = \frac{e^{\mathbf{w}_k^T\mathbf{x}}}{\sum_{j=1}^K e^{\mathbf{w}_j^T\mathbf{x}}}
+$$
+
+## Naive Bayes Classifier
+
+Assumes features conditionally independent:
+
+$$
+P(y \mid \mathbf{x}) \propto P(y) \prod_{i=1}^d P(x_i \mid y)
+$$
+
+**Decision rule**:
+
+$$
+\hat{y} = \arg\max_y P(y) \prod_{i=1}^d P(x_i \mid y)
+$$
+
+## Gaussian Mixture Models (GMM)
+
+Mixture of $K$ Gaussians:
+
+$$
+P(\mathbf{x}) = \sum_{k=1}^K \pi_k \mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+$$
+
+where $\sum_{k=1}^K \pi_k = 1$ (mixing coefficients)
+
+**ML relevance**: Clustering, density estimation, generative models
+
+## Expectation-Maximization (EM) Algorithm
+
+Iterative method for MLE with latent variables:
+
+**E-step**: Compute expected log-likelihood
+
+$$
+Q(\theta \mid \theta^{(t)}) = \mathbb{E}_{Z \mid X, \theta^{(t)}}[\log P(X, Z \mid \theta)]
+$$
+
+**M-step**: Maximize w.r.t. $\theta$
+
+$$
+\theta^{(t+1)} = \arg\max_\theta Q(\theta \mid \theta^{(t)})
+$$
+
+**ML relevance**: Training GMMs, hidden Markov models
+
+## Sampling Methods
+
+### Monte Carlo Estimation
+
+Approximate expectation by sampling:
+
+$$
+\mathbb{E}[f(X)] \approx \frac{1}{N}\sum_{i=1}^N f(x_i), \quad x_i \sim P(X)
+$$
+
+### Markov Chain Monte Carlo (MCMC)
+
+Generate samples from complex distributions:
+
+- **Metropolis-Hastings**: Accept/reject samples based on ratio
+- **Gibbs Sampling**: Sample each variable conditional on others
+
+**ML relevance**: Bayesian inference, probabilistic programming
+
+## Quick Reference Table
+
+| Concept | Formula | ML Application |
+|---------|---------|----------------|
+| Bayes' Theorem | $P(A \mid B) = \frac{P(B \mid A)P(A)}{P(B)}$ | Classification, inference |
+| KL Divergence | $D_{\text{KL}}(P \| Q) = \sum P(x)\log\frac{P(x)}{Q(x)}$ | VAE training, model comparison |
+| Cross-Entropy | $H(P,Q) = -\sum P(x)\log Q(x)$ | Classification loss |
+| Entropy | $H(X) = -\sum P(x)\log P(x)$ | Information theory, decision trees |
+| Gaussian PDF | $\mathcal{N}(\mu, \sigma^2)$ | Continuous modeling |
+| MLE | $\hat{\theta} = \arg\max P(\mathcal{D} \mid \theta)$ | Parameter estimation |
+| MAP | $\hat{\theta} = \arg\max P(\theta \mid \mathcal{D})$ | Bayesian estimation |
+| Covariance | $\text{Cov}(X,Y) = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$ | Feature correlation |
+| CLT | $\bar{X}_n \to \mathcal{N}(\mu, \sigma^2/n)$ | Statistical inference |
